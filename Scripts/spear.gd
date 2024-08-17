@@ -53,9 +53,11 @@ func _physics_process(delta: float) -> void:
 						
 
 func _input(event) -> void:
-	if event.is_action_pressed("recall"):
-		state = SpearState.RECALL
-	if event.is_action_pressed("target_throw"):
-		velocity = THROW_SPEED * Vector2.RIGHT.rotated(rotation)
-		state = SpearState.THROWN
+	if event.is_action_pressed("throw"):
+		match state:
+			SpearState.CARRIED:
+				velocity = THROW_SPEED * Vector2.RIGHT.rotated(rotation)
+				state = SpearState.THROWN
+			_:
+				state = SpearState.RECALL
 	

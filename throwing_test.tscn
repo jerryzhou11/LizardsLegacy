@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm56ymq3j7akw"]
+[gd_scene load_steps=7 format=3 uid="uid://c6cbc8ovc2uj1"]
 
-[ext_resource type="PackedScene" path="res://placeholder_player.tscn" id="1_mo2e6"]
-[ext_resource type="PackedScene" path="res://box.tscn" id="2_8bobc"]
+[ext_resource type="PackedScene" uid="uid://yjlpyvhkxbvp" path="res://placeholder_player.tscn" id="1_mo2e6"]
+[ext_resource type="PackedScene" uid="uid://dv1jgd7pu1qp5" path="res://box.tscn" id="2_8bobc"]
+[ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="3_tjxpj"]
+[ext_resource type="Script" path="res://Scripts/spear.gd" id="4_hh73o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iclw"]
 size = Vector2(320, 24)
@@ -21,7 +23,8 @@ scale = Vector2(320, 24)
 texture = SubResource("PlaceholderTexture2D_l4c5q")
 
 [node name="PlaceholderPlayer" parent="." instance=ExtResource("1_mo2e6")]
-position = Vector2(-24, -29)
+position = Vector2(-56, -32)
+collision_layer = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -30,3 +33,9 @@ position = Vector2(125, -48)
 
 [node name="Block2" parent="." instance=ExtResource("2_8bobc")]
 position = Vector2(125, -118)
+
+[node name="Spear" parent="." instance=ExtResource("3_tjxpj")]
+position = Vector2(-2.81993, -44.0395)
+collision_layer = 2
+script = ExtResource("4_hh73o")
+Character = NodePath("../PlaceholderPlayer")
