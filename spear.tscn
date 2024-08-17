@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://day0aesv0peqp"]
 
-[ext_resource type="Texture2D" uid="uid://dvqd4wxqm1chk" path="res://assets/sprite/spear_vert_centered.png" id="1_0qtwm"]
+[ext_resource type="Texture2D" uid="uid://dvqd4wxqm1chk" path="res://Art/spear_vert_centered.png" id="1_0qtwm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q27fy"]
 size = Vector2(7.125, 34.875)

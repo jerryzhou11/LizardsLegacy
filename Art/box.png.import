@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvqd4wxqm1chk"
-path="res://.godot/imported/spear_vert_centered.png-cf953a0c7e07e605f5d83ba4f159dd18.ctex"
+uid="uid://80phsjvanynd"
+path="res://.godot/imported/box.png-02310badb7b69d96071081f846830b6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/spear_vert_centered.png"
-dest_files=["res://.godot/imported/spear_vert_centered.png-cf953a0c7e07e605f5d83ba4f159dd18.ctex"]
+source_file="res://Art/box.png"
+dest_files=["res://.godot/imported/box.png-02310badb7b69d96071081f846830b6a.ctex"]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
-compress/channel_pack=1
+compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
