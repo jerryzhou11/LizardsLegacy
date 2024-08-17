@@ -4,7 +4,6 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -23,3 +22,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+
+#the only thing that can enter our hurtbox are enemy attacks.
+func _on_hurtbox_body_entered(body:Node2D) -> void:
+	print("You died!")
+	#obviously, placeholder death condition.
