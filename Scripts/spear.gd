@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
 
-const THROW_SPEED = 500.0
-const MAX_RECALL_SPEED = 10000.0
-const MIN_RECALL_SPEED = 100.0
-const RECALL_ACCEL = 1.05
+const THROW_SPEED = 900.0
+const MAX_RECALL_SPEED = 5000.0
+const MIN_RECALL_SPEED = 300.0
+const RECALL_ACCEL = 3000.0 # per second
 const PICKUP_RANGE = 50.0   
 const AIR_RESISTANCE = 0
-const VELOCITY_INHERETANCE = 0.5 #percent of player velocity that adds to throw
+const VELOCITY_INHERETANCE = 1 #percent of player velocity that adds to throw
 
 @export var Character: NodePath
 @export var CatchZone: NodePath
@@ -49,23 +49,16 @@ func _physics_process(delta: float) -> void:
 			var carrier = get_node(Character)
 			if not carrier:
 				return
-			var vector_to_player = global_position - carrier.global_position
-			var speed = velocity.length()
-			rotation = vector_to_player.angle()
-			#this is. A mess. I spent like 5 hours trying to get this to work, sorry it still sucks
-			velocity = vector_to_player.normalized() 
-			velocity += -RECALL_ACCEL * speed * velocity
-			# speed caps
-			if velocity.length() < MIN_RECALL_SPEED:
-				velocity = -MIN_RECALL_SPEED * vector_to_player.normalized() 
-			elif velocity.length() > MAX_RECALL_SPEED:
-				velocity = -MAX_RECALL_SPEED * vector_to_player.normalized() 
-			#temporary fix to orbits: if you move towards the spear it locks onto you better
-			
-
+			var vector_to_player = carrier.global_position - global_position
+			rotation = PI + vector_to_player.angle() # face away from the player
+			velocity = vector_to_player.normalized() * clampf(
+				(RECALL_ACCEL * delta) + velocity.length(), 
+				MIN_RECALL_SPEED, 
+				MAX_RECALL_SPEED
+			)			
+			move_and_slide()
 			if vector_to_player.length() < PICKUP_RANGE: # this is evil. TODO fix
 				state = SpearState.CARRIED
-			move_and_slide()
 				
 						
 

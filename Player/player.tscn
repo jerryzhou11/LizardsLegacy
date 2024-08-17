@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b38wcoytpowl0"]
+[gd_scene load_steps=5 format=3 uid="uid://b38wcoytpowl0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a0ff2"]
 [ext_resource type="Texture2D" uid="uid://cygco4hvw5t52" path="res://Art/Lizard/SCALE200.png" id="2_10l6a"]
@@ -6,8 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i57uf"]
 size = Vector2(19, 56)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g15n0"]
+height = 84.0
+
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 3
+collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_a0ff2")
 
@@ -18,3 +21,20 @@ shape = SubResource("RectangleShape2D_i57uf")
 [node name="Scale200" type="Sprite2D" parent="."]
 position = Vector2(12, -32)
 texture = ExtResource("2_10l6a")
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -13.5)
+shape = SubResource("RectangleShape2D_i57uf")
+
+[node name="Scale400" type="Sprite2D" parent="."]
+position = Vector2(23, -63)
+texture = ExtResource("1_obgy5")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(6, -59)
+shape = SubResource("CapsuleShape2D_g15n0")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

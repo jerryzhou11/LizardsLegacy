@@ -35,3 +35,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * DASH_SPEED
 		
 	move_and_slide()
+
+
+#the only thing that can enter our hurtbox are enemy attacks.
+func _on_hurtbox_body_entered(body:Node2D) -> void:
+	print("You died!")
+	#obviously, placeholder death condition.
