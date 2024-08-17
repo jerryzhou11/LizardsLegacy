@@ -1,33 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://day0aesv0peqp"]
+[gd_scene load_steps=3 format=3 uid="uid://day0aesv0peqp"]
 
 [ext_resource type="Texture2D" uid="uid://dvqd4wxqm1chk" path="res://assets/sprite/spear_vert_centered.png" id="1_0qtwm"]
-[ext_resource type="Texture2D" uid="uid://80phsjvanynd" path="res://assets/sprite/box.png" id="2_wovj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q27fy"]
 size = Vector2(7.125, 34.875)
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_r1g2l"]
-points = PackedVector2Array(-30, -35, -35, -30, -35, 30, -30, 35, 30, 35, 35, 30, 35, -30, 30, -35)
+[node name="Spear" type="CharacterBody2D"]
 
-[node name="Spear" type="Node2D"]
-
-[node name="Spear" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spear"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.4375, -2.5625)
 shape = SubResource("RectangleShape2D_q27fy")
 
-[node name="Sprite2D" type="Sprite2D" parent="Spear"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -1)
 scale = Vector2(1.016, 1)
 texture = ExtResource("1_0qtwm")
-
-[node name="Block" type="StaticBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Block"]
-texture_filter = 1
-texture = ExtResource("2_wovj1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Block"]
-shape = SubResource("ConvexPolygonShape2D_r1g2l")
