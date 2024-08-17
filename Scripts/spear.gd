@@ -4,7 +4,7 @@ extends CharacterBody2D
 const THROW_SPEED = 500.0
 const MAX_RECALL_SPEED = 10000.0
 const MIN_RECALL_SPEED = 100.0
-const RECALL_ACCEL = 50.0
+const RECALL_ACCEL = 1.05
 const PICKUP_RANGE = 50.0   
 const AIR_RESISTANCE = 0
 const VELOCITY_INHERETANCE = 0.5 #percent of player velocity that adds to throw
@@ -48,18 +48,18 @@ func _physics_process(delta: float) -> void:
 			if not carrier:
 				return
 			var vector_to_player = global_position - carrier.global_position
-			var normal_to_player = vector_to_player.rotated(PI/2)
+			var speed = velocity.length()
 			rotation = vector_to_player.angle()
-			
 			#this is. A mess. I spent like 5 hours trying to get this to work, sorry it still sucks
-			velocity += -RECALL_ACCEL * vector_to_player.normalized() 
+			velocity = vector_to_player.normalized() 
+			velocity += -RECALL_ACCEL * speed * velocity
 			# speed caps
 			if velocity.length() < MIN_RECALL_SPEED:
 				velocity = -MIN_RECALL_SPEED * vector_to_player.normalized() 
 			elif velocity.length() > MAX_RECALL_SPEED:
 				velocity = -MAX_RECALL_SPEED * vector_to_player.normalized() 
 			#temporary fix to orbits: if you move towards the spear it locks onto you better
-			velocity += -carrier.velocity * delta
+			
 
 			if vector_to_player.length() < PICKUP_RANGE: # this is evil. TODO fix
 				state = SpearState.CARRIED
