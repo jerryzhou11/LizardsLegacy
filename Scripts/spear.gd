@@ -25,11 +25,11 @@ var state = SpearState.CARRIED
 func _physics_process(delta: float) -> void:
 	#collision was pushing around player when spear was held. 
 	if state == SpearState.RECALL or state == SpearState.CARRIED:
-		set_collision_layer_value(1, false) 
+		set_collision_mask_value(1, false) 
 		# instead of global collision turnoff, 
 		# just turning off collision with the world
 	else:
-		set_collision_layer_value(1, true) 
+		set_collision_mask_value(1, true) 
 	
 	match state:
 		SpearState.THROWN:
