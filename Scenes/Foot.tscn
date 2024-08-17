@@ -7,16 +7,17 @@
 size = Vector2(72, 49)
 
 [node name="Enemystomp" type="CharacterBody2D"]
+position = Vector2(2, -4)
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_2cppc")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(91, -64)
+position = Vector2(-0.999969, -62.5)
 scale = Vector2(0.585938, 1)
 texture = ExtResource("1_fkc7r")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(91, -25.5)
+position = Vector2(-0.999969, -24)
 shape = SubResource("RectangleShape2D_ice76")

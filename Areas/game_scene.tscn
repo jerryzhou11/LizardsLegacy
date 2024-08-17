@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=7 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_ed1ie"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
+[ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="3_8krq0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -95,3 +96,6 @@ shape = SubResource("RectangleShape2D_80hbx")
 
 [node name="Player" parent="." instance=ExtResource("2_ob7sr")]
 position = Vector2(155, 86)
+
+[node name="Enemystomp" parent="." instance=ExtResource("3_8krq0")]
+position = Vector2(428, -313)
