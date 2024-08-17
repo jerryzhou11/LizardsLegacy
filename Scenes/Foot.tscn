@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://brip3rxac20gc"]
 
 [ext_resource type="Script" path="res://Scripts/foot.gd" id="1_2cppc"]
-[ext_resource type="Texture2D" path="res://icon.svg" id="1_fkc7r"]
+[ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_fkc7r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ice76"]
 size = Vector2(72, 49)
 
 [node name="Enemystomp" type="CharacterBody2D"]
 scale = Vector2(2, 2)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_2cppc")
 
