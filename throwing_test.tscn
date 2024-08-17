@@ -1,3 +1,32 @@
-[gd_scene format=3 uid="uid://c6cbc8ovc2uj1"]
+[gd_scene load_steps=5 format=3 uid="uid://c6cbc8ovc2uj1"]
+
+[ext_resource type="PackedScene" uid="uid://yjlpyvhkxbvp" path="res://placeholder_player.tscn" id="1_mo2e6"]
+[ext_resource type="PackedScene" uid="uid://dv1jgd7pu1qp5" path="res://box.tscn" id="2_8bobc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0iclw"]
+size = Vector2(320, 24)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l4c5q"]
 
 [node name="ThrowingTest" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_0iclw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(-8.07794e-28, 0)
+scale = Vector2(320, 24)
+texture = SubResource("PlaceholderTexture2D_l4c5q")
+
+[node name="PlaceholderPlayer" parent="." instance=ExtResource("1_mo2e6")]
+position = Vector2(-24, -29)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Block" parent="." instance=ExtResource("2_8bobc")]
+position = Vector2(125, -48)
+
+[node name="Block2" parent="." instance=ExtResource("2_8bobc")]
+position = Vector2(125, -118)
