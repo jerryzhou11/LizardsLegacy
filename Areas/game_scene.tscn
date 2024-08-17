@@ -97,5 +97,8 @@ shape = SubResource("RectangleShape2D_80hbx")
 [node name="Player" parent="." instance=ExtResource("2_ob7sr")]
 position = Vector2(155, 86)
 
-[node name="Enemystomp" parent="." instance=ExtResource("3_8krq0")]
-position = Vector2(428, -313)
+[node name="Enemystomp" parent="." node_paths=PackedStringArray("foot_node", "player_node") instance=ExtResource("3_8krq0")]
+position = Vector2(416, -39)
+collision_layer = 2
+foot_node = NodePath(".")
+player_node = NodePath("../Player")
