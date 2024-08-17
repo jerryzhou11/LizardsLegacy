@@ -10,7 +10,9 @@ const AIR_RESISTANCE = 0
 const VELOCITY_INHERETANCE = 0.5 #percent of player velocity that adds to throw
 
 @export var Character: NodePath
+@export var CatchZone: NodePath
 @onready var Collider := $CollisionShape2D
+
 
 enum SpearState {
 	CARRIED,

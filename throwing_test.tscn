@@ -50,3 +50,4 @@ position = Vector2(-2.81993, -44.0395)
 collision_layer = 2
 script = ExtResource("4_hh73o")
 Character = NodePath("../PlaceholderPlayer")
+CatchZone = NodePath("../PlaceholderPlayer/CatchZone")
