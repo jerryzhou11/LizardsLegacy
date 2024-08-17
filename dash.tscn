@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq817p4br4tvh"]
+
+[ext_resource type="Script" path="res://Scripts/dash.gd" id="1_d4k2s"]
+
+[node name="Dash" type="Node2D"]
+script = ExtResource("1_d4k2s")
+
+[node name="dashtimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="cooldowntimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
