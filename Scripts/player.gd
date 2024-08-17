@@ -7,7 +7,15 @@ const DASH_SPEED = 1200
 const DASH_LENGTH = .15
 const DASH_COOLDOWN = .8
 
+var inv = []
+
 @onready var dash = $Dash
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("print_inv"):	
+		print("hi")
+		
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -35,7 +43,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * DASH_SPEED
 		
 	move_and_slide()
-
 
 #the only thing that can enter our hurtbox are enemy attacks.
 func _on_hurtbox_body_entered(body:Node2D) -> void:

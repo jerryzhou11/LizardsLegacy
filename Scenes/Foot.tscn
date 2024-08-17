@@ -14,8 +14,8 @@ collision_mask = 4
 script = ExtResource("1_2cppc")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(-0.999969, -62.5)
-scale = Vector2(0.585938, 1)
+position = Vector2(-0.999969, -118.5)
+scale = Vector2(0.585938, 1.875)
 texture = ExtResource("1_fkc7r")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
