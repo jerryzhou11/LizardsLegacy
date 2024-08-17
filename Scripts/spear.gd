@@ -23,10 +23,13 @@ enum SpearState {
 var state = SpearState.CARRIED
 	
 func _physics_process(delta: float) -> void:
-	if state == SpearState.RECALL:
-		Collider.disabled = true
+	#collision was pushing around player when spear was held. 
+	if state == SpearState.RECALL or state == SpearState.CARRIED:
+		set_collision_layer_value(1, false) 
+		# instead of global collision turnoff, 
+		# just turning off collision with the world
 	else:
-		Collider.disabled = false
+		set_collision_layer_value(1, true) 
 	
 	match state:
 		SpearState.THROWN:
@@ -41,6 +44,7 @@ func _physics_process(delta: float) -> void:
 			look_at(get_global_mouse_position())
 			var carrier = get_node(Character)
 			if not carrier:
+				print("no carrier")
 				return
 			global_position = carrier.global_position + Vector2(16, -16)
 		SpearState.STUCK:
@@ -57,8 +61,10 @@ func _physics_process(delta: float) -> void:
 				MAX_RECALL_SPEED
 			)			
 			move_and_slide()
-			if vector_to_player.length() < PICKUP_RANGE: # this is evil. TODO fix
-				state = SpearState.CARRIED
+			#if vector_to_player.length() < PICKUP_RANGE: # this is evil. TODO fix
+				#state = SpearState.CARRIED
+				
+			
 				
 						
 
@@ -74,4 +80,12 @@ func _input(event) -> void:
 				state = SpearState.THROWN
 			_:
 				state = SpearState.RECALL
-	
+
+func _ready() -> void:
+	pass
+
+func _on_catch_zone_spear_caught() -> void:
+	print("signal caught")
+	if state == SpearState.RECALL:
+		state = SpearState.CARRIED
+		

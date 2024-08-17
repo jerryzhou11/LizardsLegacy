@@ -11,7 +11,8 @@ size = Vector2(320, 24)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l4c5q"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_h2go5"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7hyir"]
+radius = 24.0208
 
 [node name="ThrowingTest" type="Node2D"]
 
@@ -30,12 +31,15 @@ position = Vector2(-56, -32)
 collision_layer = 4
 
 [node name="CatchZone" type="Area2D" parent="PlaceholderPlayer"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("2_oxp62")
+Character = NodePath("..")
+Spear = NodePath("../../Spear")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceholderPlayer/CatchZone"]
-visible = false
-z_index = -1
-shape = SubResource("CircleShape2D_h2go5")
+shape = SubResource("CircleShape2D_7hyir")
+one_way_collision_margin = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -46,8 +50,11 @@ position = Vector2(125, -48)
 position = Vector2(125, -118)
 
 [node name="Spear" parent="." instance=ExtResource("3_tjxpj")]
-position = Vector2(-2.81993, -44.0395)
-collision_layer = 2
+position = Vector2(0, -56)
+collision_layer = 8
 script = ExtResource("4_hh73o")
 Character = NodePath("../PlaceholderPlayer")
 CatchZone = NodePath("../PlaceholderPlayer/CatchZone")
+
+[connection signal="body_entered" from="PlaceholderPlayer/CatchZone" to="PlaceholderPlayer/CatchZone" method="_spear_catch"]
+[connection signal="spear_caught" from="PlaceholderPlayer/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]
