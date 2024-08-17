@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc83j5dp05qw3"]
+
+[ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="1_k8qsq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47b88"]
+size = Vector2(269, 91)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(28, 257)
+scale = Vector2(4.64, 1)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(104, 347)
+shape = SubResource("RectangleShape2D_47b88")
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -28.0
+offset_top = 302.0
+offset_right = 242.0
+offset_bottom = 392.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Enemystomp" parent="." instance=ExtResource("1_k8qsq")]
+position = Vector2(379, 255)
