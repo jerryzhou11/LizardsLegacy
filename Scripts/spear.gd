@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 			var vector_to_player = global_position - carrier.global_position
 			rotation = vector_to_player.angle()
 			velocity = vector_to_player.normalized() * -RECALL_SPEED
-			if vector_to_player.length() < 16: 
+			if vector_to_player.length() < 16: # this is evil. TODO fix
 				state = SpearState.CARRIED
 			move_and_slide()
 				
