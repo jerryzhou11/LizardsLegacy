@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 			var normal_to_player = vector_to_player.rotated(PI/2)
 			rotation = vector_to_player.angle()
 			
-			#this is. A mess.
+			#this is. A mess. I spent like 5 hours trying to get this to work, sorry it still sucks
 			velocity += -RECALL_ACCEL * vector_to_player.normalized() 
 			# speed caps
 			if velocity.length() < MIN_RECALL_SPEED:
@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 				velocity = -MAX_RECALL_SPEED * vector_to_player.normalized() 
 			#temporary fix to orbits: if you move towards the spear it locks onto you better
 			velocity += -carrier.velocity * delta
-			
+
 			if vector_to_player.length() < PICKUP_RANGE: # this is evil. TODO fix
 				state = SpearState.CARRIED
 			move_and_slide()
