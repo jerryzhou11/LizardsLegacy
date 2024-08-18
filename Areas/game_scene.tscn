@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=12 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_ed1ie"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
 [ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="3_8krq0"]
-[ext_resource type="PackedScene" uid="uid://dr2jx1q56fm8o" path="res://dash.tscn" id="3_iy30d"]
+[ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_iy30d"]
 [ext_resource type="Texture2D" uid="uid://cvxhjth8b4isl" path="res://Art/Dragon/dragon leg scales-Sheet.png" id="5_2jo3e"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="5_iajij"]
-[ext_resource type="PackedScene" path="res://Scenes/tail.tscn" id="6_ooocl"]
+[ext_resource type="PackedScene" uid="uid://caohg6fopypta" path="res://Scenes/tail.tscn" id="6_ooocl"]
+[ext_resource type="PackedScene" uid="uid://bklhypxncehw6" path="res://pause_menu.tscn" id="8_qv5et"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -133,3 +134,7 @@ texture = ExtResource("5_2jo3e")
 
 [node name="Tail" parent="." instance=ExtResource("6_ooocl")]
 position = Vector2(981, -55)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_qv5et")]
