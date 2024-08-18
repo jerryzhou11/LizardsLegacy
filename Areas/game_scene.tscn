@@ -176,7 +176,7 @@ offset_right = 21.0
 offset_bottom = 9.0
 
 [node name="Hud" parent="CanvasLayer" instance=ExtResource("10_jbqtg")]
-position = Vector2(21, 19)
+position = Vector2(29, 19)
 
 [node name="ProgressBar" parent="CanvasLayer/Hud/BoxContainer" index="0"]
 Character = NodePath("../../../../Player")

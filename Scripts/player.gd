@@ -17,6 +17,7 @@ const FLAP_YSPEED = 400.0
 const FLAP_COOLDOWN = .8
 const FLAP_STAMINA = 0.2 # seconds
 const DASH_UP_STAMINA = 0.4 # seconds
+const DEAD_DRAG = 0.05
 var animation_locked : bool = false
 var direction := 0
 var facing = 1
@@ -62,6 +63,8 @@ func _physics_process(delta: float) -> void:
 		flap_available = true
 		
 	if dead:
+		velocity.x = velocity.x * (1.0 - DEAD_DRAG) ** delta
+		print(velocity)
 		move_and_slide()
 		return	
 		
@@ -137,7 +140,7 @@ func _on_hurtbox_area_entered(area:Area2D) -> void:
 func _on_hurtbox_body_entered(body:RigidBody2D) -> void:
 	print("hit by rock lmao")
 	dead = true
-	ragdoll(body.linear_velocity, 1000)
+	ragdoll(body.linear_velocity, 2000)
 
 # Returns true if the hit killed the player, false otherwise
 func get_hit() -> bool:

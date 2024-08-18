@@ -367,7 +367,7 @@ shape = SubResource("RectangleShape2D_i57uf")
 position = Vector2(3, -31)
 sprite_frames = SubResource("SpriteFrames_ujfxd")
 animation = &"dash_R"
-frame_progress = 0.289426
+frame_progress = 0.900415
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 2
