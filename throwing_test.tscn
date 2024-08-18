@@ -52,9 +52,9 @@ position = Vector2(125, -118)
 [node name="Spear" parent="." instance=ExtResource("3_tjxpj")]
 position = Vector2(0, -56)
 collision_layer = 8
+collision_mask = 6
 script = ExtResource("4_hh73o")
 Character = NodePath("../PlaceholderPlayer")
-CatchZone = NodePath("../PlaceholderPlayer/CatchZone")
 
 [connection signal="body_entered" from="PlaceholderPlayer/CatchZone" to="PlaceholderPlayer/CatchZone" method="_spear_catch"]
 [connection signal="spear_caught" from="PlaceholderPlayer/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]

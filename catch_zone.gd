@@ -1,4 +1,4 @@
-extends Area2D
+extends CollisionShape2D
 
 @export var Character: NodePath
 @export var Spear: NodePath
@@ -30,4 +30,5 @@ func _process(delta: float) -> void:
 	var player = get_node(Character)
 	if not player:
 		return
-	global_position = player.global_position #makes sure the area is centered on the plaer
+	global_position = player.global_position + 16 * Vector2.UP 
+	#makes sure the area is centered on the plaer

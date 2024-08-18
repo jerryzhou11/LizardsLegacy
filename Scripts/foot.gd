@@ -9,6 +9,7 @@ extends Node2D
 @export var cooldown_duration: float = 2.0
 @export var return_duration: float = 1.5
 @export var arc_height: float = 100.0  # Maximum height of the arc
+@export var max_horizontal_distance: float = 200.0
 
 @export var camera: Camera2D
 
@@ -26,16 +27,22 @@ func start_stomp_attack():
 	if not is_attacking:
 		is_attacking = true
 		var tween = create_tween()
-		
+
 		# Raise the foot slowly
 		tween.tween_property(foot_node, "position:y", original_position.y - raise_height, raise_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 		
 		# Wait for the raise to complete
 		await tween.finished
 		
-		# Calculate target position (player's x, original y)
+		# Calculate target position (player's x, original y). If player is too far away,
+		# we will just stomp a set distance
 		var target_position = Vector2(player_node.global_position.x, original_y)
-		
+		if(abs(target_position.x - foot_node.global_position.x) > max_horizontal_distance):
+			if(target_position.x > foot_node.global_position.x):
+				target_position.x = foot_node.global_position.x + max_horizontal_distance
+			else:
+				target_position.x = foot_node.global_position.x - max_horizontal_distance
+	
 		# Smash down quickly towards the player's x-position, but only to ground level
 		tween = create_tween()
 		tween.tween_property(foot_node, "global_position", target_position, smash_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
@@ -43,8 +50,14 @@ func start_stomp_attack():
 		# Wait for the smash to complete
 		await tween.finished
 		camera.apply_shake()
+
+		#spawn projectiles here
+		
+
 		# Short pause at the bottom
 		await get_tree().create_timer(0.2).timeout
+
+
 		return_start_position = foot_node.position
 
 
