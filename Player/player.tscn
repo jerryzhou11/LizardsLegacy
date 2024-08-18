@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b38wcoytpowl0"]
+[gd_scene load_steps=40 format=3 uid="uid://b38wcoytpowl0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a0ff2"]
 [ext_resource type="Texture2D" uid="uid://djg8ltpmtj4s7" path="res://Art/Lizard/Idle_L-Sheet.png" id="2_ilr2f"]
@@ -8,10 +8,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i57uf"]
 size = Vector2(19, 13)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2b8"]
-radius = 6.0
-height = 52.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b7h5q"]
 atlas = ExtResource("2_ilr2f")
@@ -253,6 +249,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2b8"]
+radius = 6.0
+height = 52.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 4
@@ -266,6 +266,7 @@ shape = SubResource("RectangleShape2D_i57uf")
 position = Vector2(-31, -2)
 sprite_frames = SubResource("SpriteFrames_ujfxd")
 animation = &"walk_R"
+
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 2
 

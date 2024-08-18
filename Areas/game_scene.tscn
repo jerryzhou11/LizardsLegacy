@@ -3,11 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_ed1ie"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
 [ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="3_8krq0"]
-[ext_resource type="PackedScene" uid="uid://dr2jx1q56fm8o" path="res://dash.tscn" id="3_iy30d"]
+[ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_iy30d"]
 [ext_resource type="Texture2D" uid="uid://cvxhjth8b4isl" path="res://Art/Dragon/dragon leg scales-Sheet.png" id="5_2jo3e"]
-[ext_resource type="PackedScene" uid="uid://caohg6fopypta" path="res://Scenes/tail.tscn" id="6_ooocl"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="5_iajij"]
-[ext_resource type="Texture2D" uid="uid://bsimyf516guqt" path="res://Art/Landscape/Jungle_100.png" id="6_u0miu"]
+[ext_resource type="PackedScene" uid="uid://caohg6fopypta" path="res://Scenes/tail.tscn" id="6_ooocl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
