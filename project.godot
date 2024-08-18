@@ -89,6 +89,7 @@ debug_toggle_flight={
 2d_physics/layer_3="Environment"
 2d_physics/layer_4="Pickup"
 2d_physics/layer_5="Debris"
+2d_physics/layer_6="Layer 6"
 
 [rendering]
 

@@ -12,16 +12,22 @@ extends Node2D
 @export var max_horizontal_distance: float = 200.0
 var original_position: Vector2
 var return_start_position: Vector2
-var is_attacking: bool = false
 var original_y: float
 
+#for camera
 @export var camera: Camera2D
 
+#for targeting
+var is_attacking: bool = false
+var detected_player: bool = false
+
+
 #for the debris
-@export var debris_count: int = 10
-@export var debris_scene: PackedScene  # You'll need to create a debris scene with RigidBody2D
+@export var debris_count: int = 5
+@export var debris_scene: PackedScene
 @export var debris_spread: float = 100.0  # How wide the debris spreads
 @export var debris_force: float = 1000.0  # Force applied to debris
+var rng = RandomNumberGenerator.new()
 
 
 func _ready():
@@ -74,6 +80,7 @@ func start_stomp_attack():
 		# Wait for the return to complete
 		await tween.finished
 		
+		await get_tree().create_timer(1).timeout
 		is_attacking = false
 
 func arc_motion(progress: float):
@@ -99,7 +106,8 @@ func spawn_debris(spawn_position: Vector2):
 		var direction = Vector2(-cos(angle), -sin(angle))  # Negative sin for upward direction
 		
 		# Apply impulse to debris
-		debris.apply_central_impulse(direction * debris_force)
+		debris.apply_central_impulse(direction * rng.randf_range(debris_force-200,debris_force+200))
+		debris.rotation = rng.randf_range(0,2*PI)
 		
 		# Set up timer to destroy debris after 5 seconds
 		var timer = Timer.new()
@@ -111,5 +119,16 @@ func spawn_debris(spawn_position: Vector2):
 
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("trigger_stomp"):
+	if detected_player:
 		start_stomp_attack()
+		
+
+
+
+#triggers aggro when player enters aggro zone
+func _on_aggro_zone_area_entered(area:Area2D) -> void:
+	detected_player = true
+
+
+func _on_aggro_zone_area_exited(area: Area2D) -> void:
+	detected_player = false

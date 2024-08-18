@@ -91,8 +91,8 @@ func _on_hurtbox_area_entered(area:Area2D) -> void:
 
 func _on_hurtbox_body_entered(body:RigidBody2D) -> void:
 	print("hit by rock lmao")
-	dead = true
-	ragdoll(body.linear_velocity, 1000)
+	#dead = true
+	#ragdoll(body.linear_velocity, 2000)
 	
 	
 func ragdoll(direction: Vector2, force: float) -> void:
