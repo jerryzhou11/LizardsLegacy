@@ -34,6 +34,12 @@ var dash_ground_reset = true
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
 
+@onready var songplayer = $song_player # sound zone
+@onready var hitplayer = $get_hit_player
+
+func _ready():
+	songplayer.play()
+	
 var items = {
 	"armor": false,
 	"wings": false,
@@ -41,6 +47,7 @@ var items = {
 	
 }
 
+	
 func get_staminabar_percent() -> float:
 	return 100 * flight_stamina/FLIGHT_MAX_STAMINA
 
@@ -148,6 +155,7 @@ func _on_hurtbox_area_entered(area:Area2D) -> void:
 
 func _on_hurtbox_body_entered(body:RigidBody2D) -> void:
 	print("hit by rock lmao")
+	hitplayer.play()
 	get_hit()
 	if not debugMode:
 		dead = true

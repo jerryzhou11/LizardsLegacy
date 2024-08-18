@@ -1,19 +1,21 @@
-[gd_scene load_steps=20 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=21 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_ed1ie"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
 [ext_resource type="Texture2D" uid="uid://b2d3rytpt7vjt" path="res://Art/Landscape/tilemaptype1.png" id="2_yufna"]
 [ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="3_8krq0"]
-[ext_resource type="PackedScene" path="res://dash.tscn" id="3_iy30d"]
+[ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_iy30d"]
 [ext_resource type="Script" path="res://catch_zone.gd" id="4_cv106"]
 [ext_resource type="Texture2D" uid="uid://cvxhjth8b4isl" path="res://Art/Dragon/dragon leg scales-Sheet.png" id="5_2jo3e"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="5_iajij"]
-[ext_resource type="PackedScene" path="res://Scenes/tail.tscn" id="6_ooocl"]
+[ext_resource type="PackedScene" uid="uid://caohg6fopypta" path="res://Scenes/tail.tscn" id="6_ooocl"]
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
 [ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
 [ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
-[ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
+[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="14_pjwx3"]
+
+[sub_resource type="GDScript" id="GDScript_nqgoo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -99,6 +101,7 @@ radius = 40.0
 
 [node name="GameScene" type="Node2D"]
 position = Vector2(20, 490)
+script = SubResource("GDScript_nqgoo")
 metadata/_edit_horizontal_guides_ = [-181.0]
 
 [node name="Ground" type="TileMapLayer" parent="."]

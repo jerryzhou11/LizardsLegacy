@@ -12,6 +12,9 @@ const VELOCITY_INHERITANCE = 0.5 #percent of player velocity that adds to throw
 @export var Character: NodePath
 @onready var Collider := $CollisionShape2D
 
+@onready var throwSound = $throw
+@onready var recallSound = $recall
+
 
 enum SpearState {
 	CARRIED,
@@ -88,6 +91,7 @@ func _input(event) -> void:
 				state = SpearState.THROWN
 				velocity = THROW_SPEED * Vector2.RIGHT.rotated(rotation)
 				velocity += carrier.velocity * VELOCITY_INHERITANCE
+				throwSound.play()
 				move_and_slide() #fixes issues when going from THROWN/STUCK -> CARRIED 
 			_:
 				var vector_to_player = carrier.global_position - global_position
@@ -101,6 +105,7 @@ func _ready() -> void:
 
 func _on_catch_zone_spear_caught() -> void:
 	print("signal caught")
+	recallSound.play()
 	if state == SpearState.RECALL:
 		state = SpearState.CARRIED
 		

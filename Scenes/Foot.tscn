@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://brip3rxac20gc"]
+[gd_scene load_steps=8 format=3 uid="uid://brip3rxac20gc"]
 
 [ext_resource type="Script" path="res://Scripts/foot.gd" id="1_2cppc"]
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_fkc7r"]
 [ext_resource type="PackedScene" uid="uid://cshqw05ljcknd" path="res://Scenes/debris.tscn" id="2_omm2l"]
+[ext_resource type="AudioStream" uid="uid://be8ah6bqiysc2" path="res://sounds/Dragon_Stomp_FX.ogg" id="4_wvyp5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ice76"]
 size = Vector2(72, 227.5)
@@ -46,6 +47,9 @@ collision_layer = 0
 position = Vector2(-0.903611, -39.3939)
 shape = SubResource("RectangleShape2D_v8q05")
 debug_color = Color(5.77569e-07, 0.631986, 0.456356, 0.42)
+
+[node name="stomp_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wvyp5")
 
 [connection signal="area_entered" from="AggroZone" to="." method="_on_aggro_zone_area_entered"]
 [connection signal="area_exited" from="AggroZone" to="." method="_on_aggro_zone_area_exited"]

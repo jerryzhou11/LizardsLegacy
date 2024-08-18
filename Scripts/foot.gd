@@ -30,6 +30,7 @@ var detected_player: bool = false
 @export var debris_force: float = 1000.0  # Force applied to debris
 var rng = RandomNumberGenerator.new()
 
+@onready var stompplayer = $stomp_sound # sound thing ignore
 
 func _ready():
 	original_position = foot_node.position
@@ -62,6 +63,7 @@ func start_stomp_attack():
 		# Wait for the smash to complete
 		await tween.finished
 		camera.apply_shake()
+		stompplayer.play()
 
 		# Spawn debris
 		spawn_debris(target_position)

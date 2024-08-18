@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://b38wcoytpowl0"]
+[gd_scene load_steps=58 format=3 uid="uid://b38wcoytpowl0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a0ff2"]
 [ext_resource type="Texture2D" uid="uid://76nbbm2gkywi" path="res://Art/Lizard/Full_Idle_R-Sheet (1).png" id="2_7e11r"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://brosel4od7q7k" path="res://Art/Lizard/Full_Walk_L-Sheet (1).png" id="4_ngh1t"]
 [ext_resource type="Texture2D" uid="uid://bi7oqlxlm2bie" path="res://Art/Lizard/DASH_R-Sheet.png" id="5_5gnhs"]
 [ext_resource type="Texture2D" uid="uid://bmudtttc5altk" path="res://Art/Lizard/Full_Walk_R-Sheet.png" id="5_m8oxs"]
+[ext_resource type="AudioStream" uid="uid://5emjkp8scref" path="res://sounds/The_Dragon_Sunday640_Song.ogg" id="10_efai1"]
+[ext_resource type="AudioStream" uid="uid://d0bfc8a7y2clh" path="res://sounds/Death_Smack_FX.ogg" id="11_n5k56"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i57uf"]
 size = Vector2(19, 13)
@@ -376,6 +378,13 @@ collision_mask = 18
 position = Vector2(3, -31)
 shape = SubResource("CapsuleShape2D_5v2b8")
 debug_color = Color(0.612509, 0.360039, 1, 0.42)
+
+[node name="song_player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_efai1")
+volume_db = -8.0
+
+[node name="get_hit_player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_n5k56")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
