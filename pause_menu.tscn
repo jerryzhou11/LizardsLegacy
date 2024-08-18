@@ -110,7 +110,6 @@ grow_vertical = 2
 script = ExtResource("1_7irvq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_6nw2p")
 layout_mode = 0
