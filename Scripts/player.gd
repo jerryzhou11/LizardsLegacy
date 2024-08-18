@@ -9,7 +9,7 @@ const VERTICAL_DASH_SPEED_FLIGHT = 1200.0
 const FLIGHT_YACCEL = 800.0 #per second
 const FLAP_YSPEED = 400.0
 const FLIGHT_YSPEED = 500.0
-const DASH_LENGTH = 1.5 #.15
+const DASH_LENGTH = .15
 const DASH_COOLDOWN = .8
 const FLAP_COOLDOWN = .8
 var animation_locked : bool = false
@@ -104,12 +104,10 @@ func update_animation():
 	if not animation_locked:
 		if direction != 0:
 			if dash.is_dashing():
-				print("dash animation")
 				if (facing == 1):
-					lizamation.play("dash_R", 2)
+					lizamation.play("dash_R", 8)
 				else:
-					print("dash left")
-					lizamation.play("dash_L", 2)			
+					lizamation.play("dash_L", 8)			
 			else:
 				if (facing == 1):
 					lizamation.play("walk_R", 2)
