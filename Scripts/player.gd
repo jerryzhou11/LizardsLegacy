@@ -53,6 +53,9 @@ func _physics_process(delta: float) -> void:
 func _on_hurtbox_area_entered(area:Area2D) -> void:
 	print("You died!")
 	#obviously, placeholder death condition.
+
+func _on_hurtbox_body_entered(body:Node2D) -> void:
+	print("You died!")
 	
 func update_animation():
 	if not animation_locked:
@@ -66,3 +69,6 @@ func update_animation():
 				lizamation.play("idle_R")
 			else:
 				lizamation.play("idle_L")
+
+
+
