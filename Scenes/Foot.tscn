@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/foot.gd" id="1_2cppc"]
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_fkc7r"]
-[ext_resource type="PackedScene" path="res://Scenes/debris.tscn" id="2_omm2l"]
+[ext_resource type="PackedScene" uid="uid://cshqw05ljcknd" path="res://Scenes/debris.tscn" id="2_omm2l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ice76"]
 size = Vector2(72, 227.5)

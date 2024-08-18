@@ -25,6 +25,7 @@ func get_player_hand() -> Vector2:
 	var carrier = get_node(Character)
 	if not carrier:
 		print("Can't find player object!") 
+		return position
 	return carrier.global_position + Vector2(carrier.facing * 10,  -30)
 	
 
