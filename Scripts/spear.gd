@@ -7,10 +7,9 @@ const MIN_RECALL_SPEED = 300.0
 const RECALL_ACCEL = 3000.0 # per second
 const PICKUP_RANGE = 50.0   
 const AIR_RESISTANCE = 0
-const VELOCITY_INHERETANCE = 1 #percent of player velocity that adds to throw
+const VELOCITY_INHERITANCE = 0.5 #percent of player velocity that adds to throw
 
 @export var Character: NodePath
-@export var CatchZone: NodePath
 @onready var Collider := $CollisionShape2D
 
 
@@ -23,6 +22,8 @@ enum SpearState {
 var state = SpearState.CARRIED
 	
 func _physics_process(delta: float) -> void:
+	#collision was pushing around player when spear was held. 
+	print(state)
 	# phasing through objects 
 	if state == SpearState.RECALL or state == SpearState.CARRIED:
 		set_collision_mask_value(1, false) 
@@ -30,12 +31,6 @@ func _physics_process(delta: float) -> void:
 		# just turning off collision with the world
 	else:
 		set_collision_mask_value(1, true) 
-	
-	# standing on spear
-	if state == SpearState.STUCK:
-		set_collision_layer_value(1, true)
-	else:
-		set_collision_layer_value(1, false)
 	
 	match state:
 		SpearState.THROWN:
@@ -52,7 +47,7 @@ func _physics_process(delta: float) -> void:
 			if not carrier:
 				print("no carrier")
 				return
-			global_position = carrier.global_position + Vector2(16, -16)
+			global_position = carrier.global_position + Vector2(24, -24)
 			
 		SpearState.STUCK:
 			pass
@@ -85,7 +80,7 @@ func _input(event) -> void:
 			SpearState.CARRIED:
 				state = SpearState.THROWN
 				velocity = THROW_SPEED * Vector2.RIGHT.rotated(rotation)
-				velocity += carrier.velocity * VELOCITY_INHERETANCE
+				velocity += carrier.velocity * VELOCITY_INHERITANCE
 				move_and_slide() #fixes issues when going from THROWN/STUCK -> CARRIED 
 			_:
 				var vector_to_player = carrier.global_position - global_position
