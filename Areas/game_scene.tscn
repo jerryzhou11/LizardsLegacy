@@ -1,13 +1,16 @@
-[gd_scene load_steps=12 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=16 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_ed1ie"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
 [ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="3_8krq0"]
-[ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_iy30d"]
+[ext_resource type="PackedScene" path="res://dash.tscn" id="3_iy30d"]
+[ext_resource type="Script" path="res://catch_zone.gd" id="4_cv106"]
 [ext_resource type="Texture2D" uid="uid://cvxhjth8b4isl" path="res://Art/Dragon/dragon leg scales-Sheet.png" id="5_2jo3e"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="5_iajij"]
 [ext_resource type="PackedScene" path="res://Scenes/tail.tscn" id="6_ooocl"]
+[ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
 [ext_resource type="PackedScene" path="res://pause_menu.tscn" id="8_qv5et"]
+[ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -82,6 +85,9 @@ sources/0 = SubResource("TileSetAtlasSource_vr5xc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80hbx"]
 size = Vector2(1407.5, 127)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fm5nt"]
+radius = 40.0
+
 [node name="GameScene" type="Node2D"]
 position = Vector2(20, 490)
 metadata/_edit_horizontal_guides_ = [-181.0]
@@ -107,6 +113,15 @@ position = Vector2(1, 0)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Dash" parent="Player" instance=ExtResource("3_iy30d")]
+
+[node name="CatchZone" type="Area2D" parent="Player"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("4_cv106")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CatchZone"]
+shape = SubResource("CircleShape2D_fm5nt")
+one_way_collision_margin = 0.0
 
 [node name="foot" parent="." node_paths=PackedStringArray("foot_node", "player_node", "camera") instance=ExtResource("3_8krq0")]
 position = Vector2(516, 146)
@@ -151,3 +166,16 @@ scale = Vector2(34.4971, 12.9571)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_qv5et")]
+offset_left = 21.0
+offset_top = 9.0
+offset_right = 21.0
+offset_bottom = 9.0
+
+[node name="Spear" parent="." instance=ExtResource("8_qjfnf")]
+collision_layer = 8
+collision_mask = 14
+script = ExtResource("9_vuqnp")
+Character = NodePath("../Player")
+
+[connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
+[connection signal="spear_caught" from="Player/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]
