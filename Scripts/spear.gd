@@ -20,10 +20,18 @@ enum SpearState {
 	RECALL
 }
 var state = SpearState.CARRIED
+
+func get_player_hand() -> Vector2:
+	var carrier = get_node(Character)
+	if not carrier:
+		print("Can't find player object!") 
+	return carrier.global_position + Vector2(carrier.facing * 10,  -30)
+	
+
+	
 	
 func _physics_process(delta: float) -> void:
 	#collision was pushing around player when spear was held. 
-	print(state)
 	# phasing through objects 
 	if state == SpearState.RECALL or state == SpearState.CARRIED:
 		set_collision_mask_value(2, false)
@@ -45,11 +53,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 		SpearState.CARRIED:
 			look_at(get_global_mouse_position())
-			var carrier = get_node(Character)
-			if not carrier:
-				print("no carrier")
-				return
-			global_position = carrier.global_position + Vector2(24, -24)
+			global_position = get_player_hand()
 			
 		SpearState.STUCK:
 			pass
@@ -57,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			var carrier = get_node(Character)
 			if not carrier:
 				return
-			var vector_to_player = carrier.global_position - global_position
+			var vector_to_player = get_player_hand() - global_position
 			rotation = PI + vector_to_player.angle() # face away from the player
 			velocity = vector_to_player.normalized() * clampf(
 				(RECALL_ACCEL * delta) + velocity.length(), 
