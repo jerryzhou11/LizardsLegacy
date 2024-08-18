@@ -83,9 +83,9 @@ func _physics_process(delta: float) -> void:
 	var collision = get_last_slide_collision()
 	if collision and not is_on_floor():
 		print(collision.get_collider())
-		var hit_enemy = (collision.get_collider().get_collision_layer() 
+		var hit_armor = (collision.get_collider().get_collision_layer() 
 			& ENEMY_LAYER) > 0
-		if hit_enemy and not already_clinked:
+		if hit_armor and not already_clinked:
 			armorClinkSound.play()
 			already_clinked = true
 				
