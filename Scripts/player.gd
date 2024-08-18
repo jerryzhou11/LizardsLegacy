@@ -36,7 +36,6 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle dash
 	if Input.is_action_just_pressed("dash") and dash.finished_cooldown():
-		print(1)
 		dash.start_dash_duration(DASH_LENGTH)
 		dash.start_cooldown(DASH_COOLDOWN)
 	if dash.is_dashing():
@@ -45,6 +44,5 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 #the only thing that can enter our hurtbox are enemy attacks.
-func _on_hurtbox_body_entered(body:Node2D) -> void:
+func _on_hurtbox_area_entered(area:Area2D) -> void:
 	print("You died!")
-	#obviously, placeholder death condition.

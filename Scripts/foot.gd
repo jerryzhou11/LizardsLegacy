@@ -1,5 +1,6 @@
 extends Node2D
 
+#for the actual stomp physics
 @export var foot_node: Node2D
 @export var player_node: Node2D
 @export var raise_height: float = 200.0
@@ -7,11 +8,16 @@ extends Node2D
 @export var smash_duration: float = 1
 @export var cooldown_duration: float = 2.0
 
+@export var camera: Camera2D
+
+
 var original_position: Vector2
 var is_attacking: bool = false
+var original_y: float
 
 func _ready():
 	original_position = foot_node.position
+	original_y = foot_node.global_position.y
 
 func start_stomp_attack():
 	if not is_attacking:
@@ -25,15 +31,15 @@ func start_stomp_attack():
 		await tween.finished
 		
 		# Calculate target position (player's x, original y)
-		var target_position = Vector2(player_node.global_position.x, player_node.global_position.y)
+		var target_position = Vector2(player_node.global_position.x, original_y)
 		
 		# Smash down quickly towards the player's x-position, but only to ground level
 		tween = create_tween()
 		tween.tween_property(foot_node, "global_position", target_position, smash_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-		
+
 		# Wait for the smash to complete
 		await tween.finished
-		
+		camera.apply_shake()
 		# Short pause at the bottom
 		await get_tree().create_timer(0.2).timeout
 		
