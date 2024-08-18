@@ -5,12 +5,17 @@ extends Camera2D
 @export var shakeFade: float = 5.0
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
+var initial_offset: Vector2
+
+func _ready() -> void:
+	initial_offset = offset
+	
 
 func apply_shake():
 	shake_strength = randomStrength
 
 func randomOffset() -> Vector2:
-	return Vector2(rng.randf_range(-shake_strength,shake_strength),rng.randf_range(-shake_strength,shake_strength)-200)
+	return Vector2(rng.randf_range(-shake_strength,shake_strength)+initial_offset.x,rng.randf_range(-shake_strength,shake_strength)+initial_offset.y)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
