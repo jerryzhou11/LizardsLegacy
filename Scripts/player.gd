@@ -8,8 +8,7 @@ const VERTICAL_DASH_SPEED = 400.0
 const VERTICAL_DASH_SPEED_FLIGHT = 1200.0
 const FLIGHT_YACCEL = 800.0 #per second
 const FLAP_YSPEED = 400.0
-const FLAP_MAXSPEED = 800.0
-const FLIGHT_YSPEED = 600.0
+const FLIGHT_YSPEED = 500.0
 const DASH_LENGTH = .15
 const DASH_COOLDOWN = .8
 const FLAP_COOLDOWN = .8
@@ -46,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = -JUMP_VELOCITY
 	elif Input.is_action_pressed("jump") and can_fly:
-		if flap_available and abs(abs(velocity.y) - abs(FLIGHT_YSPEED)) > 50: 
+		if flap_available and abs(velocity.y - -FLIGHT_YSPEED) > 120: 
 			print("flap!")
 			flap_available = false
 			flap_timer = FLAP_COOLDOWN
@@ -100,6 +99,3 @@ func update_animation():
 				lizamation.play("idle_R")
 			else:
 				lizamation.play("idle_L")
-
-
-

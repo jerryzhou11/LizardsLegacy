@@ -93,15 +93,15 @@ func spawn_debris(spawn_position: Vector2):
 		var debris = debris_scene.instantiate()
 		add_child(debris)
 		debris.global_position = spawn_position
-        
-        # Calculate random trajectory
+		
+		# Calculate random trajectory
 		var angle = randf_range(PI/4,3*PI/4)  # Spread debris in a 90-degree arc
 		var direction = Vector2(-cos(angle), -sin(angle))  # Negative sin for upward direction
-        
-        # Apply impulse to debris
+		
+		# Apply impulse to debris
 		debris.apply_central_impulse(direction * debris_force)
-        
-        # Set up timer to destroy debris after 5 seconds
+		
+		# Set up timer to destroy debris after 5 seconds
 		var timer = Timer.new()
 		timer.set_wait_time(debris.duration)
 		timer.set_one_shot(true)
