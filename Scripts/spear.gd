@@ -23,19 +23,13 @@ enum SpearState {
 var state = SpearState.CARRIED
 	
 func _physics_process(delta: float) -> void:
-	# phasing through objects 
+	#collision was pushing around player when spear was held. 
 	if state == SpearState.RECALL or state == SpearState.CARRIED:
 		set_collision_mask_value(1, false) 
 		# instead of global collision turnoff, 
 		# just turning off collision with the world
 	else:
 		set_collision_mask_value(1, true) 
-	
-	# standing on spear
-	if state == SpearState.STUCK:
-		set_collision_layer_value(1, true)
-	else:
-		set_collision_layer_value(1, false)
 	
 	match state:
 		SpearState.THROWN:
