@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0hnbn02ng6db"
-path="res://.godot/imported/SCALE400.png-e464cd637d806d8bd06aa186382a79a2.ctex"
+uid="uid://djg8ltpmtj4s7"
+path="res://.godot/imported/Idle_L-Sheet.png-8e06f4f0406266f767a729ed9c6b74f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Lizard/SCALE400.png"
-dest_files=["res://.godot/imported/SCALE400.png-e464cd637d806d8bd06aa186382a79a2.ctex"]
+source_file="res://Art/Lizard/Idle_L-Sheet.png"
+dest_files=["res://.godot/imported/Idle_L-Sheet.png-8e06f4f0406266f767a729ed9c6b74f8.ctex"]
 
 [params]
 

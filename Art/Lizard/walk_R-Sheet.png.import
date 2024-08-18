@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlt6s7lu00xll"
-path="res://.godot/imported/lizard_walk_(L) 05.png-92ba3967e9471963bca0fc364df94b25.ctex"
+uid="uid://0lsvqy57g5ug"
+path="res://.godot/imported/walk_R-Sheet.png-ab8a7e67a7e9a516640e4bd0939ff187.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Lizard/lizard_walk_(L) 05.png"
-dest_files=["res://.godot/imported/lizard_walk_(L) 05.png-92ba3967e9471963bca0fc364df94b25.ctex"]
+source_file="res://Art/Lizard/walk_R-Sheet.png"
+dest_files=["res://.godot/imported/walk_R-Sheet.png-ab8a7e67a7e9a516640e4bd0939ff187.ctex"]
 
 [params]
 

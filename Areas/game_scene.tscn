@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="3_8krq0"]
 [ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_iy30d"]
 [ext_resource type="Texture2D" uid="uid://cvxhjth8b4isl" path="res://Art/Dragon/dragon leg scales-Sheet.png" id="5_2jo3e"]
-[ext_resource type="Texture2D" uid="uid://bsimyf516guqt" path="res://Art/Landscape/Jungle_100.png" id="6_u0miu"]
+[ext_resource type="PackedScene" uid="uid://caohg6fopypta" path="res://Scenes/tail.tscn" id="6_ooocl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -125,19 +125,8 @@ drag_right_margin = 0.01
 drag_bottom_margin = 0.01
 
 [node name="DragonLegScales-sheet" type="Sprite2D" parent="."]
-position = Vector2(157, 20)
+position = Vector2(407, 30)
 texture = ExtResource("5_2jo3e")
 
-[node name="Jungle100" type="Sprite2D" parent="."]
-z_index = -99
-position = Vector2(190, -100)
-rotation = 6.28318
-scale = Vector2(2, 2)
-texture = ExtResource("6_u0miu")
-
-[node name="Jungle101" type="Sprite2D" parent="."]
-z_index = -99
-position = Vector2(1475, -111)
-rotation = 6.28318
-scale = Vector2(2, 2)
-texture = ExtResource("6_u0miu")
+[node name="Tail" parent="." instance=ExtResource("6_ooocl")]
+position = Vector2(981, -55)
