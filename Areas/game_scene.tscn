@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
 [ext_resource type="Texture2D" uid="uid://b2d3rytpt7vjt" path="res://Art/Landscape/tilemaptype1.png" id="2_yufna"]
 [ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="3_8krq0"]
-[ext_resource type="PackedScene" path="res://dash.tscn" id="3_iy30d"]
+[ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_iy30d"]
 [ext_resource type="Script" path="res://catch_zone.gd" id="4_cv106"]
 [ext_resource type="Texture2D" uid="uid://cvxhjth8b4isl" path="res://Art/Dragon/dragon leg scales-Sheet.png" id="5_2jo3e"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="5_iajij"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
 [ext_resource type="PackedScene" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
-[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
+[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="10_jbqtg"]
 [ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="14_pjwx3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
@@ -141,7 +141,6 @@ player_node = NodePath("../Player")
 max_horizontal_distance = 300.0
 camera = NodePath("../Camera2D")
 debris_count = 10
-debris_force = 1500.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(156, 86)
@@ -162,22 +161,22 @@ position = Vector2(-527, -579)
 texture = ExtResource("5_2jo3e")
 
 [node name="Tail" parent="." instance=ExtResource("6_ooocl")]
-position = Vector2(2005, -61)
+position = Vector2(2471, -46)
 
 [node name="2nd foot" parent="." node_paths=PackedStringArray("foot_node", "player_node", "camera") instance=ExtResource("3_8krq0")]
-position = Vector2(1291, 148)
+position = Vector2(1581, 148)
 foot_node = NodePath(".")
 player_node = NodePath("../Player")
+max_horizontal_distance = 300.0
 camera = NodePath("../Camera2D")
 debris_count = 10
-debris_force = 1500.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 285.0
 offset_top = -832.0
 offset_right = 325.0
 offset_bottom = -792.0
-scale = Vector2(34.4971, 12.9571)
+scale = Vector2(45.7371, 12.9571)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cshqw05ljcknd"]
+[gd_scene load_steps=4 format=3 uid="uid://cgydu8no0cips"]
 
 [ext_resource type="Script" path="res://Scripts/debris.gd" id="1_541xk"]
 [ext_resource type="Texture2D" uid="uid://duga5o3mtmhvf" path="res://Art/debris.png" id="2_ithxv"]
@@ -9,7 +9,7 @@ radius = 9.62307
 [node name="Debris" type="RigidBody2D"]
 collision_layer = 16
 collision_mask = 4
-gravity_scale = 3.0
+gravity_scale = 2.0
 max_contacts_reported = 1
 script = ExtResource("1_541xk")
 

@@ -26,6 +26,7 @@ var detected_player: bool = false
 @export var debris_count: int = 5
 @export var debris_scene: PackedScene
 @export var debris_spread: float = 100.0  # How wide the debris spreads
+@export var debris_force_spread: float = 200.0
 @export var debris_force: float = 1000.0  # Force applied to debris
 var rng = RandomNumberGenerator.new()
 
@@ -106,7 +107,7 @@ func spawn_debris(spawn_position: Vector2):
 		var direction = Vector2(-cos(angle), -sin(angle))  # Negative sin for upward direction
 		
 		# Apply impulse to debris
-		debris.apply_central_impulse(direction * rng.randf_range(debris_force-200,debris_force+200))
+		debris.apply_central_impulse(direction * rng.randf_range(debris_force-debris_force_spread,debris_force+debris_force_spread))
 		debris.rotation = rng.randf_range(0,2*PI)
 		
 		# Set up timer to destroy debris after 5 seconds
