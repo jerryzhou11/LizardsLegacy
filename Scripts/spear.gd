@@ -76,13 +76,11 @@ func _physics_process(delta: float) -> void:
 				MAX_RECALL_SPEED
 			)			
 			move_and_slide()
-			#if vector_to_player.length() < PICKUP_RANGE: # this is evil. TODO fix
-				#state = SpearState.CARRIED
+
 	# Collision			
 	const ENEMY_LAYER = 2
 	var collision = get_last_slide_collision()
 	if collision and not is_on_floor():
-		print(collision.get_collider())
 		var hit_armor = (collision.get_collider().get_collision_layer() 
 			& ENEMY_LAYER) > 0
 		if hit_armor and not already_clinked:
