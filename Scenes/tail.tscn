@@ -1,6 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://caohg6fopypta"]
+[gd_scene load_steps=5 format=3 uid="uid://c83w6vml8o7x"]
 
 [ext_resource type="Script" path="res://Scripts/tail.gd" id="1_6kwam"]
+
+[sub_resource type="Animation" id="Animation_ssmsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionPolygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(7.00684, 149, 255.75, 170, 148.02, 65, 311.805, -95, 290.784, -246, 122.62, -342, -121.744, -358, -124.371, -211, 103.351, -210, 199.695, -157, 218.964, -104, 109.482, 26)]
+}
 
 [sub_resource type="Animation" id="Animation_c2kvs"]
 resource_name = "tail_swiping"
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "values": [PackedVector2Array(963.441, -208, 715.574, -339, 548.285, -422, 170.792, -497, -265.384, -556, -256.626, -248, 143.64, -322, 510.624, -297, 640.25, -258, 1265.61, -46), PackedVector2Array(-440.555, 85, -130.502, 16, 106.854, -170, 18.393, -466, -265.384, -556, -256.626, -248, -229.474, -195, -346.839, -104, -719.077, -59, -1079.93, -11), PackedVector2Array(797.028, 227, 520.258, 7.99999, 218.964, -270, 18.393, -466, -265.384, -556, -256.626, -248, -29.7791, -180, 134.882, -26, 421.286, 151, 963.441, 457)]
 }
 
-[sub_resource type="Animation" id="Animation_ssmsy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionPolygon2D:polygon")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedVector2Array(7.00684, 149, 255.75, 170, 148.02, 65, 311.805, -95, 290.784, -246, 122.62, -342, -121.744, -358, -124.371, -211, 103.351, -210, 199.695, -157, 218.964, -104, 109.482, 26)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_823u0"]
 _data = {
 "RESET": SubResource("Animation_ssmsy"),
@@ -40,7 +40,7 @@ _data = {
 }
 
 [node name="Tail" type="CharacterBody2D"]
-collision_layer = 6
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_6kwam")
 

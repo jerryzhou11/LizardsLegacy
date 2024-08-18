@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://catch_zone.gd" id="4_cv106"]
 [ext_resource type="Texture2D" uid="uid://cvxhjth8b4isl" path="res://Art/Dragon/dragon leg scales-Sheet.png" id="5_2jo3e"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="5_iajij"]
-[ext_resource type="PackedScene" path="res://Scenes/tail.tscn" id="6_ooocl"]
+[ext_resource type="PackedScene" uid="uid://c83w6vml8o7x" path="res://Scenes/tail.tscn" id="6_ooocl"]
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
 [ext_resource type="PackedScene" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
@@ -158,7 +158,7 @@ drag_bottom_margin = 0.05
 script = ExtResource("5_iajij")
 
 [node name="DragonLegScales-sheet" type="Sprite2D" parent="."]
-position = Vector2(-241, 367)
+position = Vector2(-527, -579)
 texture = ExtResource("5_2jo3e")
 
 [node name="Tail" parent="." instance=ExtResource("6_ooocl")]
