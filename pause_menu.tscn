@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bklhypxncehw6"]
+[gd_scene load_steps=7 format=3 uid="uid://bhqbel6d4j7o5"]
 
 [ext_resource type="Script" path="res://pause_menu.gd" id="1_7irvq"]
 [ext_resource type="Shader" path="res://pause_menu.gdshader" id="1_ec0ua"]
@@ -6,6 +6,45 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6nw2p"]
 shader = ExtResource("1_ec0ua")
 shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_xj2u0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_q8tep"]
 resource_name = "blur"
@@ -47,45 +86,6 @@ tracks/2/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_xj2u0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hyix7"]
 _data = {
 "RESET": SubResource("Animation_xj2u0"),
@@ -94,6 +94,7 @@ _data = {
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
+texture_filter = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,6 +110,7 @@ script = ExtResource("1_7irvq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_6nw2p")
+layout_mode = 0
 offset_left = -61.0
 offset_top = -29.0
 offset_right = 165.0

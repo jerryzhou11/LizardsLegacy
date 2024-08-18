@@ -6,30 +6,53 @@ const JUMP_VELOCITY = 400.0
 const DASH_SPEED = 1200.0
 const VERTICAL_DASH_SPEED = 400.0
 const VERTICAL_DASH_SPEED_FLIGHT = 1200.0
-const FLIGHT_YACCEL = 800.0 #per second
-const FLAP_YSPEED = 400.0
-const FLIGHT_YSPEED = 500.0
 const DASH_LENGTH = .15
 const DASH_COOLDOWN = .8
+const FLIGHT_YACCEL = 800.0 #per second
+const FLIGHT_MAX_STAMINA = 2.0 #seconds
+const FLIGHT_STAMINA_RECOVERY = 0.2 # per second 
+const GROUND_STAMINA_RECOVERY = 4.0 # per second
+const FLIGHT_YSPEED = 500.0
+const FLAP_YSPEED = 400.0
 const FLAP_COOLDOWN = .8
+const FLAP_STAMINA = 0.2 # seconds
+const DASH_UP_STAMINA = 0.4 # seconds
 var animation_locked : bool = false
 var direction := 0
 var facing = 1
 var inv = []
+var flight_stamina = 0.0
 var dead = false
-var can_fly := false
 var flap_available = true
 var flap_timer = 0.8
+var armor_used = false
 
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
+
+var items = {
+	"armor": false,
+	"wings": false,
+	"spear_upgrade": false,
+	
+}
+
+func get_staminabar_percent() -> float:
+	return 100 * flight_stamina/FLIGHT_MAX_STAMINA
+
+func can_fly() -> bool:
+	if not items.wings:
+		return false
+	if flight_stamina < 0:
+		return false
+	return true
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("print_inv"):	
 		print("hi")
 	if Input.is_action_just_pressed("debug_toggle_flight"):
-		can_fly = not can_fly
-		print("can_fly: ", can_fly)
+		items.wings = not items.wings
+		print("wings: ", items.wings)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -45,18 +68,34 @@ func _physics_process(delta: float) -> void:
 	flap_timer = move_toward(flap_timer, 0, delta)
 	if flap_timer == 0:
 		flap_available = true
+	
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = -JUMP_VELOCITY
-	elif Input.is_action_pressed("jump") and can_fly:
+	elif Input.is_action_pressed("jump") and can_fly():
 		if flap_available and abs(velocity.y - -FLIGHT_YSPEED) > 120: 
 			print("flap!")
+			flight_stamina -= FLAP_STAMINA
 			flap_available = false
 			flap_timer = FLAP_COOLDOWN
 			velocity.y = move_toward(velocity.y, -FLIGHT_YSPEED, FLAP_YSPEED + get_gravity().y*delta)
 		else:
+			flight_stamina = flight_stamina - delta
 			velocity.y = move_toward(velocity.y, -FLIGHT_YSPEED, (FLIGHT_YACCEL + get_gravity().y) * delta)
+	elif is_on_floor(): 
+		# recover flight stamina
+		flight_stamina = move_toward(
+			flight_stamina, 
+			FLIGHT_MAX_STAMINA, 
+			GROUND_STAMINA_RECOVERY*delta
+		)
+	else:
+		flight_stamina = move_toward(
+			flight_stamina, 
+			FLIGHT_MAX_STAMINA, 
+			FLIGHT_STAMINA_RECOVERY*delta
+		)
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -73,12 +112,18 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash") and dash.finished_cooldown():
 		dash.start_dash_duration(DASH_LENGTH)
 		dash.start_cooldown(DASH_COOLDOWN)
+		if y_direction < 0 and can_fly():
+			var old_vy = velocity.y
+			flight_stamina -= DASH_UP_STAMINA * (1200 + old_vy)/1200
 	if dash.is_dashing():
 		velocity.x = direction * DASH_SPEED
-		if can_fly:
+		if can_fly():
 			velocity.y = y_direction * VERTICAL_DASH_SPEED_FLIGHT
+		elif flight_stamina < 0 and items.wings:
+			pass
 		else:
 			velocity.y = y_direction * VERTICAL_DASH_SPEED
+				
 
 		
 	move_and_slide()
@@ -91,10 +136,16 @@ func _on_hurtbox_area_entered(area:Area2D) -> void:
 
 func _on_hurtbox_body_entered(body:RigidBody2D) -> void:
 	print("hit by rock lmao")
-	#dead = true
-	#ragdoll(body.linear_velocity, 2000)
-	
-	
+	dead = true
+	ragdoll(body.linear_velocity, 1000)
+
+# Returns true if the hit killed the player, false otherwise
+func get_hit() -> bool:
+	if inv.has("armor") and not armor_used:
+		armor_used = true
+		return false
+	return true	
+
 func ragdoll(direction: Vector2, force: float) -> void:
 	velocity = direction.normalized() * force
 	velocity.y = -abs(velocity.y)

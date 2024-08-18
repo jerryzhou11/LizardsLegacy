@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=17 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_ed1ie"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
@@ -9,8 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="5_iajij"]
 [ext_resource type="PackedScene" path="res://Scenes/tail.tscn" id="6_ooocl"]
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
-[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="8_qv5et"]
+[ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
+[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -174,6 +175,12 @@ offset_top = 9.0
 offset_right = 21.0
 offset_bottom = 9.0
 
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("10_jbqtg")]
+position = Vector2(21, 19)
+
+[node name="ProgressBar" parent="CanvasLayer/Hud/BoxContainer" index="0"]
+Character = NodePath("../../../../Player")
+
 [node name="Spear" parent="." instance=ExtResource("8_qjfnf")]
 position = Vector2(179, 55)
 collision_layer = 8
@@ -183,3 +190,5 @@ Character = NodePath("../Player")
 
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
 [connection signal="spear_caught" from="Player/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]
+
+[editable path="CanvasLayer/Hud"]
