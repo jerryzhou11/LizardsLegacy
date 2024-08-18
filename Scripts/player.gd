@@ -143,16 +143,19 @@ func _physics_process(delta: float) -> void:
 #the only thing that can enter our hurtbox are enemy attacks.
 func _on_hurtbox_area_entered(area:Area2D) -> void:
 	print("You died! (area)")
+	get_hit()
 	#obviously, placeholder death condition.
 
 func _on_hurtbox_body_entered(body:RigidBody2D) -> void:
 	print("hit by rock lmao")
+	get_hit()
 	if not debugMode:
 		dead = true
 		ragdoll(body.linear_velocity, 2000)
 
 # Returns true if the hit killed the player, false otherwise
 func get_hit() -> bool:
+	HitstopManager.hit_stop_short()
 	if inv.has("armor") and not armor_used:
 		armor_used = true
 		return false

@@ -8,4 +8,5 @@ func _ready() -> void:
 	
 func _on_body_entered(body:Node) -> void:
 	if body is StaticBody2D:
+		await get_tree().create_timer(0.2).timeout
 		queue_free()
