@@ -7,14 +7,15 @@
 size = Vector2(72, 227.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edb74"]
-size = Vector2(51, 56)
+size = Vector2(51, 43.2576)
 
 [node name="Enemystomp" type="CharacterBody2D"]
 position = Vector2(2, -4)
-scale = Vector2(2, 2)
+scale = Vector2(3.32, 2.64)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_2cppc")
+smash_duration = 0.5
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(-0.999969, -118.5)
@@ -29,6 +30,7 @@ shape = SubResource("RectangleShape2D_ice76")
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-0.5, -27)
+position = Vector2(-0.5, -33.3712)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_edb74")
 debug_color = Color(0.957868, 0, 0.530245, 0.42)

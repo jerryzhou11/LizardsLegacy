@@ -7,11 +7,14 @@ extends Node2D
 @export var raise_duration: float = 1.5
 @export var smash_duration: float = 1
 @export var cooldown_duration: float = 2.0
+@export var return_duration: float = 1.5
+@export var arc_height: float = 100.0  # Maximum height of the arc
 
 @export var camera: Camera2D
 
 
 var original_position: Vector2
+var return_start_position: Vector2
 var is_attacking: bool = false
 var original_y: float
 
@@ -42,15 +45,29 @@ func start_stomp_attack():
 		camera.apply_shake()
 		# Short pause at the bottom
 		await get_tree().create_timer(0.2).timeout
-		
-		# Return to original position
+		return_start_position = foot_node.position
+
+
+		# Return to original position with arc motion
 		tween = create_tween()
-		tween.tween_property(foot_node, "position", original_position, cooldown_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_method(arc_motion, 0.0, 1.0, return_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		
 		# Wait for the return to complete
 		await tween.finished
 		
 		is_attacking = false
+
+func arc_motion(progress: float):
+	var start = return_start_position
+	var end = original_position
+	var mid = (start + end) / 2
+	mid.y -= arc_height
+
+	var p1 = start.lerp(mid, progress)
+	var p2 = mid.lerp(end, progress)
+	var arc_position = p1.lerp(p2, progress)
+
+	foot_node.position = arc_position
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("trigger_stomp"):
