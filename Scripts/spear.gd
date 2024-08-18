@@ -14,6 +14,9 @@ const VELOCITY_INHERITANCE = 0.5 #percent of player velocity that adds to throw
 
 @onready var throwSound = $throw
 @onready var recallSound = $recall
+@onready var armorClinkSound = $armorClink
+
+var already_clinked := false
 
 
 enum SpearState {
@@ -75,6 +78,16 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 			#if vector_to_player.length() < PICKUP_RANGE: # this is evil. TODO fix
 				#state = SpearState.CARRIED
+	# Collision			
+	const ENEMY_LAYER = 2
+	var collision = get_last_slide_collision()
+	if collision and not is_on_floor():
+		print(collision.get_collider())
+		var hit_enemy = (collision.get_collider().get_collision_layer() 
+			& ENEMY_LAYER) > 0
+		if hit_enemy and not already_clinked:
+			armorClinkSound.play()
+			already_clinked = true
 				
 			
 				
@@ -91,21 +104,27 @@ func _input(event) -> void:
 				state = SpearState.THROWN
 				velocity = THROW_SPEED * Vector2.RIGHT.rotated(rotation)
 				velocity += carrier.velocity * VELOCITY_INHERITANCE
-				throwSound.play()
+				throwSound.play(0.02)
+				already_clinked = false
 				move_and_slide() #fixes issues when going from THROWN/STUCK -> CARRIED 
 			_:
 				var vector_to_player = carrier.global_position - global_position
 				if vector_to_player.length() < 50:
 					state = SpearState.CARRIED
 				else:
+					recallSound.play()
 					state = SpearState.RECALL
+
+func _on_body_entered(body: Node2D):
+	print(body)
 
 func _ready() -> void:
 	pass
 
 func _on_catch_zone_spear_caught() -> void:
 	print("signal caught")
-	recallSound.play()
 	if state == SpearState.RECALL:
 		state = SpearState.CARRIED
+		recallSound.stop()
+		print("stopped sound")
 		

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://day0aesv0peqp"]
+[gd_scene load_steps=6 format=3 uid="uid://day0aesv0peqp"]
 
 [ext_resource type="Texture2D" uid="uid://dvqd4wxqm1chk" path="res://Art/spear_vert_centered.png" id="1_0qtwm"]
 [ext_resource type="AudioStream" uid="uid://dekda2vuco3aa" path="res://sounds/Spear_Throw_FX.ogg" id="2_q1fum"]
 [ext_resource type="AudioStream" uid="uid://cx8ebis37l2q3" path="res://sounds/Spear_Recall_FX.ogg" id="3_xos83"]
+[ext_resource type="AudioStream" uid="uid://chqaauf4tt6i1" path="res://sounds/Armor_Klink_FX.ogg" id="4_pigmg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q27fy"]
 size = Vector2(35, 7)
@@ -20,6 +21,10 @@ texture = ExtResource("1_0qtwm")
 
 [node name="throw" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_q1fum")
+max_polyphony = 8
 
 [node name="recall" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_xos83")
+
+[node name="armorClink" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pigmg")
