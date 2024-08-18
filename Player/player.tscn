@@ -1,10 +1,11 @@
-[gd_scene load_steps=40 format=3 uid="uid://b38wcoytpowl0"]
+[gd_scene load_steps=42 format=3 uid="uid://b38wcoytpowl0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a0ff2"]
 [ext_resource type="Texture2D" uid="uid://djg8ltpmtj4s7" path="res://Art/Lizard/Idle_L-Sheet.png" id="2_ilr2f"]
 [ext_resource type="Texture2D" uid="uid://oauam4vrap0m" path="res://Art/Lizard/Idle_R-Sheet.png" id="3_nmn0n"]
 [ext_resource type="Texture2D" uid="uid://qgecy7vy0jw" path="res://Art/Lizard/walk_L-Sheet.png" id="4_ngh1t"]
 [ext_resource type="Texture2D" uid="uid://0lsvqy57g5ug" path="res://Art/Lizard/walk_R-Sheet.png" id="5_m8oxs"]
+[ext_resource type="Script" path="res://catch_zone.gd" id="6_sag14"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i57uf"]
 size = Vector2(19, 13)
@@ -253,6 +254,9 @@ animations = [{
 radius = 6.0
 height = 52.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_un43v"]
+radius = 40.0
+
 [node name="Player2" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 4
@@ -275,5 +279,19 @@ position = Vector2(3, -31)
 shape = SubResource("CapsuleShape2D_5v2b8")
 debug_color = Color(0.612509, 0.360039, 1, 0.42)
 
+[node name="CatchZone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("6_sag14")
+Character = NodePath("..")
+Spear = NodePath("../../Spear")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchZone"]
+shape = SubResource("CircleShape2D_un43v")
+one_way_collision_margin = 0.0
+script = ExtResource("6_sag14")
+Character = NodePath("../..")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="CatchZone" to="CatchZone" method="_spear_catch"]

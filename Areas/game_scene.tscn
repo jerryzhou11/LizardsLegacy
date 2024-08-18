@@ -102,6 +102,7 @@ shape = SubResource("RectangleShape2D_80hbx")
 
 [node name="Player" parent="." instance=ExtResource("2_ob7sr")]
 position = Vector2(152, 103)
+collision_layer = 1
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2(1, 0)
@@ -138,5 +139,8 @@ position = Vector2(981, -55)
 
 [node name="Spear" parent="." instance=ExtResource("8_qjfnf")]
 position = Vector2(172, 73)
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("9_vuqnp")
 Character = NodePath("../Player")
+CatchZone = NodePath("../Player")
