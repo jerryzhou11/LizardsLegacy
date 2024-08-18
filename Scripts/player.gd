@@ -27,6 +27,7 @@ var dead = false
 var flap_available = true
 var flap_timer = 0.8
 var armor_used = false
+var dash_ground_reset = true
 
 @export var debugMode = true
 
@@ -62,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
+		dash_ground_reset = true
 		flap_available = true
 		
 	if dead:
@@ -114,7 +116,11 @@ func _physics_process(delta: float) -> void:
 			#velocity.x = direction * SPEED
 	
 	# Handle dash
-	if Input.is_action_just_pressed("dash") and dash.finished_cooldown():
+	if (Input.is_action_just_pressed("dash") 
+		and dash.finished_cooldown() 
+		and (dash_ground_reset or items.wings)
+	):
+		dash_ground_reset = false
 		dash.start_dash_duration(DASH_LENGTH)
 		dash.start_cooldown(DASH_COOLDOWN)
 		if y_direction < 0 and can_fly():
