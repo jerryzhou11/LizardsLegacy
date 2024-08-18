@@ -28,6 +28,8 @@ var flap_available = true
 var flap_timer = 0.8
 var armor_used = false
 
+@export var debugMode = true
+
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
 
@@ -139,8 +141,9 @@ func _on_hurtbox_area_entered(area:Area2D) -> void:
 
 func _on_hurtbox_body_entered(body:RigidBody2D) -> void:
 	print("hit by rock lmao")
-	dead = true
-	ragdoll(body.linear_velocity, 2000)
+	if not debugMode:
+		dead = true
+		ragdoll(body.linear_velocity, 2000)
 
 # Returns true if the hit killed the player, false otherwise
 func get_hit() -> bool:

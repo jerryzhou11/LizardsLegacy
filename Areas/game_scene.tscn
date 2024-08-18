@@ -9,9 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="5_iajij"]
 [ext_resource type="PackedScene" path="res://Scenes/tail.tscn" id="6_ooocl"]
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
-[ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
-[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
+[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="10_jbqtg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -147,7 +147,7 @@ drag_bottom_margin = 0.05
 script = ExtResource("5_iajij")
 
 [node name="DragonLegScales-sheet" type="Sprite2D" parent="."]
-position = Vector2(407, 30)
+position = Vector2(-241, 367)
 texture = ExtResource("5_2jo3e")
 
 [node name="Tail" parent="." instance=ExtResource("6_ooocl")]
@@ -182,7 +182,6 @@ position = Vector2(29, 19)
 Character = NodePath("../../../../Player")
 
 [node name="Spear" parent="." instance=ExtResource("8_qjfnf")]
-position = Vector2(179, 55)
 collision_layer = 8
 collision_mask = 14
 script = ExtResource("9_vuqnp")
