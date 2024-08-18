@@ -26,11 +26,13 @@ func _physics_process(delta: float) -> void:
 	print(state)
 	# phasing through objects 
 	if state == SpearState.RECALL or state == SpearState.CARRIED:
-		set_collision_mask_value(1, false) 
+		set_collision_mask_value(2, false)
+		set_collision_mask_value(3, false) 
 		# instead of global collision turnoff, 
 		# just turning off collision with the world
 	else:
-		set_collision_mask_value(1, true) 
+		set_collision_mask_value(2, true)
+		set_collision_mask_value(3, true) 
 	
 	match state:
 		SpearState.THROWN:
