@@ -47,6 +47,7 @@ func _physics_process(delta: float) -> void:
 				print("no carrier")
 				return
 			global_position = carrier.global_position + Vector2(16, -16)
+			
 		SpearState.STUCK:
 			pass
 		SpearState.RECALL:
@@ -70,16 +71,22 @@ func _physics_process(delta: float) -> void:
 
 func _input(event) -> void:
 	if event.is_action_pressed("throw"):
+		var carrier = get_node(Character)
+		if not carrier:
+			print("no carrier")
+			return
 		match state:
 			SpearState.CARRIED:
-				velocity = THROW_SPEED * Vector2.RIGHT.rotated(rotation)
-				var carrier = get_node(Character)
-				if not carrier:
-					return
-				velocity += carrier.velocity * VELOCITY_INHERETANCE
 				state = SpearState.THROWN
+				velocity = THROW_SPEED * Vector2.RIGHT.rotated(rotation)
+				velocity += carrier.velocity * VELOCITY_INHERETANCE
+				move_and_slide() #fixes issues when going from THROWN/STUCK -> CARRIED 
 			_:
-				state = SpearState.RECALL
+				var vector_to_player = carrier.global_position - global_position
+				if vector_to_player.length() < 50:
+					state = SpearState.CARRIED
+				else:
+					state = SpearState.RECALL
 
 func _ready() -> void:
 	pass
