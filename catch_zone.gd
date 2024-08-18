@@ -1,4 +1,4 @@
-extends Area2D
+extends CollisionShape2D
 
 @export var Character: NodePath
 @export var Spear: NodePath
