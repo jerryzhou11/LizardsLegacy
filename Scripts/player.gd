@@ -16,7 +16,7 @@ var animation_locked : bool = false
 var direction := 0
 var facing = 1
 var inv = []
-
+var dead = false
 var can_fly := false
 var flap_available = true
 var flap_timer = 0.8
@@ -37,6 +37,11 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	else:
 		flap_available = true
+		
+	if dead:
+		move_and_slide()
+		return	
+		
 	flap_timer = move_toward(flap_timer, 0, delta)
 	if flap_timer == 0:
 		flap_available = true
@@ -69,7 +74,7 @@ func _physics_process(delta: float) -> void:
 		dash.start_dash_duration(DASH_LENGTH)
 		dash.start_cooldown(DASH_COOLDOWN)
 	if dash.is_dashing():
-		velocity.x = direction * DASH_SPEED	
+		velocity.x = direction * DASH_SPEED
 		if can_fly:
 			velocity.y = y_direction * VERTICAL_DASH_SPEED_FLIGHT
 		else:
@@ -81,11 +86,17 @@ func _physics_process(delta: float) -> void:
 
 #the only thing that can enter our hurtbox are enemy attacks.
 func _on_hurtbox_area_entered(area:Area2D) -> void:
-	print("You died!")
+	print("You died! (area)")
 	#obviously, placeholder death condition.
 
-func _on_hurtbox_body_entered(body:Node2D) -> void:
-	print("You died!")
+func _on_hurtbox_body_entered(body:RigidBody2D) -> void:
+	print("hit by rock lmao")
+	dead = true
+	ragdoll(body.linear_velocity, 2000)
+	
+	
+func ragdoll(direction: Vector2, force: float) -> void:
+	velocity = direction.normalized() * force
 	
 func update_animation():
 	if not animation_locked:
