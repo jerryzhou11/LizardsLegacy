@@ -17,7 +17,7 @@ const VELOCITY_INHERITANCE = 0.5 #percent of player velocity that adds to throw
 @onready var armorClinkSound = $armorClink
 
 var already_clinked := false
-
+var stuck_target: Node2D
 
 enum SpearState {
 	CARRIED,
@@ -63,7 +63,8 @@ func _physics_process(delta: float) -> void:
 			global_position = get_player_hand()
 			
 		SpearState.STUCK:
-			pass
+			if stuck_target:
+				global_position = stuck_target.global_position
 		SpearState.RECALL:
 			var carrier = get_node(Character)
 			if not carrier:
@@ -76,16 +77,25 @@ func _physics_process(delta: float) -> void:
 				MAX_RECALL_SPEED
 			)			
 			move_and_slide()
-
+			#if vector_to_player.length() < PICKUP_RANGE: # this is evil. TODO fix
+				#state = SpearState.CARRIED
 	# Collision			
 	const ENEMY_LAYER = 2
 	var collision = get_last_slide_collision()
-	if collision and not is_on_floor():
+	if collision and state != SpearState.STUCK:
 		var hit_armor = (collision.get_collider().get_collision_layer() 
 			& ENEMY_LAYER) > 0
 		if hit_armor and not already_clinked:
 			armorClinkSound.play()
 			already_clinked = true
+		state = SpearState.STUCK
+		if stuck_target:
+			stuck_target.queue_free()
+		stuck_target = Node2D.new()
+		stuck_target.name = "spear_stick_point"
+		collision.get_collider().add_child(stuck_target)
+		stuck_target.global_position = global_position
+		stuck_target.position += 1 * Vector2.from_angle(rotation) # dig a little in
 				
 			
 				
