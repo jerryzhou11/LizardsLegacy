@@ -193,6 +193,7 @@ debris_count = 10
 
 [node name="Windblade_manager" parent="." instance=ExtResource("15_cv86v")]
 position = Vector2(838, -1016)
+spawn_interval = 0.4
 spawn_y_min = -200.0
 spawn_y_max = 200.0
 

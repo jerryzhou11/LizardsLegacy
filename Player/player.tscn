@@ -370,7 +370,8 @@ shape = SubResource("RectangleShape2D_i57uf")
 position = Vector2(3, -31)
 sprite_frames = SubResource("SpriteFrames_ujfxd")
 animation = &"walk_L"
-frame_progress = 0.330706
+frame = 1
+frame_progress = 0.545099
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 50

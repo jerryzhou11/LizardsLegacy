@@ -1,20 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://bobybt102n0e5"]
+[gd_scene load_steps=8 format=3 uid="uid://bobybt102n0e5"]
 
-[ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_tdytc"]
 [ext_resource type="Script" path="res://Scripts/wind_blade.gd" id="1_v78sa"]
+[ext_resource type="Texture2D" uid="uid://bg8vph14bhc0f" path="res://Art/Dragon/wind_blade.png" id="2_sbuxw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51bra"]
+atlas = ExtResource("2_sbuxw")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwafg"]
+atlas = ExtResource("2_sbuxw")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18shv"]
+atlas = ExtResource("2_sbuxw")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfxqf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51bra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwafg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18shv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tk7pt"]
-radius = 33.0151
+radius = 17.1172
 
 [node name="WindBlade" type="Area2D" groups=["Hazards"]]
 collision_layer = 16
 script = ExtResource("1_v78sa")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_tdytc")
+sprite_frames = SubResource("SpriteFrames_gfxqf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_tk7pt")
 
 [node name="Lifetime" type="Timer" parent="."]
