@@ -25,6 +25,10 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+Hazards=""
+
 [input]
 
 move_right={
@@ -98,7 +102,7 @@ toggle_fullscreen={
 2d_physics/layer_3="Environment"
 2d_physics/layer_4="Pickup"
 2d_physics/layer_5="EnemyProjectile"
-2d_physics/layer_6="Layer 6"
+2d_physics/layer_6="Wind"
 
 [rendering]
 

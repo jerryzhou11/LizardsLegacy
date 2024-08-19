@@ -28,9 +28,14 @@ var flap_available = true
 var flap_timer = 0.8
 var armor_used = false
 var dash_ground_reset = true
+var in_wind_zone = false
 
 @export var debugMode = true
 @export var play_bgm = false
+
+#wind
+@export var wind_force = 20000
+@export var wind_slow = 50
 
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
@@ -74,6 +79,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		dash_ground_reset = true
 		flap_available = true
+	if in_wind_zone :
+		velocity.x += wind_force * delta
+		move_and_slide()
 		
 	if dead:
 		velocity.x = velocity.x * (1.0 - DEAD_DRAG) ** delta
@@ -118,7 +126,9 @@ func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("move_left", "move_right")
 	var y_direction = Input.get_axis("air_up", "air_down")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = (direction * SPEED)
+		if in_wind_zone:
+			velocity.x += wind_slow
 		facing = direction
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -149,12 +159,23 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animation()
 
-#the only thing that can enter our hurtbox are enemy attacks.
+
+
 func _on_hurtbox_area_entered(area:Node) -> void:
-	print("You died!")
-	#print(area)
-	get_hit(area)
-	#obviously, placeholder death condition.
+	if(area.is_in_group("Hazards")):
+		print("You died!")
+		#print(area)
+		get_hit(area)
+		#obviously, placeholder death condition.
+	elif(area.get_name() == "WindZone"):
+		print("entered wind")
+		in_wind_zone = true
+
+
+func _on_hurtbox_area_exited(area:Area2D) -> void:
+	if(area.get_name() == "WindZone"):
+		print("exited wind")
+		in_wind_zone = false
 
 func _on_hurtbox_body_entered(body) -> void:
 	print(body.get_name())

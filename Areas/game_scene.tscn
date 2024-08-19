@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=22 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_ed1ie"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
@@ -97,6 +97,12 @@ size = Vector2(2988, 670)
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm5nt"]
 radius = 40.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcaig"]
+size = Vector2(39.9319, 40.2537)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0utk"]
+size = Vector2(1270, 368)
+
 [node name="GameScene" type="Node2D"]
 position = Vector2(20, 490)
 metadata/_edit_horizontal_guides_ = [-181.0]
@@ -117,7 +123,8 @@ position = Vector2(1002, 396)
 shape = SubResource("RectangleShape2D_80hbx")
 
 [node name="Player" parent="." instance=ExtResource("2_ob7sr")]
-position = Vector2(155, 86)
+position = Vector2(158, 151)
+metadata/_edit_group_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2(1, 0)
@@ -143,7 +150,7 @@ camera = NodePath("../Camera2D")
 debris_count = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(156, 86)
+position = Vector2(159, 151)
 offset = Vector2(0, -100)
 process_callback = 0
 position_smoothing_enabled = true
@@ -171,12 +178,27 @@ max_horizontal_distance = 300.0
 camera = NodePath("../Camera2D")
 debris_count = 10
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Body" type="ColorRect" parent="."]
 offset_left = 285.0
 offset_top = -832.0
 offset_right = 325.0
 offset_bottom = -792.0
 scale = Vector2(45.7371, 12.9571)
+
+[node name="ColorRect" type="ColorRect" parent="Body"]
+layout_mode = 0
+offset_top = -43.0
+offset_right = 12.0
+offset_bottom = 9.0
+
+[node name="Area2D" type="StaticBody2D" parent="Body"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Area2D"]
+position = Vector2(19.9797, 20.0828)
+shape = SubResource("RectangleShape2D_qcaig")
+debug_color = Color(0.34023, 0.486012, 1, 0.42)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -202,6 +224,15 @@ stuck_collision = false
 [node name="ParallaxBackground" parent="." instance=ExtResource("14_pjwx3")]
 offset = Vector2(0, 186)
 transform = Transform2D(1, 0, 0, 1, 0, 186)
+
+[node name="WindZone" type="Area2D" parent="."]
+position = Vector2(994, -1283)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindZone"]
+position = Vector2(478, 265)
+shape = SubResource("RectangleShape2D_b0utk")
 
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
 [connection signal="spear_caught" from="Player/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]

@@ -360,6 +360,8 @@ height = 52.0
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("1_a0ff2")
+wind_force = 10000
+wind_slow = 100
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
 position = Vector2(4, -6.5)
@@ -368,11 +370,11 @@ shape = SubResource("RectangleShape2D_i57uf")
 [node name="lizamation" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -31)
 sprite_frames = SubResource("SpriteFrames_ujfxd")
-animation = &"dash_R"
-frame_progress = 0.900415
+animation = &"walk_L"
+frame_progress = 0.330706
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_mask = 18
+collision_mask = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(3, -31)
@@ -387,4 +389,5 @@ volume_db = -8.0
 stream = ExtResource("11_5wqlj")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

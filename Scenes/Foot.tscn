@@ -14,7 +14,7 @@ size = Vector2(51, 43.2576)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8q05"]
 size = Vector2(207.831, 81.8182)
 
-[node name="Enemystomp" type="CharacterBody2D"]
+[node name="Enemystomp" type="CharacterBody2D" groups=["Hazards"]]
 position = Vector2(2, -4)
 scale = Vector2(3.32, 2.64)
 collision_layer = 2
