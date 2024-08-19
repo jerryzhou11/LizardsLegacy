@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dd6eblyu76p1p" path="res://Art/Dragon/claw legs/Claw Front 2.png" id="4_t6ixm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edb74"]
-size = Vector2(80.5181, 12.8788)
+size = Vector2(80.8194, 12.8788)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8q05"]
 size = Vector2(254.819, 81.8182)
@@ -31,7 +31,8 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(14.259, -43.9394)
+position = Vector2(14.4096, -43.9394)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_edb74")
 debug_color = Color(0.957868, 0, 0.530245, 0.42)
 
@@ -48,7 +49,7 @@ stream = ExtResource("3_dvphh")
 
 [node name="Hurtbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 10.4847)
-polygon = PackedVector2Array(-71.988, -8.96958, -72.2892, -19.3182, -23.494, -50.3788, -44.5783, -69.697, -65.6627, -70.0758, -79.5181, -85.6061, -103.916, -122.727, -120.181, -121.591, -120.482, -189.773, -61.4458, -252.273, -18.6747, -248.485, 6.3253, -223.106, 24.3976, -172.348, -2.10843, -176.515, -7.53012, -114.015, 46.6867, -46.2121, 31.9277, -30.303, 33.1325, -9.34836)
+polygon = PackedVector2Array(-71.3855, -4.04531, -72.2892, -19.3182, -23.494, -50.3788, -44.5783, -69.697, -65.6627, -70.0758, -79.5181, -85.6061, -103.916, -122.727, -120.181, -121.591, -120.482, -189.773, -61.4458, -252.273, -18.6747, -248.485, 6.3253, -223.106, 24.3976, -172.348, -2.10843, -176.515, -7.53012, -114.015, 46.6867, -46.2121, 37.3494, -27.1514, 32.8313, -7.4544, 21.988, -8.96955, -63.0627, -8.96958)
 
 [connection signal="area_entered" from="AggroZone" to="." method="_on_aggro_zone_area_entered"]
 [connection signal="area_exited" from="AggroZone" to="." method="_on_aggro_zone_area_exited"]
