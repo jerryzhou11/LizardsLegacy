@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://blj5yxt33refh"]
+
+[ext_resource type="Script" path="res://Scripts/windblade_manager.gd" id="1_y3kte"]
+[ext_resource type="PackedScene" uid="uid://bobybt102n0e5" path="res://Scenes/wind_blade.tscn" id="2_oxmef"]
+
+[node name="Windblade_manager" type="Node2D"]
+script = ExtResource("1_y3kte")
+projectile_scene = ExtResource("2_oxmef")
+
+[node name="spawn_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]

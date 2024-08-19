@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bobybt102n0e5"]
+
+[ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_tdytc"]
+[ext_resource type="Script" path="res://Scripts/wind_blade.gd" id="1_v78sa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tk7pt"]
+radius = 33.0151
+
+[node name="WindBlade" type="Area2D" groups=["Hazards"]]
+collision_layer = 16
+script = ExtResource("1_v78sa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tdytc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tk7pt")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

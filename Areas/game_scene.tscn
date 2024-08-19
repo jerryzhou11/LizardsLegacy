@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=27 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_ed1ie"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
 [ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
 [ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
+[ext_resource type="PackedScene" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -190,18 +191,17 @@ max_horizontal_distance = 300.0
 camera = NodePath("../Camera2D")
 debris_count = 10
 
+[node name="Windblade_manager" parent="." instance=ExtResource("15_cv86v")]
+position = Vector2(838, -1016)
+spawn_y_min = -200.0
+spawn_y_max = 200.0
+
 [node name="Body" type="ColorRect" parent="."]
 offset_left = 285.0
 offset_top = -832.0
 offset_right = 325.0
 offset_bottom = -792.0
 scale = Vector2(45.7371, 12.9571)
-
-[node name="ColorRect" type="ColorRect" parent="Body"]
-layout_mode = 0
-offset_top = -43.0
-offset_right = 12.0
-offset_bottom = 9.0
 
 [node name="Area2D" type="StaticBody2D" parent="Body"]
 collision_layer = 4
@@ -240,7 +240,6 @@ transform = Transform2D(1, 0, 0, 1, 0, 186)
 [node name="WindZone" type="Area2D" parent="."]
 position = Vector2(994, -1283)
 collision_layer = 32
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindZone"]
 position = Vector2(478, 265)
@@ -248,5 +247,7 @@ shape = SubResource("RectangleShape2D_b0utk")
 
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
 [connection signal="spear_caught" from="Player/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]
+[connection signal="body_entered" from="WindZone" to="Windblade_manager" method="_on_wind_zone_body_entered"]
+[connection signal="body_exited" from="WindZone" to="Windblade_manager" method="_on_wind_zone_body_exited"]
 
 [editable path="CanvasLayer/Hud"]
