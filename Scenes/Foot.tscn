@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/foot.gd" id="1_2cppc"]
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_fkc7r"]
-[ext_resource type="PackedScene" uid="uid://cshqw05ljcknd" path="res://Scenes/debris.tscn" id="2_omm2l"]
+[ext_resource type="PackedScene" uid="uid://cgydu8no0cips" path="res://Scenes/debris.tscn" id="2_omm2l"]
 [ext_resource type="AudioStream" uid="uid://be8ah6bqiysc2" path="res://sounds/Dragon_Stomp_FX.ogg" id="4_wvyp5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ice76"]

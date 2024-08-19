@@ -30,6 +30,7 @@ var armor_used = false
 var dash_ground_reset = true
 
 @export var debugMode = true
+@export var play_bgm = false
 
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
@@ -38,7 +39,8 @@ var dash_ground_reset = true
 @onready var hitplayer = $get_hit_player
 
 func _ready():
-	songplayer.play()
+	if(play_bgm):
+		songplayer.play()
 	
 var items = {
 	"armor": false,

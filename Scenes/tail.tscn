@@ -42,6 +42,6 @@ libraries = {
 [node name="Hurtbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(-230, -34)
 scale = Vector2(1.14174, 1)
-polygon = PackedVector2Array(797.028, 227, 520.258, 7.99999, 218.964, -270, 18.393, -466, -265.384, -556, -256.626, -248, -29.7791, -180, 134.882, -26, 421.286, 151, 963.441, 457)
+polygon = PackedVector2Array(963.441, -208, 715.574, -339, 548.285, -422, 170.792, -497, -265.384, -556, -256.626, -248, 143.64, -322, 510.624, -297, 640.25, -258, 1265.61, -46)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
