@@ -148,25 +148,31 @@ func _physics_process(delta: float) -> void:
 	update_animation()
 
 #the only thing that can enter our hurtbox are enemy attacks.
-func _on_hurtbox_area_entered(area:Area2D) -> void:
-	print("You died! (area)")
-	get_hit()
+func _on_hurtbox_area_entered(area:Node) -> void:
+	print("You died!")
+	#print(area)
+	get_hit(area)
 	#obviously, placeholder death condition.
 
-func _on_hurtbox_body_entered(body:RigidBody2D) -> void:
-	print("hit by rock lmao")
-	hitplayer.play()
-	get_hit()
-	if not debugMode:
-		dead = true
-		ragdoll(body.linear_velocity, 2000)
+func _on_hurtbox_body_entered(body) -> void:
+	print(body.get_name())
+	if body is RigidBody2D: #rock
+		print("hit by rock lmao")
+		get_hit(body)
+	if body.get_name() == "Tail":
+		get_hit(body)
+		print("Hit by tail")
 
 # Returns true if the hit killed the player, false otherwise
-func get_hit() -> bool:
+func get_hit(body) -> bool:
+	hitplayer.play()
 	HitstopManager.hit_stop_short()
 	if inv.has("armor") and not armor_used:
 		armor_used = true
 		return false
+	if not debugMode:
+			dead = true
+			ragdoll(body.linear_velocity, 2000)
 	return true	
 
 func ragdoll(direction: Vector2, force: float) -> void:
