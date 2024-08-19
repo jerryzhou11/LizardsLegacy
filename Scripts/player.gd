@@ -31,7 +31,7 @@ var dash_ground_reset = true
 var in_wind_zone = false
 
 @export var debugMode = true
-@export var play_bgm = false
+# @export var play_bgm = true
 
 #wind
 @export var wind_force = 20000
@@ -45,8 +45,9 @@ var in_wind_zone = false
 @onready var deathplayer = $death_player
 
 func _ready():
-	if(play_bgm):
-		songplayer.play()
+	GlobalAudioSignals.connect("bgm_toggle", Callable(self, "_on_bgm_toggle"))
+	# if(play_bgm):
+	songplayer.play()
 	
 var items = {
 	"armor": false,
@@ -160,7 +161,6 @@ func _physics_process(delta: float) -> void:
 	update_animation()
 
 
-
 func _on_hurtbox_area_entered(area:Node) -> void:
 	if(area.is_in_group("Hazards")):
 		print("You died!")
@@ -202,6 +202,7 @@ func get_hit(body) -> bool:
 			lizamation.flip_h = true
 			lizamation.play("death_reg")
 		dead = true
+		songplayer.stop()
 		#ragdoll(body.linear_velocity, 500) #commented out because was causing crashes
 	return true	
 
@@ -228,3 +229,10 @@ func update_animation():
 				lizamation.play("idle_R")
 			else:
 				lizamation.play("idle_L")
+
+func _on_bgm_toggle():
+	if songplayer.volume_db > -79:
+		songplayer.volume_db = -80
+	else:
+		songplayer.volume_db = -8
+	# print("audio print notif")

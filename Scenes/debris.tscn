@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgydu8no0cips"]
 
 [ext_resource type="Script" path="res://Scripts/debris.gd" id="1_541xk"]
-[ext_resource type="AudioStream" uid="uid://dr427fikqruo" path="res://sounds/temp_rock_break.ogg" id="2_cgijx"]
+[ext_resource type="AudioStream" uid="uid://cjbrqwer5xthk" path="res://sounds/debris_sound.ogg" id="2_c6k5m"]
 [ext_resource type="Texture2D" uid="uid://duga5o3mtmhvf" path="res://Art/debris.png" id="2_ithxv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ok3n"]
@@ -17,8 +17,9 @@ script = ExtResource("1_541xk")
 [node name="impact_sound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1.90735e-06, 0)
 scale = Vector2(3, 3)
-stream = ExtResource("2_cgijx")
-volume_db = -6.933
+stream = ExtResource("2_c6k5m")
+volume_db = -4.0
+pitch_scale = 0.43
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3.8147e-06, -3.8147e-06)
