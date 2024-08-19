@@ -33,9 +33,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tk7pt"]
-radius = 17.1172
+radius = 13.0
 
 [node name="WindBlade" type="Area2D" groups=["Hazards"]]
+scale = Vector2(2, 2)
 collision_layer = 16
 script = ExtResource("1_v78sa")
 
@@ -44,7 +45,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_gfxqf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(3, -2)
 shape = SubResource("CircleShape2D_tk7pt")
 
 [node name="Lifetime" type="Timer" parent="."]

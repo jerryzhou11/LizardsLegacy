@@ -10,13 +10,13 @@
 [ext_resource type="Script" path="res://catch_zone.gd" id="4_cv106"]
 [ext_resource type="Texture2D" uid="uid://cvxhjth8b4isl" path="res://Art/Dragon/dragon leg scales-Sheet.png" id="5_2jo3e"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="5_iajij"]
-[ext_resource type="PackedScene" uid="uid://caohg6fopypta" path="res://Scenes/tail.tscn" id="6_ooocl"]
+[ext_resource type="PackedScene" uid="uid://c83w6vml8o7x" path="res://Scenes/tail.tscn" id="6_ooocl"]
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
-[ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
-[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
-[ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
-[ext_resource type="PackedScene" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
+[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="10_jbqtg"]
+[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="14_pjwx3"]
+[ext_resource type="PackedScene" uid="uid://blj5yxt33refh" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -195,7 +195,7 @@ debris_count = 10
 position = Vector2(838, -1016)
 spawn_interval = 0.4
 spawn_y_min = -200.0
-spawn_y_max = 200.0
+spawn_y_max = 150.0
 
 [node name="Body" type="ColorRect" parent="."]
 offset_left = 285.0
