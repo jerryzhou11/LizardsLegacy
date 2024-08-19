@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcm1b5qi7nl5r"
-path="res://.godot/imported/Newstretchedtile_100.png-4d847899ac9af376e6407901314daab1.ctex"
+uid="uid://daun1ppg1348v"
+path="res://.godot/imported/tail split.4_.png-a815a63f8b77671c1699d28dc00fc1a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Landscape/Newstretchedtile_100.png"
-dest_files=["res://.godot/imported/Newstretchedtile_100.png-4d847899ac9af376e6407901314daab1.ctex"]
+source_file="res://Art/Dragon/tail split.4_.png"
+dest_files=["res://.godot/imported/tail split.4_.png-a815a63f8b77671c1699d28dc00fc1a6.ctex"]
 
 [params]
 

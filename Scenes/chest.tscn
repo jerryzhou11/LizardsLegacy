@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://pbt7rieo1v60"]
+
+[ext_resource type="Texture2D" uid="uid://dlsl10qedkols" path="res://Art/Dragon/dragon_chest.png" id="1_koafe"]
+
+[node name="Chest" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_koafe")

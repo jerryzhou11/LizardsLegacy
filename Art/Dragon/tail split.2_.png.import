@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rm4hes5li48b"
-path="res://.godot/imported/grass_100.png-e62ceceb3b7130660190c577684c6b79.ctex"
+uid="uid://dnvdepiws8gk4"
+path="res://.godot/imported/tail split.2_.png-1ee979b4abf5906f08f878eadf914dc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Landscape/grass_100.png"
-dest_files=["res://.godot/imported/grass_100.png-e62ceceb3b7130660190c577684c6b79.ctex"]
+source_file="res://Art/Dragon/tail split.2_.png"
+dest_files=["res://.godot/imported/tail split.2_.png-1ee979b4abf5906f08f878eadf914dc4.ctex"]
 
 [params]
 

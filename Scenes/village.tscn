@@ -63,15 +63,14 @@ shape = SubResource("RectangleShape2D_6oqmr")
 
 [node name="Player" parent="." instance=ExtResource("2_0vdgv")]
 position = Vector2(33, 426)
-collision_layer = 1
 
 [node name="Dash" parent="Player" instance=ExtResource("3_6qs2i")]
 
 [node name="shop_ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 212.0
+offset_bottom = 204.0
 
 [node name="TextureRect" type="TextureRect" parent="shop_ui"]
 layout_mode = 0
