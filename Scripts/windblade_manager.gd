@@ -24,10 +24,9 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_wind_zone_body_entered(body:Node2D) -> void:
 	print("wind blades start")
-	if(active):
+	if active:
 		timer.start()
 
 func _on_wind_zone_body_exited(body:Node2D) -> void:
-	if(active):
+	if active:
 		timer.stop()
-		#active = false

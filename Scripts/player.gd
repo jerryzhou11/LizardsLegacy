@@ -42,6 +42,7 @@ var in_wind_zone = false
 
 @onready var songplayer = $song_player # sound zone
 @onready var hitplayer = $get_hit_player
+@onready var deathplayer = $death_player
 
 func _ready():
 	if(play_bgm):
@@ -193,7 +194,8 @@ func get_hit(body) -> bool:
 	if inv.has("armor") and not armor_used:
 		armor_used = true
 		return false
-	if not debugMode:
+	if not debugMode and not dead:
+		deathplayer.play()
 		if(facing==1):
 			lizamation.play("death_reg")
 		else:
