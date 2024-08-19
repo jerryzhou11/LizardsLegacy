@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://b67uju8esxiwk"]
+
+[ext_resource type="Texture2D" uid="uid://cwjmv1vtqw24v" path="res://Art/Landscape/village_100.png" id="1_34rjq"]
+[ext_resource type="Script" path="res://Scripts/village.gd" id="1_xu65w"]
+[ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_0vdgv"]
+[ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_6qs2i"]
+[ext_resource type="Texture2D" uid="uid://dbjxv0qisjnsx" path="res://Art/Landscape/black.png" id="4_l6kkh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btixc"]
+size = Vector2(588.5, 80.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qo0c"]
+size = Vector2(138, 506)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnjg1"]
+size = Vector2(569, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxsp8"]
+size = Vector2(71, 659)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6oqmr"]
+size = Vector2(78, 141)
+
+[node name="village" type="Node2D"]
+position = Vector2(64, 0)
+script = ExtResource("1_xu65w")
+
+[node name="village_texture" type="TextureRect" parent="."]
+offset_right = 255.0
+offset_bottom = 225.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_34rjq")
+
+[node name="collisions" type="StaticBody2D" parent="."]
+collision_layer = 20
+
+[node name="floor" type="CollisionShape2D" parent="collisions"]
+position = Vector2(260, 479)
+shape = SubResource("RectangleShape2D_btixc")
+
+[node name="wall" type="CollisionShape2D" parent="collisions"]
+position = Vector2(-63, 249)
+shape = SubResource("RectangleShape2D_3qo0c")
+
+[node name="ceiling" type="CollisionShape2D" parent="collisions"]
+position = Vector2(251.5, -61)
+shape = SubResource("RectangleShape2D_dnjg1")
+
+[node name="wall2" type="CollisionShape2D" parent="collisions"]
+position = Vector2(542.5, 189.5)
+shape = SubResource("RectangleShape2D_xxsp8")
+
+[node name="next_stage" type="Area2D" parent="."]
+
+[node name="depart" type="CollisionShape2D" parent="next_stage"]
+position = Vector2(472, 364.5)
+shape = SubResource("RectangleShape2D_6oqmr")
+
+[node name="Player" parent="." instance=ExtResource("2_0vdgv")]
+position = Vector2(82, 423)
+
+[node name="Dash" parent="Player" instance=ExtResource("3_6qs2i")]
+
+[node name="background" type="TextureRect" parent="."]
+visible = false
+z_index = -90
+offset_left = -1333.0
+offset_top = -1079.0
+offset_right = 1834.0
+offset_bottom = 1490.0
+texture = ExtResource("4_l6kkh")
