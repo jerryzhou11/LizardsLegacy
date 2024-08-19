@@ -109,6 +109,12 @@ size = Vector2(3334.25, 670)
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm5nt"]
 radius = 40.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcaig"]
+size = Vector2(39.9319, 40.2537)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0utk"]
+size = Vector2(1270, 368)
+
 [node name="GameScene" type="Node2D"]
 position = Vector2(20, 490)
 metadata/_edit_horizontal_guides_ = [-181.0]
@@ -129,7 +135,8 @@ position = Vector2(824.375, 397.75)
 shape = SubResource("RectangleShape2D_80hbx")
 
 [node name="Player" parent="." instance=ExtResource("2_ob7sr")]
-position = Vector2(155, 86)
+position = Vector2(158, 151)
+metadata/_edit_group_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2(1, 0)
@@ -153,11 +160,10 @@ player_node = NodePath("../Player")
 max_horizontal_distance = 300.0
 camera = NodePath("../Camera2D")
 debris_count = 10
-debris_force = 1500.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(156, 86)
-offset = Vector2(0, -200)
+position = Vector2(159, 151)
+offset = Vector2(0, -100)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -170,26 +176,41 @@ drag_bottom_margin = 0.05
 script = ExtResource("5_iajij")
 
 [node name="DragonLegScales-sheet" type="Sprite2D" parent="."]
-position = Vector2(-241, 367)
+position = Vector2(-527, -579)
 texture = ExtResource("5_2jo3e")
 
 [node name="Tail" parent="." instance=ExtResource("6_ooocl")]
-position = Vector2(2005, -61)
+position = Vector2(2471, -46)
 
 [node name="2nd foot" parent="." node_paths=PackedStringArray("foot_node", "player_node", "camera") instance=ExtResource("3_8krq0")]
-position = Vector2(1291, 148)
+position = Vector2(1581, 148)
 foot_node = NodePath(".")
 player_node = NodePath("../Player")
+max_horizontal_distance = 300.0
 camera = NodePath("../Camera2D")
 debris_count = 10
-debris_force = 1500.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Body" type="ColorRect" parent="."]
 offset_left = 285.0
 offset_top = -832.0
 offset_right = 325.0
 offset_bottom = -792.0
-scale = Vector2(34.4971, 12.9571)
+scale = Vector2(45.7371, 12.9571)
+
+[node name="ColorRect" type="ColorRect" parent="Body"]
+layout_mode = 0
+offset_top = -43.0
+offset_right = 12.0
+offset_bottom = 9.0
+
+[node name="Area2D" type="StaticBody2D" parent="Body"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Area2D"]
+position = Vector2(19.9797, 20.0828)
+shape = SubResource("RectangleShape2D_qcaig")
+debug_color = Color(0.34023, 0.486012, 1, 0.42)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -210,10 +231,20 @@ collision_layer = 8
 collision_mask = 14
 script = ExtResource("9_vuqnp")
 Character = NodePath("../Player")
+stuck_collision = false
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("14_pjwx3")]
 offset = Vector2(0, 186)
 transform = Transform2D(1, 0, 0, 1, 0, 186)
+
+[node name="WindZone" type="Area2D" parent="."]
+position = Vector2(994, -1283)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindZone"]
+position = Vector2(478, 265)
+shape = SubResource("RectangleShape2D_b0utk")
 
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
 [connection signal="spear_caught" from="Player/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]

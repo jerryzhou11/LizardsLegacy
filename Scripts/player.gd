@@ -27,12 +27,26 @@ var dead = false
 var flap_available = true
 var flap_timer = 0.8
 var armor_used = false
+var dash_ground_reset = true
+var in_wind_zone = false
 
 @export var debugMode = true
+@export var play_bgm = false
+
+#wind
+@export var wind_force = 20000
+@export var wind_slow = 50
 
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
 
+@onready var songplayer = $song_player # sound zone
+@onready var hitplayer = $get_hit_player
+
+func _ready():
+	if(play_bgm):
+		songplayer.play()
+	
 var items = {
 	"armor": false,
 	"wings": false,
@@ -40,6 +54,7 @@ var items = {
 	
 }
 
+	
 func get_staminabar_percent() -> float:
 	return 100 * flight_stamina/FLIGHT_MAX_STAMINA
 
@@ -62,7 +77,11 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
+		dash_ground_reset = true
 		flap_available = true
+	if in_wind_zone :
+		velocity.x += wind_force * delta
+		move_and_slide()
 		
 	if dead:
 		velocity.x = velocity.x * (1.0 - DEAD_DRAG) ** delta
@@ -107,14 +126,20 @@ func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("move_left", "move_right")
 	var y_direction = Input.get_axis("air_up", "air_down")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = (direction * SPEED)
+		if in_wind_zone:
+			velocity.x += wind_slow
 		facing = direction
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 			#velocity.x = direction * SPEED
 	
 	# Handle dash
-	if Input.is_action_just_pressed("dash") and dash.finished_cooldown():
+	if (Input.is_action_just_pressed("dash") 
+		and dash.finished_cooldown() 
+		and (dash_ground_reset or items.wings)
+	):
+		dash_ground_reset = false
 		dash.start_dash_duration(DASH_LENGTH)
 		dash.start_cooldown(DASH_COOLDOWN)
 		if y_direction < 0 and can_fly():
@@ -134,22 +159,43 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animation()
 
-#the only thing that can enter our hurtbox are enemy attacks.
-func _on_hurtbox_area_entered(area:Area2D) -> void:
-	print("You died! (area)")
-	#obviously, placeholder death condition.
 
-func _on_hurtbox_body_entered(body:RigidBody2D) -> void:
-	print("hit by rock lmao")
-	if not debugMode:
-		dead = true
-		ragdoll(body.linear_velocity, 2000)
+
+func _on_hurtbox_area_entered(area:Node) -> void:
+	if(area.is_in_group("Hazards")):
+		print("You died!")
+		#print(area)
+		get_hit(area)
+		#obviously, placeholder death condition.
+	elif(area.get_name() == "WindZone"):
+		print("entered wind")
+		in_wind_zone = true
+
+
+func _on_hurtbox_area_exited(area:Area2D) -> void:
+	if(area.get_name() == "WindZone"):
+		print("exited wind")
+		in_wind_zone = false
+
+func _on_hurtbox_body_entered(body) -> void:
+	print(body.get_name())
+	if body is RigidBody2D: #rock
+		print("hit by rock lmao")
+		get_hit(body)
+	if body.get_name() == "Tail":
+		get_hit(body)
+		print("Hit by tail")
 
 # Returns true if the hit killed the player, false otherwise
-func get_hit() -> bool:
+func get_hit(body) -> bool:
+	hitplayer.play()
+	HitstopManager.hit_stop_short()
 	if inv.has("armor") and not armor_used:
 		armor_used = true
 		return false
+	if not debugMode:
+			dead = true
+			ragdoll(body.linear_velocity, 2000)
 	return true	
 
 func ragdoll(direction: Vector2, force: float) -> void:
