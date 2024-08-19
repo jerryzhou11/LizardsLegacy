@@ -1,17 +1,17 @@
 [gd_scene load_steps=7 format=3 uid="uid://brip3rxac20gc"]
 
 [ext_resource type="Script" path="res://Scripts/foot.gd" id="1_2cppc"]
-[ext_resource type="PackedScene" uid="uid://cshqw05ljcknd" path="res://Scenes/debris.tscn" id="2_omm2l"]
+[ext_resource type="PackedScene" uid="uid://cgydu8no0cips" path="res://Scenes/debris.tscn" id="2_omm2l"]
 [ext_resource type="Texture2D" uid="uid://delqi5brvcv0f" path="res://Art/Dragon/claw legs/Claw Front 1.png" id="4_5wuwr"]
 [ext_resource type="AudioStream" uid="uid://be8ah6bqiysc2" path="res://sounds/Dragon_Stomp_FX.ogg" id="4_wvyp5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edb74"]
-size = Vector2(87.3494, 36.4015)
+size = Vector2(81.3253, 3.78787)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8q05"]
-size = Vector2(207.831, 81.8182)
+size = Vector2(277.409, 81.8182)
 
-[node name="Enemystomp" type="CharacterBody2D" node_paths=PackedStringArray("foot_node") groups=["Hazards"]]
+[node name="Enemystomp" type="CharacterBody2D" node_paths=PackedStringArray("foot_node")]
 position = Vector2(2, -4)
 scale = Vector2(3.32, 2.64)
 collision_layer = 2
@@ -21,35 +21,36 @@ foot_node = NodePath(".")
 debris_scene = ExtResource("2_omm2l")
 debris_force_spread = 300.0
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="foot" type="Sprite2D" parent="."]
+position = Vector2(230.072, -298.985)
+scale = Vector2(1, 1)
+texture = ExtResource("4_5wuwr")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["Hazards"]]
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-11.1446, 22.7083)
+position = Vector2(4.81927, -17.0454)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_edb74")
-disabled = true
 debug_color = Color(0.957868, 0, 0.530245, 0.42)
 
 [node name="AggroZone" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroZone"]
-position = Vector2(-0.903611, -39.3939)
+position = Vector2(33.8856, -39.3939)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_v8q05")
 debug_color = Color(5.77569e-07, 0.631986, 0.456356, 0.42)
 
 [node name="stomp_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_wvyp5")
 
-[node name="foot" type="Sprite2D" parent="."]
-position = Vector2(230.072, -298.985)
-texture = ExtResource("4_5wuwr")
-
 [node name="Hurtbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(0.554225, 18.4395)
-polygon = PackedVector2Array(-28.3133, 35.6061, -50, 33.7121, -59.3374, 24.6212, -59.0361, -14.7727, 37.6506, -110.227, 64.4578, -204.545, 103.012, -227.651, 154.518, -227.651, 183.434, -195.455, 148.494, -171.97, 148.795, -157.576, 186.747, -121.212, 156.024, -115.909, 174.398, -96.5909, 140.964, -92.4242, 68.9759, -60.2273, 45.4819, -37.8788, 44.8795, 22.7273, 37.0482, 32.9545, 19.5783, 31.8182, 19.8795, 23.4848, 28.3133, 23.4848, 27.7108, 9.4697, -3.31325, -16.6667, -2.71084, 31.8182, -11.1446, 31.8182, -27.1084, 5.68182, -26.8072, -15.1515, -35.5422, -14.3939, -34.0361, 23.1061, -28.3133, 26.1364)
+polygon = PackedVector2Array(-59.0361, -14.7727, 37.6506, -110.227, 64.4578, -204.545, 103.012, -227.651, 154.518, -227.651, 183.434, -195.455, 148.494, -171.97, 148.795, -157.576, 186.747, -121.212, 156.024, -115.909, 174.398, -96.5909, 140.964, -92.4242, 68.9759, -60.2273, 45.4819, -37.8788, 45.8313, -16.1668, -26.8072, -15.1515, -35.1928, -14.2728)
 
 [connection signal="area_entered" from="AggroZone" to="." method="_on_aggro_zone_area_entered"]
 [connection signal="area_exited" from="AggroZone" to="." method="_on_aggro_zone_area_exited"]

@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bmudtttc5altk" path="res://Art/Lizard/Full_Walk_R-Sheet.png" id="5_m8oxs"]
 [ext_resource type="Texture2D" uid="uid://b1xu5relhciao" path="res://Art/Lizard/death_anim.png" id="6_iesna"]
 [ext_resource type="AudioStream" uid="uid://5emjkp8scref" path="res://sounds/The_Dragon_Sunday640_Song.ogg" id="10_efai1"]
-[ext_resource type="AudioStream" uid="uid://cbj3ciujbrymn" path="res://sounds/realm-of-the-mad-god-death-sound.mp3" id="11_5wqlj"]
+[ext_resource type="AudioStream" uid="uid://cbj3ciujbrymn" path="res://sounds/temp_death_fx.mp3" id="11_5wqlj"]
 [ext_resource type="AudioStream" uid="uid://d0bfc8a7y2clh" path="res://sounds/Death_Smack_FX.ogg" id="12_u2asy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i57uf"]
@@ -432,7 +432,7 @@ animation = &"death_reg"
 collision_mask = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(3, -31)
+position = Vector2(4, -27)
 shape = SubResource("CapsuleShape2D_5v2b8")
 debug_color = Color(0.612509, 0.360039, 1, 0.42)
 

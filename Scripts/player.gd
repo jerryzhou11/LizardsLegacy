@@ -85,9 +85,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 	if dead:
-		velocity.x = velocity.x * (1.0 - DEAD_DRAG) ** delta
-		print(velocity)
-		move_and_slide()
+		#velocity.x = velocity.x * (1.0 - DEAD_DRAG) ** delta
+		#move_and_slide()
 		return	
 		
 	flap_timer = move_toward(flap_timer, 0, delta)
@@ -189,8 +188,9 @@ func _on_hurtbox_body_entered(body) -> void:
 
 # Returns true if the hit killed the player, false otherwise
 func get_hit(body) -> bool:
-	hitplayer.play()
-	HitstopManager.hit_stop_short()
+	if not dead:
+		#hitplayer.play()
+		HitstopManager.hit_stop_short()
 	if inv.has("armor") and not armor_used:
 		armor_used = true
 		return false
@@ -202,13 +202,13 @@ func get_hit(body) -> bool:
 			lizamation.flip_h = true
 			lizamation.play("death_reg")
 		dead = true
-		ragdoll(body.linear_velocity, 500)
+		#ragdoll(body.linear_velocity, 500) #commented out because was causing crashes
 	return true	
 
 func ragdoll(direction: Vector2, force: float) -> void:
 	velocity = direction.normalized() * force
 	velocity.y = -abs(velocity.y)
-	print(velocity)
+	#print(velocity)
 	
 func update_animation():
 	if not animation_locked:
