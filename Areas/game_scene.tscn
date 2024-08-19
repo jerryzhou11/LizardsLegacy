@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=35 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://dbbbayi7hhbdu" path="res://Art/icon.svg" id="1_ed1ie"]
 [ext_resource type="Texture2D" uid="uid://dv4tjm7j3lyq3" path="res://Art/Landscape/iswearthistheone.png" id="2_dx8wo"]
@@ -15,11 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://caohg6fopypta" path="res://Scenes/tail.tscn" id="6_ooocl"]
 [ext_resource type="Texture2D" uid="uid://duqdbcn36wpy8" path="res://Art/Landscape/Pleasepleaseplease.png" id="7_umf17"]
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
-[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="8_qv5et"]
+[ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
-[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="10_jbqtg"]
-[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="14_pjwx3"]
-[ext_resource type="PackedScene" uid="uid://blj5yxt33refh" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
+[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
+[ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
+[ext_resource type="PackedScene" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
+[ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/Foot_B.tscn" id="21_em4lo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -179,10 +180,9 @@ script = ExtResource("4_cv106")
 shape = SubResource("CircleShape2D_fm5nt")
 one_way_collision_margin = 0.0
 
-[node name="foot" parent="." node_paths=PackedStringArray("foot_node", "player_node", "camera") instance=ExtResource("3_8krq0")]
+[node name="foot" parent="." node_paths=PackedStringArray("player_node", "camera") instance=ExtResource("3_8krq0")]
 z_index = 1
 position = Vector2(516, 146)
-foot_node = NodePath(".")
 player_node = NodePath("../Player")
 max_horizontal_distance = 300.0
 camera = NodePath("../Camera2D")
@@ -209,19 +209,10 @@ texture = ExtResource("5_2jo3e")
 [node name="Tail" parent="." instance=ExtResource("6_ooocl")]
 position = Vector2(2471, -46)
 
-[node name="2nd foot" parent="." node_paths=PackedStringArray("foot_node", "player_node", "camera") instance=ExtResource("3_8krq0")]
-position = Vector2(1581, 148)
-foot_node = NodePath(".")
-player_node = NodePath("../Player")
-max_horizontal_distance = 300.0
-camera = NodePath("../Camera2D")
-debris_count = 10
-
 [node name="Windblade_manager" parent="." instance=ExtResource("15_cv86v")]
 position = Vector2(838, -1016)
-spawn_interval = 0.4
 spawn_y_min = -200.0
-spawn_y_max = 150.0
+spawn_y_max = 200.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -255,6 +246,11 @@ collision_layer = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindZone"]
 position = Vector2(478, 265)
 shape = SubResource("RectangleShape2D_b0utk")
+
+[node name="foot2" parent="." node_paths=PackedStringArray("player_node", "camera") instance=ExtResource("21_em4lo")]
+position = Vector2(1602, 153)
+player_node = NodePath("../Player")
+camera = NodePath("../Camera2D")
 
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
 [connection signal="spear_caught" from="Player/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]
