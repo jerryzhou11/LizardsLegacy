@@ -2,6 +2,7 @@ extends Area2D
 
 @export var speed: float = 300.0
 @onready var sprite = $Sprite2D
+var linear_velocity = Vector2(10,0)
 
 func _ready():
 	sprite.play()

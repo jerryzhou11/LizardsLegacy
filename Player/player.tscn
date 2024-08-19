@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b38wcoytpowl0"]
+[gd_scene load_steps=66 format=3 uid="uid://b38wcoytpowl0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a0ff2"]
 [ext_resource type="Texture2D" uid="uid://76nbbm2gkywi" path="res://Art/Lizard/Full_Idle_R-Sheet (1).png" id="2_7e11r"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://brosel4od7q7k" path="res://Art/Lizard/Full_Walk_L-Sheet (1).png" id="4_ngh1t"]
 [ext_resource type="Texture2D" uid="uid://bi7oqlxlm2bie" path="res://Art/Lizard/DASH_R-Sheet.png" id="5_5gnhs"]
 [ext_resource type="Texture2D" uid="uid://bmudtttc5altk" path="res://Art/Lizard/Full_Walk_R-Sheet.png" id="5_m8oxs"]
+[ext_resource type="Texture2D" uid="uid://b1xu5relhciao" path="res://Art/Lizard/death_anim.png" id="6_iesna"]
 [ext_resource type="AudioStream" uid="uid://5emjkp8scref" path="res://sounds/The_Dragon_Sunday640_Song.ogg" id="10_efai1"]
 [ext_resource type="AudioStream" uid="uid://cbj3ciujbrymn" path="res://sounds/realm-of-the-mad-god-death-sound.mp3" id="11_5wqlj"]
 
@@ -62,6 +63,34 @@ region = Rect2(336, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fmduo"]
 atlas = ExtResource("4_cyquh")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsaxj"]
+atlas = ExtResource("6_iesna")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn6a8"]
+atlas = ExtResource("6_iesna")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x2w3"]
+atlas = ExtResource("6_iesna")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6aq66"]
+atlas = ExtResource("6_iesna")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l8nq"]
+atlas = ExtResource("6_iesna")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knq2g"]
+atlas = ExtResource("6_iesna")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_126ie"]
+atlas = ExtResource("6_iesna")
+region = Rect2(768, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2um1"]
 atlas = ExtResource("2_rasbu")
@@ -237,6 +266,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tsaxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn6a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x2w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6aq66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l8nq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knq2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_126ie")
+}],
+"loop": false,
+"name": &"death_reg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_g2um1")
 }, {
 "duration": 1.0,
@@ -359,6 +414,7 @@ height = 52.0
 [node name="Player2" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_a0ff2")
+debugMode = false
 wind_force = 10000
 wind_slow = 100
 
@@ -369,9 +425,7 @@ shape = SubResource("RectangleShape2D_i57uf")
 [node name="lizamation" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -31)
 sprite_frames = SubResource("SpriteFrames_ujfxd")
-animation = &"walk_L"
-frame = 1
-frame_progress = 0.545099
+animation = &"death_reg"
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 50
