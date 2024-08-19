@@ -1,6 +1,12 @@
 extends Area2D
 
 @export var speed: float = 300.0
+@onready var sprite = $Sprite2D
+var linear_velocity = Vector2(300,0)
+
+func _ready():
+	sprite.play()
+
 
 func _physics_process(delta: float) -> void:
 	position.x += speed * delta

@@ -42,6 +42,7 @@ var in_wind_zone = false
 
 @onready var songplayer = $song_player # sound zone
 @onready var hitplayer = $get_hit_player
+@onready var deathplayer = $death_player
 
 func _ready():
 	if(play_bgm):
@@ -79,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		dash_ground_reset = true
 		flap_available = true
-	if in_wind_zone :
+	if in_wind_zone and not dead:
 		velocity.x += wind_force * delta
 		move_and_slide()
 		
@@ -193,9 +194,15 @@ func get_hit(body) -> bool:
 	if inv.has("armor") and not armor_used:
 		armor_used = true
 		return false
-	if not debugMode:
-			dead = true
-			ragdoll(body.linear_velocity, 2000)
+	if not debugMode and not dead:
+		deathplayer.play()
+		if(facing==1):
+			lizamation.play("death_reg")
+		else:
+			lizamation.flip_h = true
+			lizamation.play("death_reg")
+		dead = true
+		ragdoll(body.linear_velocity, 500)
 	return true	
 
 func ragdoll(direction: Vector2, force: float) -> void:

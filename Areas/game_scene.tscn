@@ -15,11 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://caohg6fopypta" path="res://Scenes/tail.tscn" id="6_ooocl"]
 [ext_resource type="Texture2D" uid="uid://duqdbcn36wpy8" path="res://Art/Landscape/Pleasepleaseplease.png" id="7_umf17"]
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
-[ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
-[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
-[ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
-[ext_resource type="PackedScene" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
+[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="10_jbqtg"]
+[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="14_pjwx3"]
+[ext_resource type="PackedScene" uid="uid://blj5yxt33refh" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vr5xc"]
 texture = ExtResource("1_ed1ie")
@@ -219,8 +219,9 @@ debris_count = 10
 
 [node name="Windblade_manager" parent="." instance=ExtResource("15_cv86v")]
 position = Vector2(838, -1016)
+spawn_interval = 0.4
 spawn_y_min = -200.0
-spawn_y_max = 200.0
+spawn_y_max = 150.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
