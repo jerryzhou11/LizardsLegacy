@@ -10,6 +10,7 @@ const AIR_RESISTANCE = 0
 const VELOCITY_INHERITANCE = 0.5 #percent of player velocity that adds to throw
 
 @export var Character: NodePath
+@export var stuck_collision: bool = true
 @onready var Collider := $CollisionShape2D
 
 @onready var throwSound = $throw
@@ -48,6 +49,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		set_collision_mask_value(2, true)
 		set_collision_mask_value(3, true) 
+		
+	set_collision_layer_value(3, stuck_collision and state == SpearState.STUCK)
+		
 	
 	match state:
 		SpearState.THROWN:
@@ -82,7 +86,7 @@ func _physics_process(delta: float) -> void:
 	# Collision			
 	const ENEMY_LAYER = 2
 	var collision = get_last_slide_collision()
-	if collision and state != SpearState.STUCK:
+	if collision and state == SpearState.THROWN:
 		var hit_armor = (collision.get_collider().get_collision_layer() 
 			& ENEMY_LAYER) > 0
 		if hit_armor and not already_clinked:
@@ -122,6 +126,7 @@ func _input(event) -> void:
 				else:
 					recallSound.play()
 					state = SpearState.RECALL
+					set_collision_layer_value(3, false)
 
 func _on_body_entered(body: Node2D):
 	print(body)
