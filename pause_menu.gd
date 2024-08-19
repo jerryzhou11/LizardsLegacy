@@ -1,7 +1,4 @@
 extends Control
-func _ready() -> void:
-	GlobalAudioSignals.connect("bgm_toggle", Callable(self, "_on_music_button_toggled"))
-		
 func resume():
 	get_tree().paused = false;
 	$AnimationPlayer.play_backwards("blur")

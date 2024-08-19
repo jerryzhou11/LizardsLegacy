@@ -46,7 +46,13 @@ var in_wind_zone = false
 
 func _ready():
 	GlobalAudioSignals.connect("bgm_toggle", Callable(self, "_on_bgm_toggle"))
-	# if(play_bgm):
+	
+	ShopSignals.connect("item_1", Callable(self, "buy_item_1"))
+	ShopSignals.connect("item_2", Callable(self, "buy_item_2"))
+	ShopSignals.connect("item_3", Callable(self, "buy_item_3"))
+	ShopSignals.connect("item_4", Callable(self, "buy_item_4"))
+	ShopSignals.connect("item_5", Callable(self, "buy_item_5"))
+	
 	songplayer.play()
 	
 var items = {
@@ -236,3 +242,18 @@ func _on_bgm_toggle():
 	else:
 		songplayer.volume_db = -8
 	# print("audio print notif")
+
+func buy_item_1():
+	print("bought item 1")
+
+func buy_item_2():
+	print("bought item 2")
+
+func buy_item_3():
+	print("bought item 3")
+
+func buy_item_4():
+	print("bought item 4")
+
+func buy_item_5():
+	print("bought item 5")

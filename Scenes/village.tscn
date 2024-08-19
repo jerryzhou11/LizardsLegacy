@@ -1,11 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://b67uju8esxiwk"]
+[gd_scene load_steps=18 format=3 uid="uid://b67uju8esxiwk"]
 
 [ext_resource type="Texture2D" uid="uid://cwjmv1vtqw24v" path="res://Art/Landscape/village_100.png" id="1_34rjq"]
 [ext_resource type="Script" path="res://Scripts/village.gd" id="1_xu65w"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_0vdgv"]
 [ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_6qs2i"]
+[ext_resource type="Texture2D" uid="uid://b5a1ek3cr51oh" path="res://Art/accessories/shop_art/empty_shop.png" id="4_bppjy"]
 [ext_resource type="Texture2D" uid="uid://dbjxv0qisjnsx" path="res://Art/Landscape/black.png" id="4_l6kkh"]
-[ext_resource type="Texture2D" uid="uid://b8yjkevxp281n" path="res://Art/accessories/shop.png" id="6_wgb6h"]
+[ext_resource type="Texture2D" uid="uid://b8ue0j80pfkcq" path="res://Art/accessories/shop_art/item_1.png" id="5_kquq0"]
+[ext_resource type="Texture2D" uid="uid://cly1pdjebgssl" path="res://Art/accessories/shop_art/item_2.png" id="8_ea8b1"]
+[ext_resource type="Texture2D" uid="uid://bq3os6rha0aej" path="res://Art/accessories/shop_art/item_3.png" id="9_t04tj"]
+[ext_resource type="Texture2D" uid="uid://bl2surwvlfwla" path="res://Art/accessories/shop_art/item_4.png" id="10_u81ex"]
+[ext_resource type="Texture2D" uid="uid://rftmb27qarr5" path="res://Art/accessories/shop_art/item_5.png" id="11_qg62p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xcje"]
 size = Vector2(57, 107)
@@ -74,9 +79,9 @@ offset_bottom = 204.0
 
 [node name="TextureRect" type="TextureRect" parent="shop_ui"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("6_wgb6h")
+offset_right = 216.0
+offset_bottom = 216.0
+texture = ExtResource("4_bppjy")
 
 [node name="background" type="TextureRect" parent="."]
 z_index = -90
@@ -97,6 +102,56 @@ texture = ExtResource("1_34rjq")
 offset = Vector2(256, 256)
 zoom = Vector2(0.7, 0.7)
 
+[node name="item_1" type="Button" parent="."]
+z_as_relative = false
+offset_left = 40.0
+offset_top = 88.0
+offset_right = 70.0
+offset_bottom = 118.0
+icon = ExtResource("5_kquq0")
+flat = true
+
+[node name="item_2" type="Button" parent="."]
+z_as_relative = false
+offset_left = 66.0
+offset_top = 84.0
+offset_right = 98.0
+offset_bottom = 118.0
+icon = ExtResource("8_ea8b1")
+flat = true
+
+[node name="item_3" type="Button" parent="."]
+z_as_relative = false
+offset_left = 92.0
+offset_top = 82.0
+offset_right = 124.0
+offset_bottom = 118.0
+icon = ExtResource("9_t04tj")
+flat = true
+
+[node name="item_4" type="Button" parent="."]
+z_as_relative = false
+offset_left = 118.0
+offset_top = 85.0
+offset_right = 150.0
+offset_bottom = 121.0
+icon = ExtResource("10_u81ex")
+flat = true
+
+[node name="item_5" type="Button" parent="."]
+z_as_relative = false
+offset_left = 144.0
+offset_top = 84.0
+offset_right = 178.0
+offset_bottom = 120.0
+icon = ExtResource("11_qg62p")
+flat = true
+
 [connection signal="body_entered" from="shop" to="." method="_on_shop_body_entered"]
 [connection signal="body_exited" from="shop" to="." method="_on_shop_body_exited"]
 [connection signal="body_entered" from="next_stage" to="." method="_on_next_stage_body_entered"]
+[connection signal="button_down" from="item_1" to="." method="_on_item_1_button_down"]
+[connection signal="button_down" from="item_2" to="." method="_on_item_2_button_down"]
+[connection signal="button_down" from="item_3" to="." method="_on_item_3_button_down"]
+[connection signal="button_down" from="item_4" to="." method="_on_item_4_button_down"]
+[connection signal="button_down" from="item_5" to="." method="_on_item_5_button_down"]
