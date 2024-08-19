@@ -198,7 +198,7 @@ func _on_hurtbox_body_entered(body) -> void:
 # Returns true if the hit killed the player, false otherwise
 func get_hit(body) -> bool:
 	if not dead:
-		#hitplayer.play()
+		hitplayer.play()
 		HitstopManager.hit_stop_short()
 	if inv.has("armor") and not armor_used:
 		armor_used = true

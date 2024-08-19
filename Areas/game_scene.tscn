@@ -150,6 +150,7 @@ player_node = NodePath("../Player")
 smash_duration = 0.6
 max_horizontal_distance = 250.0
 camera = NodePath("../Camera2D")
+debris_count = 10
 
 [connection signal="ready" from="." to="Player" method="_on_game_scene_ready"]
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
