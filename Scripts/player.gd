@@ -40,7 +40,8 @@ var in_wind_zone = false
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
 
-@onready var songplayer = $song_player # sound zone
+@onready var bossBGM = $song_player # sound zone
+@onready var villageBGM = $village_player
 @onready var hitplayer = $get_hit_player
 @onready var deathplayer = $death_player
 
@@ -53,7 +54,8 @@ func _ready():
 	ShopSignals.connect("item_4", Callable(self, "buy_item_4"))
 	ShopSignals.connect("item_5", Callable(self, "buy_item_5"))
 	
-	songplayer.play()
+	bossBGM.volume_db = -8
+	bossBGM.play()
 	
 var items = {
 	"armor": false,
@@ -208,7 +210,7 @@ func get_hit(body) -> bool:
 			lizamation.flip_h = true
 			lizamation.play("death_reg")
 		dead = true
-		songplayer.stop()
+		bossBGM.stop()
 		#ragdoll(body.linear_velocity, 500) #commented out because was causing crashes
 	return true	
 
@@ -237,10 +239,10 @@ func update_animation():
 				lizamation.play("idle_L")
 
 func _on_bgm_toggle():
-	if songplayer.volume_db > -79:
-		songplayer.volume_db = -80
+	if bossBGM.volume_db > -79:
+		bossBGM.volume_db = -80
 	else:
-		songplayer.volume_db = -8
+		bossBGM.volume_db = -8
 	# print("audio print notif")
 
 func buy_item_1():
@@ -257,3 +259,14 @@ func buy_item_4():
 
 func buy_item_5():
 	print("bought item 5")
+
+
+func _on_village_ready() -> void:
+	bossBGM.stop()
+	villageBGM.play()
+
+
+
+func _on_game_scene_ready() -> void:
+	villageBGM.stop()
+	bossBGM.play()

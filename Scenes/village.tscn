@@ -147,6 +147,7 @@ offset_bottom = 120.0
 icon = ExtResource("11_qg62p")
 flat = true
 
+[connection signal="ready" from="." to="Player" method="_on_village_ready"]
 [connection signal="body_entered" from="shop" to="." method="_on_shop_body_entered"]
 [connection signal="body_exited" from="shop" to="." method="_on_shop_body_exited"]
 [connection signal="body_entered" from="next_stage" to="." method="_on_next_stage_body_entered"]

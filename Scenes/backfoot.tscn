@@ -23,7 +23,6 @@ debris_force_spread = 300.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-199.096, -278.53)
-scale = Vector2(1, 1)
 texture = ExtResource("4_t6ixm")
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Hazards"]]
@@ -33,7 +32,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(14.259, -43.9394)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_edb74")
 debug_color = Color(0.957868, 0, 0.530245, 0.42)
 
@@ -42,7 +40,6 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroZone"]
 position = Vector2(-24.3977, -39.3939)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_v8q05")
 debug_color = Color(5.77569e-07, 0.631986, 0.456356, 0.42)
 
