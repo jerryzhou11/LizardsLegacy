@@ -59,9 +59,10 @@ func _ready():
 	
 var items = {
 	"armor": false,
-	"wings": false,
 	"spear_upgrade": false,
-	
+	"grapple": false,
+	"item4": false,
+	"wings": true
 }
 
 	
@@ -247,19 +248,23 @@ func _on_bgm_toggle():
 
 func buy_item_1():
 	print("bought item 1")
+	items["armor"] = true
 
 func buy_item_2():
 	print("bought item 2")
-
+	items["spear_upgrade"] = true
+	
 func buy_item_3():
 	print("bought item 3")
-
+	items["grapple"] = true
+	
 func buy_item_4():
 	print("bought item 4")
-
+	items["item4"] = true
+	
 func buy_item_5():
 	print("bought item 5")
-
+	items["wings"] = true
 
 func _on_village_ready() -> void:
 	bossBGM.stop()
