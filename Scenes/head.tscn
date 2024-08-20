@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/head.gd" id="1_ubgut"]
 [ext_resource type="AudioStream" uid="uid://chuvlfv6mfpr3" path="res://sounds/flamethrower.mp3" id="2_3sa7a"]
-[ext_resource type="PackedScene" uid="uid://dfd7fhpdq4jl4" path="res://Scenes/flames.tscn" id="2_l5nv0"]
+[ext_resource type="PackedScene" uid="uid://cwlif37eapct2" path="res://Scenes/flames.tscn" id="2_l5nv0"]
 [ext_resource type="Texture2D" uid="uid://dwfgx1menfmcj" path="res://Art/Dragon/lovelydragonhead-Sheet.png" id="3_aoh32"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6p7lg"]
@@ -86,12 +86,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Head" type="CharacterBody2D" node_paths=PackedStringArray("player")]
+[node name="Head" type="CharacterBody2D"]
 position = Vector2(0, -1)
 scale = Vector2(2, 2)
 script = ExtResource("1_ubgut")
 projectile_scene = ExtResource("2_l5nv0")
-player = NodePath("")
 
 [node name="AggroZone" type="Area2D" parent="."]
 position = Vector2(1.10001, 1.60001)

@@ -1,7 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfd7fhpdq4jl4"]
+[gd_scene load_steps=6 format=3 uid="uid://cwlif37eapct2"]
 
-[ext_resource type="Texture2D" uid="uid://dfxp1jyj1hry1" path="res://icon.svg" id="1_3kmx1"]
 [ext_resource type="Script" path="res://Scripts/flames.gd" id="1_crngh"]
+[ext_resource type="Texture2D" uid="uid://c4msp6qfvbjby" path="res://Art/accessories/flame1.png" id="2_0htg2"]
+[ext_resource type="Texture2D" uid="uid://c65rj442vmroh" path="res://Art/accessories/flame2.png" id="3_nmura"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbcqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0htg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nmura")
+}],
+"loop": true,
+"name": &"flicker",
+"speed": 9.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mi0mg"]
 
@@ -9,12 +24,12 @@
 scale = Vector2(1.56, 1.56)
 script = ExtResource("1_crngh")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.521591, 0.192694, 1)
-self_modulate = Color(1, 0, 0, 1)
-position = Vector2(-9.53674e-07, -9.53674e-07)
-scale = Vector2(0.160156, 0.160156)
-texture = ExtResource("1_3kmx1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-23.0769, 0)
+sprite_frames = SubResource("SpriteFrames_wbcqr")
+animation = &"flicker"
+frame_progress = 0.256249
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_mi0mg")

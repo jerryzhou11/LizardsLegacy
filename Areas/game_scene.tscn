@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
 [ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
 [ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
-[ext_resource type="PackedScene" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
+[ext_resource type="PackedScene" uid="uid://blj5yxt33refh" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
 [ext_resource type="PackedScene" uid="uid://bna3sgkes7dv7" path="res://Scenes/head.tscn" id="17_mlygp"]
 [ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/backfoot.tscn" id="21_em4lo"]
 
