@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=42 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://c3kxjellfwpw0" path="res://Art/Landscape/PLEASEEEEe-export.png" id="1_skybf"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" path="res://Areas/scale_count.gd" id="17_7b5hx"]
 [ext_resource type="PackedScene" uid="uid://bna3sgkes7dv7" path="res://Scenes/head.tscn" id="17_mlygp"]
 [ext_resource type="PackedScene" uid="uid://pbt7rieo1v60" path="res://Scenes/chest.tscn" id="18_luumw"]
+[ext_resource type="Script" path="res://Areas/weak_points.gd" id="18_u33js"]
+[ext_resource type="Texture2D" uid="uid://pc0rn1ae6icq" path="res://Art/accessories/textbox.png" id="19_kt37s"]
 [ext_resource type="Texture2D" uid="uid://220kwiybrukb" path="res://Art/Dragon/claw legs/Claw Back 1.png" id="20_c165k"]
 [ext_resource type="PackedScene" uid="uid://cgydu8no0cips" path="res://Scenes/debris.tscn" id="20_cg03m"]
 [ext_resource type="Script" path="res://Scripts/front_wing.gd" id="21_6w1bh"]
@@ -193,7 +195,23 @@ offset_left = 209.0
 offset_top = -1.0
 offset_right = 249.0
 offset_bottom = 22.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 script = ExtResource("17_7b5hx")
+
+[node name="weak_points" type="Label" parent="CanvasLayer/Hud"]
+offset_left = 246.0
+offset_top = 11.0
+offset_right = 286.0
+offset_bottom = 34.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+script = ExtResource("18_u33js")
+
+[node name="Textbox" type="Sprite2D" parent="CanvasLayer/Hud"]
+z_index = -3
+position = Vector2(281, 6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("19_kt37s")
 
 [node name="Spear" parent="." instance=ExtResource("8_qjfnf")]
 collision_layer = 8

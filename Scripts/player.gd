@@ -30,7 +30,7 @@ var dash_ground_reset = true
 var in_wind_zone = false
 var iframes = false
 var burnt = false
-var weak_spots_hit = [false, false, false, false]
+@export var weak_spots_hit = [false, false, false, false]
 
 @export var debugMode = true
 # @export var play_bgm = true
