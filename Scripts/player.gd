@@ -45,6 +45,7 @@ var in_wind_zone = false
 @onready var villageBGM = $village_player
 @onready var hitplayer = $get_hit_player
 @onready var deathplayer = $death_player
+@onready var flap_sfx_player = $wing_flap_player
 
 func _ready():
 	GlobalAudioSignals.connect("bgm_toggle", Callable(self, "_on_bgm_toggle"))
@@ -111,7 +112,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -JUMP_VELOCITY
 	elif Input.is_action_pressed("jump") and can_fly():
 		if flap_available and abs(velocity.y - -FLIGHT_YSPEED) > 120: 
-			print("flap!")
+			flap_sfx_player.play()
 			flight_stamina -= FLAP_STAMINA
 			flap_available = false
 			flap_timer = FLAP_COOLDOWN
@@ -222,7 +223,17 @@ func ragdoll(direction: Vector2, force: float) -> void:
 	
 func update_animation():
 	if not animation_locked:
-		if direction != 0:
+		if items.wings and (direction != 0 or not is_on_floor()):
+				if (facing == 1):
+					lizamation.play("fly_R")
+				else:
+					lizamation.play("fly_L")
+		elif items.wings:
+			if (facing == 1):
+				lizamation.play("wing_idle_R")
+			else:
+				lizamation.play("wing_idle_L")
+		elif direction != 0:	
 			if dash.is_dashing():
 				if (facing == 1):
 					lizamation.play("dash_R", 8)

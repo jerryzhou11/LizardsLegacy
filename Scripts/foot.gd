@@ -131,8 +131,10 @@ func _physics_process(_delta):
 
 #triggers aggro when player enters aggro zone
 func _on_aggro_zone_area_entered(area:Area2D) -> void:
-	detected_player = true
+	if(area.get_name()=="Hurtbox"):
+		detected_player = true
 
 
 func _on_aggro_zone_area_exited(area: Area2D) -> void:
-	detected_player = false
+	if(area.get_name()=="Hurtbox"):
+		detected_player = false

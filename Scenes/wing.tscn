@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgyxaokcu5n5s"]
+[gd_scene load_steps=10 format=3 uid="uid://cgyxaokcu5n5s"]
 
 [ext_resource type="Texture2D" uid="uid://ct87kaslixn5h" path="res://Art/Dragon/Wing/front_wing_attachment.png" id="1_mnbrx"]
 [ext_resource type="Texture2D" uid="uid://dmrv2q38drdgw" path="res://Art/Dragon/Wing/Dragon Back of Wing (1).png" id="2_a78gc"]
 [ext_resource type="Texture2D" uid="uid://dojve5uilt751" path="res://Art/Dragon/Wing/front_wing.png" id="3_fprwj"]
+[ext_resource type="Texture2D" uid="uid://cpxumlsd3u022" path="res://Art/Dragon/Wing/transitional wing.png" id="3_nhrh6"]
 [ext_resource type="Texture2D" uid="uid://dktti7q7iydw3" path="res://Art/Dragon/Wing/Dragon stretched Wing (1).png" id="4_hjt6k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_plgkm"]
@@ -13,6 +14,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_fprwj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nhrh6")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_a78gc")
@@ -51,7 +55,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_xo7db"]
 resource_name = "flap"
-length = 5.0
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,10 +63,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.5, 0.966667, 1, 1.26667),
-"transitions": PackedFloat32Array(1, 1e-05, 1, 1e-05, 1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.1501, 0.3, 0.3001, 0.6),
+"transitions": PackedFloat32Array(1, 2702.36, 1, 9089.62, 1, 1),
 "update": 0,
-"values": [-0.927056, -0.558811, -0.558811, -0.236514, -0.236514, -0.0111239]
+"values": [-0.927056, -0.775837, -0.775837, -0.542786, -0.542786, 0.0030794]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -71,10 +75,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.5, 0.966667, 1, 1.26667),
-"transitions": PackedFloat32Array(1, 1e-05, 1, 1e-05, 1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.1501, 0.3, 0.3001, 0.6),
+"transitions": PackedFloat32Array(1, 5042.78, 1, 26615.9, 1, 1),
 "update": 0,
-"values": [Vector2(1051, 141), Vector2(1045, 302.333), Vector2(978, 239), Vector2(966, 359), Vector2(896, 548), Vector2(824, 622)]
+"values": [Vector2(1051, 141), Vector2(1060, 215), Vector2(965, 158), Vector2(976, 246), Vector2(965, 446), Vector2(819, 624)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lyqjt"]
