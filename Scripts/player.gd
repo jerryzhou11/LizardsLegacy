@@ -257,7 +257,7 @@ func update_animation():
 					lizamation.play("fly_R")
 				else:
 					lizamation.play("fly_L")
-		elif items.wings:
+		if items.wings:
 			if direction != 0:	
 				if dash.is_dashing():
 					if (facing == 1):
