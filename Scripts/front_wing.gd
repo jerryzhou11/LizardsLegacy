@@ -70,11 +70,11 @@ func _process(delta):
 	# Update the AnimatedSprite2D frame based on the AnimationPlayer's progress
 	var progress = animation_player.current_animation_position
 	var frame_count = animated_sprite.sprite_frames.get_frame_count("wing_flap")
-	if (-1.0 < progress and progress <= .1501): 
+	if (-1.0 < progress and progress <= .25): 
 		animated_sprite.frame = 0
-	elif (.1501 < progress and progress <= .3001): 
+	elif (.25 < progress and progress <= .5): 
 		animated_sprite.frame = 1
-	elif (.3001 < progress and progress <= .4501):
+	elif (.5 < progress and progress <= .75):
 		animated_sprite.frame = 2
 	else:
 		animated_sprite.frame = 3
