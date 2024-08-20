@@ -28,6 +28,8 @@ var flap_timer = 0.8
 var armor_used = false
 var dash_ground_reset = true
 var in_wind_zone = false
+var iframes = false
+var burnt = false
 
 @export var debugMode = true
 # @export var play_bgm = true
@@ -174,10 +176,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_hurtbox_area_entered(area:Node) -> void:
 	if(area.is_in_group("Hazards")):
-		print("You died!")
-		#print(area)
+		if(area.is_in_group("Fire")):
+			burnt = true
 		get_hit(area)
-		#obviously, placeholder death condition.
 	elif(area.get_name() == "WindZone"):
 		if(area.get_meta("is_active")):
 			print("entered wind")
@@ -199,7 +200,14 @@ func _on_hurtbox_body_entered(body) -> void:
 
 # Returns true if the hit killed the player, false otherwise
 func get_hit(body) -> bool:
-	if not dead:
+	if items["armor"] and not armor_used and not burnt:
+		clink_player.play()
+		armor_used = true
+		iframes = true
+		await get_tree().create_timer(0.5).timeout 
+		iframes = false
+		return false
+	if not dead and not iframes:
 		hitplayer.play()
 		if(facing==1):
 			lizamation.play("get_hit")
@@ -207,27 +215,32 @@ func get_hit(body) -> bool:
 			lizamation.flip_h = true
 			lizamation.play("get_hit")
 		HitstopManager.hit_stop_short()
-	if items["armor"] and not armor_used:
-		clink_player.play()
-		armor_used = true
-		return false
-	if not debugMode and not dead:
+	if not debugMode and not dead and not iframes:
 		dead = true
 		bossBGM.stop()
-		await get_tree().create_timer(0.5).timeout 
-		deathplayer.play()
-		if(facing==1):
-			lizamation.play("death_reg")
-		else:
-			lizamation.flip_h = true
-			lizamation.play("death_reg")
 		var ragdoll_dir: Vector2
 		if body and "linear_velocity" in body:
 			ragdoll_dir = body.linear_velocity
 		else:
-			ragdoll_dir = Vector2(-1, -1)
-			
-		ragdoll(ragdoll_dir, 800) #commented out because was causing crashes
+			if(facing==1):
+				ragdoll_dir = Vector2(-1, -1)
+			else:
+				ragdoll_dir = Vector2(1, -1)
+		await get_tree().create_timer(0.5).timeout 
+		deathplayer.play()
+		if burnt:
+			if(facing==1):
+				lizamation.play("death_fire")
+			else:
+				lizamation.flip_h = true
+				lizamation.play("death_fire")
+		else:
+			if(facing==1):
+				lizamation.play("death_reg")
+			else:
+				lizamation.flip_h = true
+				lizamation.play("death_reg")
+			ragdoll(ragdoll_dir, 800) #commented out because was causing crashes
 	return true	
 
 func ragdoll(direction: Vector2, force: float) -> void:
@@ -245,10 +258,24 @@ func update_animation():
 				else:
 					lizamation.play("fly_L")
 		elif items.wings:
-			if (facing == 1):
-				lizamation.play("wing_idle_R")
+			if direction != 0:	
+				if dash.is_dashing():
+					if (facing == 1):
+						#lizamation.play("wing_dash_R", 8)
+						lizamation.play("dash_R", 8)
+					else:
+						#lizamation.play("wing_dash_L", 8)	
+						lizamation.play("dash_L", 8)			
+				else:
+					if (facing == 1):
+						lizamation.play("wing_walk_R", 2)
+					else:
+						lizamation.play("wing_walk_L", 2)
 			else:
-				lizamation.play("wing_idle_L")
+				if (facing == 1):
+					lizamation.play("wing_idle_R")
+				else:
+					lizamation.play("wing_idle_L")
 		elif direction != 0:	
 			if dash.is_dashing():
 				if (facing == 1):

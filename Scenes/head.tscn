@@ -89,6 +89,8 @@ animations = [{
 [node name="Head" type="CharacterBody2D"]
 position = Vector2(0, -1)
 scale = Vector2(-2, -2)
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_ubgut")
 projectile_scene = ExtResource("2_l5nv0")
 

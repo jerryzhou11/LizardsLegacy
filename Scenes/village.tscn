@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cwjmv1vtqw24v" path="res://Art/Landscape/village_100.png" id="1_34rjq"]
 [ext_resource type="Script" path="res://Scripts/village.gd" id="1_xu65w"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_0vdgv"]
-[ext_resource type="PackedScene" path="res://dash.tscn" id="3_6qs2i"]
+[ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_6qs2i"]
 [ext_resource type="Texture2D" uid="uid://b5a1ek3cr51oh" path="res://Art/accessories/shop_art/empty_shop.png" id="4_bppjy"]
-[ext_resource type="Texture2D" uid="uid://dc5wsrk2xiptu" path="res://Art/Landscape/dark_grass..png" id="5_41ood"]
+[ext_resource type="Texture2D" uid="uid://dbjxv0qisjnsx" path="res://Art/Landscape/black.png" id="5_825aa"]
 [ext_resource type="Texture2D" uid="uid://b8ue0j80pfkcq" path="res://Art/accessories/shop_art/item_1.png" id="5_kquq0"]
 [ext_resource type="Texture2D" uid="uid://cly1pdjebgssl" path="res://Art/accessories/shop_art/item_2.png" id="8_ea8b1"]
 [ext_resource type="Texture2D" uid="uid://bq3os6rha0aej" path="res://Art/accessories/shop_art/item_3.png" id="9_t04tj"]
@@ -75,8 +75,10 @@ position = Vector2(33, 426)
 [node name="shop_ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 212.0
-offset_bottom = 204.0
+offset_left = 11.0
+offset_top = 131.0
+offset_right = 223.0
+offset_bottom = 335.0
 
 [node name="TextureRect" type="TextureRect" parent="shop_ui"]
 layout_mode = 0
@@ -90,7 +92,7 @@ offset_left = -1436.0
 offset_top = -1096.0
 offset_right = 1731.0
 offset_bottom = 1473.0
-texture = ExtResource("5_41ood")
+texture = ExtResource("5_825aa")
 stretch_mode = 1
 
 [node name="village_texture" type="TextureRect" parent="."]
@@ -106,51 +108,52 @@ zoom = Vector2(0.7, 0.7)
 
 [node name="item_1" type="Button" parent="."]
 z_as_relative = false
-offset_left = 40.0
-offset_top = 88.0
-offset_right = 70.0
-offset_bottom = 118.0
+offset_left = 51.0
+offset_top = 219.0
+offset_right = 81.0
+offset_bottom = 249.0
 icon = ExtResource("5_kquq0")
 flat = true
 
 [node name="item_2" type="Button" parent="."]
 z_as_relative = false
-offset_left = 66.0
-offset_top = 84.0
-offset_right = 98.0
-offset_bottom = 118.0
+offset_left = 77.0
+offset_top = 215.0
+offset_right = 109.0
+offset_bottom = 249.0
 icon = ExtResource("8_ea8b1")
 flat = true
 
 [node name="item_3" type="Button" parent="."]
 z_as_relative = false
-offset_left = 92.0
-offset_top = 82.0
-offset_right = 124.0
-offset_bottom = 118.0
+offset_left = 103.0
+offset_top = 213.0
+offset_right = 135.0
+offset_bottom = 249.0
 icon = ExtResource("9_t04tj")
 flat = true
 
 [node name="item_4" type="Button" parent="."]
 z_as_relative = false
-offset_left = 118.0
-offset_top = 85.0
-offset_right = 150.0
-offset_bottom = 121.0
+offset_left = 129.0
+offset_top = 216.0
+offset_right = 161.0
+offset_bottom = 252.0
 icon = ExtResource("10_u81ex")
 flat = true
 
 [node name="item_5" type="Button" parent="."]
 z_as_relative = false
-offset_left = 144.0
-offset_top = 84.0
-offset_right = 178.0
-offset_bottom = 120.0
+offset_left = 155.0
+offset_top = 215.0
+offset_right = 189.0
+offset_bottom = 251.0
 icon = ExtResource("11_qg62p")
 flat = true
 
 [node name="prices" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(11, 131)
 
 [node name="item1label" type="Label" parent="prices"]
 offset_left = 50.0
