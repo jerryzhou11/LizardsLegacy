@@ -20,12 +20,12 @@ func spawn_projectile() -> void:
 	add_child(projectile)
 
 func _on_spawn_timer_timeout() -> void:
-	print("wind blade fired")
+	#print("wind blade fired")
 	spawn_projectile()
 
 func _on_wind_zone_body_entered(body:Node2D) -> void:
 	if(body.get_name()=="Player"):
-		print("wind blades start")
+		#print("wind blades start")
 		if active:
 			timer.start()
 

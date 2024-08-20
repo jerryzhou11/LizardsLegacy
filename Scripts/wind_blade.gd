@@ -18,5 +18,5 @@ func _on_lifetime_timeout() -> void:
 
 
 func _on_body_entered(body:Node2D) -> void:
-	if body.is_in_group("dragon"):
+	if body.is_in_group("Stage"):
 		queue_free()

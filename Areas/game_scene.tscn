@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=38 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://c3kxjellfwpw0" path="res://Art/Landscape/PLEASEEEEe-export.png" id="1_skybf"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
@@ -12,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
 [ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
-[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
+[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="10_jbqtg"]
 [ext_resource type="Texture2D" uid="uid://cxc5akfui75yg" path="res://Art/shield/shield_1.png" id="13_hl5dn"]
 [ext_resource type="Script" path="res://Scripts/shield.gd" id="14_46try"]
-[ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
-[ext_resource type="PackedScene" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
+[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="14_pjwx3"]
+[ext_resource type="PackedScene" uid="uid://blj5yxt33refh" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
 [ext_resource type="PackedScene" uid="uid://bna3sgkes7dv7" path="res://Scenes/head.tscn" id="17_mlygp"]
 [ext_resource type="PackedScene" uid="uid://pbt7rieo1v60" path="res://Scenes/chest.tscn" id="18_luumw"]
 [ext_resource type="Texture2D" uid="uid://220kwiybrukb" path="res://Art/Dragon/claw legs/Claw Back 1.png" id="20_c165k"]
@@ -24,9 +24,10 @@
 [ext_resource type="Script" path="res://Scripts/front_wing.gd" id="21_6w1bh"]
 [ext_resource type="Texture2D" uid="uid://dfotdxq1yc7oj" path="res://Art/Dragon/claw legs/Claw Back 2.png" id="21_8d40b"]
 [ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/backfoot.tscn" id="21_em4lo"]
-[ext_resource type="PackedScene" uid="uid://cgyxaokcu5n5s" path="res://Scenes/wing.tscn" id="21_pyxa2"]
-[ext_resource type="PackedScene" uid="uid://cgrx7kbe2axwm" path="res://Scenes/big_fern.tscn" id="22_hoqrl"]
-[ext_resource type="PackedScene" path="res://Scenes/scale_cluster.tscn" id="25_owcwy"]
+[ext_resource type="PackedScene" path="res://Scenes/wing.tscn" id="21_pyxa2"]
+[ext_resource type="PackedScene" uid="uid://yyi824vdc60x" path="res://Scenes/big_fern.tscn" id="22_hoqrl"]
+[ext_resource type="PackedScene" uid="uid://il1bswa0rm2o" path="res://Scenes/scale_cluster.tscn" id="25_owcwy"]
+[ext_resource type="PackedScene" uid="uid://dofx0cfji3s4s" path="res://Scenes/weak_spot.tscn" id="26_skppy"]
 [ext_resource type="PackedScene" uid="uid://bjdkgfawkorq" path="res://Scenes/heart.tscn" id="27_fs2w3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo8xg"]
@@ -79,7 +80,7 @@ position = Vector2(824.375, 397.75)
 shape = SubResource("RectangleShape2D_80hbx")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_ob7sr")]
-position = Vector2(158, 151)
+position = Vector2(-324, 151)
 camera = NodePath("../Camera2D")
 metadata/_edit_group_ = true
 
@@ -108,7 +109,7 @@ camera = NodePath("../Camera2D")
 debris_count = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(159, 151)
+position = Vector2(-323, 151)
 offset = Vector2(0, -100)
 process_callback = 0
 limit_left = -650
@@ -124,15 +125,34 @@ drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 script = ExtResource("5_iajij")
 
-[node name="Head" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("17_mlygp")]
+[node name="FireAggroZone" type="Area2D" parent="."]
+position = Vector2(398, -802)
+rotation = -0.347793
+scale = Vector2(2, 2)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FireAggroZone"]
+polygon = PackedVector2Array(-1.7979, -3.84286, 154.533, -151.928, -390.556, -466.012, -571.563, 46.481, -383.338, 362.025, -234.88, 419.036)
+
+[node name="Head" parent="." node_paths=PackedStringArray("aggro_zone", "player", "heart", "camera") instance=ExtResource("17_mlygp")]
 z_index = 2
 position = Vector2(581, -902)
 rotation = 2.7938
 fire_breath_cooldown = 5.0
 projectiles_per_attack = 10
 spread_angle = 10.0
+aggro_zone = NodePath("../FireAggroZone")
 player = NodePath("../Player")
+heart = NodePath("../Heart")
 camera = NodePath("../Camera2D")
+
+[node name="WeakSpot3" parent="Head" node_paths=PackedStringArray("player", "dragon") instance=ExtResource("26_skppy")]
+z_index = 10
+position = Vector2(-133.192, -84.4511)
+rotation = 0.347793
+scale = Vector2(0.5, 0.5)
+weak_spot_number = 2
+player = NodePath("../../Player")
+dragon = NodePath("..")
 
 [node name="Tail" parent="." instance=ExtResource("6_ooocl")]
 position = Vector2(1842, 1427)
@@ -164,6 +184,7 @@ collision_layer = 8
 collision_mask = 14
 script = ExtResource("9_vuqnp")
 Character = NodePath("../Player")
+held_offset = Vector2(0, -20)
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("14_pjwx3")]
 offset = Vector2(0, 186)
@@ -179,7 +200,9 @@ position = Vector2(539, 265)
 shape = SubResource("RectangleShape2D_b0utk")
 
 [node name="Windblade_manager" parent="WindZone" node_paths=PackedStringArray("wind_noise") instance=ExtResource("15_cv86v")]
+z_index = 100
 position = Vector2(-156, 267)
+spawn_interval = 1.0
 spawn_y_min = -200.0
 spawn_y_max = 200.0
 wind_noise = NodePath("../wind_noise")
@@ -194,6 +217,10 @@ smash_duration = 0.6
 max_horizontal_distance = 250.0
 camera = NodePath("../Camera2D")
 debris_count = 10
+
+[node name="ScaleCluster2" parent="foot2" instance=ExtResource("25_owcwy")]
+position = Vector2(-14.5, -115)
+scale = Vector2(0.5, 0.5)
 
 [node name="chest" parent="." instance=ExtResource("18_luumw")]
 position = Vector2(1032, -353)
@@ -251,11 +278,37 @@ position = Vector2(1081, -77)
 
 [node name="Heart" parent="." node_paths=PackedStringArray("dragon") instance=ExtResource("27_fs2w3")]
 position = Vector2(458, -505)
+player = NodePath("../Player")
+dragon = NodePath("../Head")
+
+[node name="WeakSpot" parent="." node_paths=PackedStringArray("player", "dragon") instance=ExtResource("26_skppy")]
+position = Vector2(937, -105)
+player = NodePath("../Player")
+dragon = NodePath("../Head")
+
+[node name="WeakSpot2" parent="." node_paths=PackedStringArray("player", "dragon") instance=ExtResource("26_skppy")]
+position = Vector2(825, -747)
+weak_spot_number = 1
+player = NodePath("../Player")
+dragon = NodePath("../Head")
+
+[node name="ScaleCluster3" parent="." instance=ExtResource("25_owcwy")]
+position = Vector2(1358, -514)
+
+[node name="ScaleCluster4" parent="." instance=ExtResource("25_owcwy")]
+position = Vector2(637, -554)
+
+[node name="WeakSpot3" parent="." node_paths=PackedStringArray("player", "dragon") instance=ExtResource("26_skppy")]
+position = Vector2(434, -115)
+weak_spot_number = 3
+player = NodePath("../Player")
 dragon = NodePath("../Head")
 
 [connection signal="ready" from="." to="Player" method="_on_game_scene_ready"]
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
 [connection signal="spear_caught" from="Player/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]
+[connection signal="area_entered" from="FireAggroZone" to="Head" method="_on_fire_aggro_zone_area_entered"]
+[connection signal="area_exited" from="FireAggroZone" to="Head" method="_on_fire_aggro_zone_area_exited"]
 [connection signal="tree_exiting" from="CanvasLayer/PauseMenu" to="CanvasLayer/PauseMenu" method="_on_tree_exiting"]
 [connection signal="body_entered" from="WindZone" to="WindZone/Windblade_manager" method="_on_wind_zone_body_entered"]
 [connection signal="body_exited" from="WindZone" to="WindZone/Windblade_manager" method="_on_wind_zone_body_exited"]

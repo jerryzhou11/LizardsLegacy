@@ -33,7 +33,7 @@ var state = SpearState.CARRIED
 func get_player_hand() -> Vector2:
 	var carrier = get_node(Character)
 	if not carrier:
-		print("Can't find player object!") 
+		#print("Can't find player object!") 
 		return position
 	return carrier.global_position + Vector2(carrier.facing * held_offset.x,  held_offset.y)
 	
@@ -115,7 +115,7 @@ func _input(event) -> void:
 	if event.is_action_pressed("throw"):
 		var carrier = get_node(Character)
 		if not carrier:
-			print("no carrier")
+			#print("no carrier")
 			return
 		match state:
 			SpearState.CARRIED:
@@ -134,16 +134,13 @@ func _input(event) -> void:
 					state = SpearState.RECALL
 					set_collision_layer_value(3, false)
 
-func _on_body_entered(body: Node2D):
-	print(body)
-
 func _ready() -> void:
 	pass
 
 func _on_catch_zone_spear_caught() -> void:
-	print("signal caught")
+	#print("signal caught")
 	if state == SpearState.RECALL:
 		state = SpearState.CARRIED
 		recallSound.stop()
-		print("stopped sound")
+		#print("stopped sound")
 		

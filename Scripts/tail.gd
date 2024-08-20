@@ -16,7 +16,6 @@ var can_attack = true
 
 func start_tail_attack() -> void:
 	can_attack = false
-	print("attacking")
 	play_animation()
 
 
@@ -28,6 +27,5 @@ func play_animation():
 
 
 func _on_animation_player_animation_finished(anim_name:StringName) -> void:
-	print("not attacking")
 	tail_timer.wait_time = cooldown
 	tail_timer.start()

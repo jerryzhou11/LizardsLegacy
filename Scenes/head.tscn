@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://bna3sgkes7dv7"]
+[gd_scene load_steps=19 format=3 uid="uid://bna3sgkes7dv7"]
 
 [ext_resource type="Script" path="res://Scripts/head.gd" id="1_ubgut"]
 [ext_resource type="AudioStream" uid="uid://chuvlfv6mfpr3" path="res://sounds/flamethrower.mp3" id="2_3sa7a"]
 [ext_resource type="PackedScene" uid="uid://cwlif37eapct2" path="res://Scenes/flames.tscn" id="2_l5nv0"]
 [ext_resource type="Texture2D" uid="uid://dwfgx1menfmcj" path="res://Art/Dragon/lovelydragonhead-Sheet.png" id="3_aoh32"]
 [ext_resource type="AudioStream" uid="uid://dmv74duhxv46w" path="res://sounds/Dragon_Roar_FX.ogg" id="5_0ha60"]
+[ext_resource type="AudioStream" uid="uid://btresmf7hsg2g" path="res://sounds/Dragon_Yelp_FX.ogg" id="5_yxmii"]
+[ext_resource type="AudioStream" uid="uid://bplmq2ue6ov6a" path="res://sounds/Dragon_Roar_Death_FX.ogg" id="7_ma20v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6p7lg"]
 atlas = ExtResource("3_aoh32")
@@ -120,7 +122,11 @@ rotation = -2.82982
 scale = Vector2(0.5, 0.5)
 
 [node name="hurt_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_0ha60")
+stream = ExtResource("5_yxmii")
+volume_db = 5.0
 
 [node name="roar" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_0ha60")
+
+[node name="death_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ma20v")
