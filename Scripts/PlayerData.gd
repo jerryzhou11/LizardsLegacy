@@ -1,11 +1,11 @@
 extends Node
 
 var items = {
-	"armor": true,
+	"armor": false,
 	"spear_upgrade": false,
 	"grapple": false,
 	"item4": false,
-	"wings": true
+	"wings": false
 }
 
 var flight_stamina = 0.0
@@ -17,11 +17,11 @@ var weak_spots_hit = [false, false, false, false]
 
 func reset():
 	items = {
-		"armor": true,
+		"armor": false,
 		"spear_upgrade": false,
 		"grapple": false,
 		"item4": false,
-		"wings": true
+		"wings": false
 	}
 	flight_stamina = 0.0
 	scales = 0

@@ -9,7 +9,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_0a28b")
+"texture": ExtResource("3_bnys3")
 }],
 "loop": true,
 "name": &"active",
@@ -17,7 +17,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_bnys3")
+"texture": ExtResource("2_0a28b")
 }],
 "loop": true,
 "name": &"inactive",
@@ -34,6 +34,7 @@ radius = 25.02
 script = ExtResource("1_seo2i")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 0.290196, 1)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_1btvt")
 animation = &"active"

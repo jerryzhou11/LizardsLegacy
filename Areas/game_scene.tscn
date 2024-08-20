@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://Scripts/front_wing.gd" id="21_6w1bh"]
 [ext_resource type="Texture2D" uid="uid://dfotdxq1yc7oj" path="res://Art/Dragon/claw legs/Claw Back 2.png" id="21_8d40b"]
 [ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/backfoot.tscn" id="21_em4lo"]
-[ext_resource type="PackedScene" path="res://Scenes/wing.tscn" id="21_pyxa2"]
+[ext_resource type="PackedScene" uid="uid://cwsepxe1gpykh" path="res://Scenes/wing.tscn" id="21_pyxa2"]
 [ext_resource type="PackedScene" uid="uid://yyi824vdc60x" path="res://Scenes/big_fern.tscn" id="22_hoqrl"]
 [ext_resource type="PackedScene" uid="uid://il1bswa0rm2o" path="res://Scenes/scale_cluster.tscn" id="25_owcwy"]
 [ext_resource type="PackedScene" uid="uid://dofx0cfji3s4s" path="res://Scenes/weak_spot.tscn" id="26_skppy"]
@@ -133,7 +133,7 @@ scale = Vector2(2, 2)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FireAggroZone"]
 polygon = PackedVector2Array(-1.7979, -3.84286, 154.533, -151.928, -390.556, -466.012, -571.563, 46.481, -383.338, 362.025, -234.88, 419.036)
 
-[node name="Head" parent="." node_paths=PackedStringArray("aggro_zone", "player", "heart", "camera") instance=ExtResource("17_mlygp")]
+[node name="Head" parent="." node_paths=PackedStringArray("aggro_zone", "player", "heart", "foot", "windzone", "camera") instance=ExtResource("17_mlygp")]
 z_index = 2
 position = Vector2(581, -902)
 rotation = 2.7938
@@ -143,6 +143,8 @@ spread_angle = 10.0
 aggro_zone = NodePath("../FireAggroZone")
 player = NodePath("../Player")
 heart = NodePath("../Heart")
+foot = NodePath("../foot")
+windzone = NodePath("../WindZone")
 camera = NodePath("../Camera2D")
 
 [node name="WeakSpot3" parent="Head" node_paths=PackedStringArray("player", "dragon") instance=ExtResource("26_skppy")]
@@ -191,24 +193,24 @@ offset = Vector2(0, 186)
 transform = Transform2D(1, 0, 0, 1, 0, 186)
 
 [node name="WindZone" type="Area2D" parent="."]
-position = Vector2(1015, -943)
+position = Vector2(1015, -669)
 collision_layer = 32
 metadata/is_active = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindZone"]
-position = Vector2(539, 265)
+position = Vector2(539, 0)
 shape = SubResource("RectangleShape2D_b0utk")
 
 [node name="Windblade_manager" parent="WindZone" node_paths=PackedStringArray("wind_noise") instance=ExtResource("15_cv86v")]
 z_index = 100
-position = Vector2(-156, 267)
+position = Vector2(-156, 2)
 spawn_interval = 1.0
 spawn_y_min = -200.0
 spawn_y_max = 200.0
 wind_noise = NodePath("../wind_noise")
 
 [node name="wind_noise" type="AudioStreamPlayer2D" parent="WindZone"]
-position = Vector2(-153, 269)
+position = Vector2(-153, 4)
 
 [node name="foot2" parent="." node_paths=PackedStringArray("player_node", "camera") instance=ExtResource("21_em4lo")]
 position = Vector2(1424, 147)
@@ -278,7 +280,6 @@ position = Vector2(1081, -77)
 
 [node name="Heart" parent="." node_paths=PackedStringArray("dragon") instance=ExtResource("27_fs2w3")]
 position = Vector2(458, -505)
-player = NodePath("../Player")
 dragon = NodePath("../Head")
 
 [node name="WeakSpot" parent="." node_paths=PackedStringArray("player", "dragon") instance=ExtResource("26_skppy")]
