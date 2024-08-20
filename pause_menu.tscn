@@ -148,6 +148,11 @@ layout_mode = 2
 text = "Fullscreen?"
 script = ExtResource("4_pjegm")
 
+[node name="music button" type="CheckButton" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Music?"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_hyix7")
@@ -156,3 +161,4 @@ libraries = {
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Reload" to="." method="_on_reload_pressed"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/music button" to="." method="_on_music_button_toggled"]

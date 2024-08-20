@@ -10,9 +10,11 @@ var initial_offset: Vector2
 func _ready() -> void:
 	initial_offset = offset
 	
-
 func apply_shake():
 	shake_strength = randomStrength
+
+func shake(strength):
+	shake_strength = strength
 
 func randomOffset() -> Vector2:
 	return Vector2(rng.randf_range(-shake_strength,shake_strength)+initial_offset.x,rng.randf_range(-shake_strength,shake_strength)+initial_offset.y)

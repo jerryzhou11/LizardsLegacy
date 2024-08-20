@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bna3sgkes7dv7"]
+
+[ext_resource type="Texture2D" uid="uid://bk24n2i2y2q1d" path="res://Art/Dragon/dragon_head.png" id="1_hgx64"]
+[ext_resource type="AudioStream" uid="uid://chuvlfv6mfpr3" path="res://sounds/flamethrower.mp3" id="2_3sa7a"]
+
+[node name="Head" type="CharacterBody2D"]
+
+[node name="AggroZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroZone"]
+
+[node name="head_sprite" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+texture = ExtResource("1_hgx64")
+
+[node name="Hurtbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-117, 130, -135, 114, -135, 78, -86, 11, -41, -40, 8, -146, 13, -20, 18, -20, 66, -59, 103, -130, 107, -56, 80, -5, 99, 14, 99, 38, 92, 36, 90, 42, 36, 99, -12, 104, -62, 131)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_3sa7a")

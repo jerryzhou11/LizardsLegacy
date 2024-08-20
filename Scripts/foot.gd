@@ -102,6 +102,7 @@ func spawn_debris(spawn_position: Vector2):
 	for i in range(debris_count):
 		var debris = debris_scene.instantiate()
 		add_child(debris)
+		debris.camera = camera
 		debris.global_position = spawn_position
 		
 		# Calculate random trajectory

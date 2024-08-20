@@ -31,29 +31,41 @@ var dash_ground_reset = true
 var in_wind_zone = false
 
 @export var debugMode = true
-@export var play_bgm = false
+# @export var play_bgm = true
 
 #wind
 @export var wind_force = 20000
 @export var wind_slow = 50
+@export var scales = 0 # how much money you have
 
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
 
-@onready var songplayer = $song_player # sound zone
+@onready var bossBGM = $song_player # sound zone
+@onready var villageBGM = $village_player
 @onready var hitplayer = $get_hit_player
 @onready var deathplayer = $death_player
 
 func _ready():
-	if(play_bgm):
-		songplayer.play()
+	GlobalAudioSignals.connect("bgm_toggle", Callable(self, "_on_bgm_toggle"))
+	
+	ShopSignals.connect("item_1", Callable(self, "buy_item_1"))
+	ShopSignals.connect("item_2", Callable(self, "buy_item_2"))
+	ShopSignals.connect("item_3", Callable(self, "buy_item_3"))
+	ShopSignals.connect("item_4", Callable(self, "buy_item_4"))
+	ShopSignals.connect("item_5", Callable(self, "buy_item_5"))
+	
+	bossBGM.volume_db = -8
+	bossBGM.play()
 	
 var items = {
 	"armor": false,
-	"wings": false,
 	"spear_upgrade": false,
-	
+	"grapple": false,
+	"item4": false,
+	"wings": true
 }
+
 
 	
 func get_staminabar_percent() -> float:
@@ -85,9 +97,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 	if dead:
-		velocity.x = velocity.x * (1.0 - DEAD_DRAG) ** delta
-		print(velocity)
-		move_and_slide()
+		#velocity.x = velocity.x * (1.0 - DEAD_DRAG) ** delta
+		#move_and_slide()
 		return	
 		
 	flap_timer = move_toward(flap_timer, 0, delta)
@@ -160,8 +171,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animation()
 
-
-
 func _on_hurtbox_area_entered(area:Node) -> void:
 	if(area.is_in_group("Hazards")):
 		print("You died!")
@@ -171,7 +180,6 @@ func _on_hurtbox_area_entered(area:Node) -> void:
 	elif(area.get_name() == "WindZone"):
 		print("entered wind")
 		in_wind_zone = true
-
 
 func _on_hurtbox_area_exited(area:Area2D) -> void:
 	if(area.get_name() == "WindZone"):
@@ -189,8 +197,9 @@ func _on_hurtbox_body_entered(body) -> void:
 
 # Returns true if the hit killed the player, false otherwise
 func get_hit(body) -> bool:
-	hitplayer.play()
-	HitstopManager.hit_stop_short()
+	if not dead:
+		#hitplayer.play()
+		HitstopManager.hit_stop_short()
 	if inv.has("armor") and not armor_used:
 		armor_used = true
 		return false
@@ -202,13 +211,14 @@ func get_hit(body) -> bool:
 			lizamation.flip_h = true
 			lizamation.play("death_reg")
 		dead = true
-		ragdoll(body.linear_velocity, 500)
+		bossBGM.stop()
+		#ragdoll(body.linear_velocity, 500) #commented out because was causing crashes
 	return true	
 
 func ragdoll(direction: Vector2, force: float) -> void:
 	velocity = direction.normalized() * force
 	velocity.y = -abs(velocity.y)
-	print(velocity)
+	#print(velocity)
 	
 func update_animation():
 	if not animation_locked:
@@ -228,3 +238,40 @@ func update_animation():
 				lizamation.play("idle_R")
 			else:
 				lizamation.play("idle_L")
+
+func _on_bgm_toggle():
+	if bossBGM.volume_db > -79:
+		bossBGM.volume_db = -80
+	else:
+		bossBGM.volume_db = -8
+	# print("audio print notif")
+
+func buy_item_1():
+	print("bought item 1")
+	items["armor"] = true
+
+func buy_item_2():
+	print("bought item 2")
+	items["spear_upgrade"] = true
+	
+func buy_item_3():
+	print("bought item 3")
+	items["grapple"] = true
+	
+func buy_item_4():
+	print("bought item 4")
+	items["item4"] = true
+	
+func buy_item_5():
+	print("bought item 5")
+	items["wings"] = true
+
+func _on_village_ready() -> void:
+	bossBGM.stop()
+	villageBGM.play()
+
+
+
+func _on_game_scene_ready() -> void:
+	villageBGM.stop()
+	bossBGM.play()
