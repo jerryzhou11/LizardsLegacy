@@ -255,7 +255,7 @@ func get_hit(body) -> bool:
 			ragdoll(ragdoll_dir, 800) #commented out because was causing crashes
 	
 	# Wait for animations and sounds to finish
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	
 	# Save player state and change scene
 	PlayerData.save_player_state(self)

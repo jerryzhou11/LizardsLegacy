@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=36 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://c3kxjellfwpw0" path="res://Art/Landscape/PLEASEEEEe-export.png" id="1_skybf"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://yyi824vdc60x" path="res://Scenes/big_fern.tscn" id="22_hoqrl"]
 [ext_resource type="PackedScene" uid="uid://il1bswa0rm2o" path="res://Scenes/scale_cluster.tscn" id="25_owcwy"]
 [ext_resource type="PackedScene" uid="uid://dofx0cfji3s4s" path="res://Scenes/weak_spot.tscn" id="26_skppy"]
+[ext_resource type="PackedScene" uid="uid://bjdkgfawkorq" path="res://Scenes/heart.tscn" id="27_fs2w3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo8xg"]
 texture = ExtResource("1_skybf")
@@ -246,6 +247,11 @@ shape = SubResource("RectangleShape2D_muv6l")
 
 [node name="WeakSpot" parent="." node_paths=PackedStringArray("player", "dragon") instance=ExtResource("26_skppy")]
 position = Vector2(1085, -98)
+player = NodePath("../Player")
+dragon = NodePath("../Head")
+
+[node name="Heart" parent="." node_paths=PackedStringArray("player", "dragon") instance=ExtResource("27_fs2w3")]
+position = Vector2(458, -505)
 player = NodePath("../Player")
 dragon = NodePath("../Head")
 
