@@ -108,7 +108,8 @@ script = ExtResource("5_iajij")
 
 [node name="Head" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("17_mlygp")]
 z_index = 2
-position = Vector2(440, -1041)
+position = Vector2(581, -902)
+rotation = 2.7938
 fire_breath_cooldown = 5.0
 projectiles_per_attack = 10
 spread_angle = 10.0

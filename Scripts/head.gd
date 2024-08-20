@@ -30,7 +30,7 @@ func _process(delta):
 func fire_breath_attack():
 	can_fire_breath = false
 	fire_breath_timer.start()
-	look_at(player.global_position * -1)
+	look_at(Vector2(player.global_position.x, player.global_position.y))
 	sprite.play()
 	breath_sound.play()
 	camera.shake(10)
