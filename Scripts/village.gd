@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 func _on_next_stage_body_entered(body: Node2D) -> void:
 	if body.get_name() == "Player":
 		print("next stage entered")
+		get_tree().change_scene_to_file("res://Scenes/transition_area.tscn")
 
 #enter shop
 func _on_shop_body_entered(body: Node2D) -> void:
@@ -42,7 +43,6 @@ func _on_shop_body_entered(body: Node2D) -> void:
 		$shop_ui.show()
 		show_buttons()
 		prices_node.show()
-	
 #exit shop	
 func _on_shop_body_exited(body: Node2D) -> void:
 	if body.get_name() == "Player":
@@ -83,7 +83,6 @@ func _on_item_2_button_down() -> void:
 		$item_2.hide()
 	else: 
 		print("too poor idiot")
-	
 func _on_item_3_button_down() -> void:
 	if money > price3:
 		ShopSignals.purchase_3()
