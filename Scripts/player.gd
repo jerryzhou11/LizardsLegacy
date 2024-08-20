@@ -215,6 +215,11 @@ func get_hit(body) -> bool:
 		clink_player.play()
 		armor_used = true
 		iframes = true
+		if $"../CanvasLayer/Hud/shield":
+			var shield = $"../CanvasLayer/Hud/shield"
+			var texture = load("res://Art/shield/shield_2.png")
+			if texture:
+				shield.texture = texture
 		await get_tree().create_timer(0.5).timeout 
 		iframes = false
 		return false
