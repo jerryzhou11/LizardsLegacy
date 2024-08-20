@@ -33,7 +33,7 @@ sources/7 = SubResource("TileSetAtlasSource_8ggkn")
 sources/5 = SubResource("TileSetAtlasSource_bu5ef")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80hbx"]
-size = Vector2(3334.25, 670)
+size = Vector2(2263.25, 670)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm5nt"]
 radius = 40.0
@@ -58,7 +58,7 @@ collision_layer = 20
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Floor"]
-position = Vector2(824.375, 397.75)
+position = Vector2(288.875, 397.75)
 shape = SubResource("RectangleShape2D_80hbx")
 
 [node name="Player" parent="." instance=ExtResource("2_ob7sr")]
@@ -94,6 +94,7 @@ position = Vector2(159, 151)
 offset = Vector2(0, -100)
 process_callback = 0
 limit_left = -1000
+limit_top = -2000
 limit_right = 4000
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -135,6 +136,7 @@ position = Vector2(29, 19)
 Character = NodePath("../../../../Player")
 
 [node name="Spear" parent="." instance=ExtResource("8_qjfnf")]
+position = Vector2(219, 124)
 collision_layer = 8
 collision_mask = 14
 script = ExtResource("9_vuqnp")
@@ -175,12 +177,14 @@ debris_count = 10
 position = Vector2(1032, -353)
 
 [node name="ClawBack1" type="Sprite2D" parent="."]
+modulate = Color(0.699653, 0.699653, 0.699653, 1)
 z_index = -11
 position = Vector2(964, -603)
 scale = Vector2(2, 2)
 texture = ExtResource("20_c165k")
 
 [node name="ClawBack3" type="Sprite2D" parent="."]
+modulate = Color(0.641934, 0.641934, 0.641934, 1)
 z_index = -1
 position = Vector2(933, -482)
 scale = Vector2(2, 2)

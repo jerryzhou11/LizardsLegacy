@@ -21,7 +21,6 @@ const DEAD_DRAG = 800
 var animation_locked : bool = false
 var direction := 0
 var facing = 1
-var inv = []
 var flight_stamina = 0.0
 var dead = false
 var flap_available = true
@@ -46,6 +45,7 @@ var in_wind_zone = false
 @onready var hitplayer = $get_hit_player
 @onready var deathplayer = $death_player
 @onready var flap_sfx_player = $wing_flap_player
+@onready var clink_player = $clink_player
 
 func _ready():
 	GlobalAudioSignals.connect("bgm_toggle", Callable(self, "_on_bgm_toggle"))
@@ -60,7 +60,7 @@ func _ready():
 	bossBGM.play()
 	
 var items = {
-	"armor": false,
+	"armor": true,
 	"spear_upgrade": false,
 	"grapple": false,
 	"item4": false,
@@ -179,8 +179,9 @@ func _on_hurtbox_area_entered(area:Node) -> void:
 		get_hit(area)
 		#obviously, placeholder death condition.
 	elif(area.get_name() == "WindZone"):
-		print("entered wind")
-		in_wind_zone = true
+		if(area.get_meta("is_active")):
+			print("entered wind")
+			in_wind_zone = true
 
 func _on_hurtbox_area_exited(area:Area2D) -> void:
 	if(area.get_name() == "WindZone"):
@@ -199,20 +200,27 @@ func _on_hurtbox_body_entered(body) -> void:
 # Returns true if the hit killed the player, false otherwise
 func get_hit(body) -> bool:
 	if not dead:
-		#hitplayer.play()
+		hitplayer.play()
+		if(facing==1):
+			lizamation.play("get_hit")
+		else:
+			lizamation.flip_h = true
+			lizamation.play("get_hit")
 		HitstopManager.hit_stop_short()
-	if inv.has("armor") and not armor_used:
+	if items["armor"] and not armor_used:
+		clink_player.play()
 		armor_used = true
 		return false
 	if not debugMode and not dead:
+		dead = true
+		bossBGM.stop()
+		await get_tree().create_timer(0.5).timeout 
 		deathplayer.play()
 		if(facing==1):
 			lizamation.play("death_reg")
 		else:
 			lizamation.flip_h = true
 			lizamation.play("death_reg")
-		dead = true
-		bossBGM.stop()
 		var ragdoll_dir: Vector2
 		if body.get("linear_velocity"):
 			ragdoll_dir = body.linear_velocity

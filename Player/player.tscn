@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://b38wcoytpowl0"]
+[gd_scene load_steps=107 format=3 uid="uid://b38wcoytpowl0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a0ff2"]
 [ext_resource type="Texture2D" uid="uid://76nbbm2gkywi" path="res://Art/Lizard/Full_Idle_R-Sheet (1).png" id="2_7e11r"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b1xu5relhciao" path="res://Art/Lizard/death_anim.png" id="6_iesna"]
 [ext_resource type="Texture2D" uid="uid://u3ddqjy1xn8m" path="res://Art/Lizard/spaced_wingflapL.png" id="7_msbe5"]
 [ext_resource type="Texture2D" uid="uid://2fsjghrcg7yq" path="res://Art/Lizard/spaced_wingflapR.png" id="8_an6xp"]
+[ext_resource type="Texture2D" uid="uid://0j23loon07gm" path="res://Art/Lizard/red flash lizard-Sheet.png" id="9_ayrbh"]
 [ext_resource type="AudioStream" uid="uid://5emjkp8scref" path="res://sounds/The_Dragon_Sunday640_Song.ogg" id="10_efai1"]
 [ext_resource type="AudioStream" uid="uid://bd56aen13sybl" path="res://sounds/The Village.mp3" id="11_qjvn2"]
 [ext_resource type="AudioStream" uid="uid://d0bfc8a7y2clh" path="res://sounds/Death_Smack_FX.ogg" id="12_u2asy"]
@@ -21,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://ltajttshes8j" path="res://sounds/Player_Wing_1_FX.ogg" id="19_38pg3"]
 [ext_resource type="AudioStream" uid="uid://do74skf3iwlp2" path="res://sounds/Player_Wing_2_FX.ogg" id="20_vjsp8"]
 [ext_resource type="AudioStream" uid="uid://c31urspbjdaod" path="res://sounds/Player_Wing_3_FX.ogg" id="21_g06h2"]
+[ext_resource type="AudioStream" uid="uid://chqaauf4tt6i1" path="res://sounds/Armor_Klink_FX.ogg" id="23_y5wkn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i57uf"]
 size = Vector2(19, 13)
@@ -148,6 +150,10 @@ region = Rect2(64, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vi50q"]
 atlas = ExtResource("8_an6xp")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svfor"]
+atlas = ExtResource("9_ayrbh")
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2um1"]
 atlas = ExtResource("2_rasbu")
@@ -459,6 +465,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_svfor")
+}],
+"loop": false,
+"name": &"get_hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_g2um1")
 }, {
 "duration": 1.0,
@@ -657,7 +671,7 @@ shape = SubResource("RectangleShape2D_i57uf")
 [node name="lizamation" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -31)
 sprite_frames = SubResource("SpriteFrames_ujfxd")
-animation = &"wing_idle_R"
+animation = &"get_hit"
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 50
@@ -685,6 +699,9 @@ stream = ExtResource("13_s2hnl")
 stream = SubResource("AudioStreamRandomizer_noj6o")
 volume_db = -8.0
 max_polyphony = 2
+
+[node name="clink_player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_y5wkn")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
