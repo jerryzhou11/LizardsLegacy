@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=3 uid="uid://b38wcoytpowl0"]
+[gd_scene load_steps=146 format=3 uid="uid://b38wcoytpowl0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a0ff2"]
 [ext_resource type="Texture2D" uid="uid://76nbbm2gkywi" path="res://Art/Lizard/Full_Idle_R-Sheet (1).png" id="2_7e11r"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://dbqatnwih53n2" path="res://Scripts/death_sound.ogg" id="13_s2hnl"]
 [ext_resource type="Texture2D" uid="uid://b4olhcqd45cqu" path="res://Art/Lizard/wing_lizard_idle_R-Sheet.png" id="14_eskhu"]
 [ext_resource type="Texture2D" uid="uid://dqy43oceiohpu" path="res://Art/Lizard/WING WALKING-Sheet.png" id="17_i0at4"]
+[ext_resource type="Texture2D" uid="uid://b1bxa336j2ou5" path="res://Art/Lizard/wing_walk_l.png" id="17_k4lei"]
 [ext_resource type="AudioStream" uid="uid://ltajttshes8j" path="res://sounds/Player_Wing_1_FX.ogg" id="19_38pg3"]
 [ext_resource type="AudioStream" uid="uid://do74skf3iwlp2" path="res://sounds/Player_Wing_2_FX.ogg" id="20_vjsp8"]
 [ext_resource type="AudioStream" uid="uid://c31urspbjdaod" path="res://sounds/Player_Wing_3_FX.ogg" id="21_g06h2"]
@@ -425,6 +426,38 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("14_eskhu")
 region = Rect2(448, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_elkkc"]
+atlas = ExtResource("17_k4lei")
+region = Rect2(0, 0, 56, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqut5"]
+atlas = ExtResource("17_k4lei")
+region = Rect2(56, 0, 56, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyiih"]
+atlas = ExtResource("17_k4lei")
+region = Rect2(112, 0, 56, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s241p"]
+atlas = ExtResource("17_k4lei")
+region = Rect2(168, 0, 56, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5x3q"]
+atlas = ExtResource("17_k4lei")
+region = Rect2(224, 0, 56, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm8ds"]
+atlas = ExtResource("17_k4lei")
+region = Rect2(280, 0, 56, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnudk"]
+atlas = ExtResource("17_k4lei")
+region = Rect2(336, 0, 56, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjbyj"]
+atlas = ExtResource("17_k4lei")
+region = Rect2(392, 0, 56, 58)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_t485i"]
 atlas = ExtResource("17_i0at4")
 region = Rect2(0, 0, 56, 58)
@@ -826,6 +859,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_elkkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqut5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyiih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s241p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5x3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm8ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnudk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjbyj")
+}],
+"loop": true,
+"name": &"wing_walk_L",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_t485i")
 }, {
 "duration": 1.0,
@@ -880,7 +942,7 @@ shape = SubResource("RectangleShape2D_i57uf")
 position = Vector2(3, -31)
 sprite_frames = SubResource("SpriteFrames_ujfxd")
 animation = &"wing_walk_R"
-frame_progress = 0.415804
+frame_progress = 0.547653
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 50
