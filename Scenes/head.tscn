@@ -100,7 +100,7 @@ polygon = PackedVector2Array(5.39999, -3.60001, -351.6, -225.6, -508.6, -143.6, 
 
 [node name="head_sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(2.10001, 29.5)
-rotation = 0.58452
+rotation = 0.382123
 sprite_frames = SubResource("SpriteFrames_po81t")
 animation = &"firing"
 frame = 9
@@ -108,7 +108,7 @@ frame_progress = 1.0
 
 [node name="Hurtbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(1.10001, 1.60001)
-rotation = 0.58452
+rotation = 0.382123
 polygon = PackedVector2Array(-117, 130, -135, 114, -135, 78, -86, 11, -41, -40, 8, -146, 13, -20, 18, -20, 66, -59, 103, -130, 107, -56, 80, -5, 99, 14, 99, 38, 92, 36, 90, 42, 36, 99, -12, 104, -62, 131)
 
 [node name="breath_sound" type="AudioStreamPlayer2D" parent="."]
@@ -118,6 +118,6 @@ stream = ExtResource("2_3sa7a")
 [node name="FireBreathTimer" type="Timer" parent="."]
 
 [node name="source_pos" type="Node2D" parent="."]
-position = Vector2(-164, 48.5)
-rotation = -2.62742
+position = Vector2(-122, 100)
+rotation = -2.82982
 scale = Vector2(0.5, 0.5)
