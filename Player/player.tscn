@@ -941,8 +941,7 @@ shape = SubResource("RectangleShape2D_i57uf")
 [node name="lizamation" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -31)
 sprite_frames = SubResource("SpriteFrames_ujfxd")
-animation = &"wing_walk_R"
-frame_progress = 0.426718
+animation = &"dash_R"
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 50

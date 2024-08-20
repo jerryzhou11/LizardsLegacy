@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bna3sgkes7dv7"]
+[gd_scene load_steps=17 format=3 uid="uid://bna3sgkes7dv7"]
 
 [ext_resource type="Script" path="res://Scripts/head.gd" id="1_ubgut"]
 [ext_resource type="AudioStream" uid="uid://chuvlfv6mfpr3" path="res://sounds/flamethrower.mp3" id="2_3sa7a"]
 [ext_resource type="PackedScene" uid="uid://cwlif37eapct2" path="res://Scenes/flames.tscn" id="2_l5nv0"]
 [ext_resource type="Texture2D" uid="uid://dwfgx1menfmcj" path="res://Art/Dragon/lovelydragonhead-Sheet.png" id="3_aoh32"]
+[ext_resource type="AudioStream" uid="uid://dmv74duhxv46w" path="res://sounds/Dragon_Roar_FX.ogg" id="5_0ha60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6p7lg"]
 atlas = ExtResource("3_aoh32")
@@ -92,7 +93,10 @@ scale = Vector2(-2, -2)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_ubgut")
+fire_breath_cooldown = null
 projectile_scene = ExtResource("2_l5nv0")
+projectiles_per_attack = null
+spread_angle = null
 
 [node name="head_sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-65.5371, -44.6116)
@@ -117,3 +121,9 @@ stream = ExtResource("2_3sa7a")
 position = Vector2(-150.5, -1.5)
 rotation = -2.82982
 scale = Vector2(0.5, 0.5)
+
+[node name="hurt_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0ha60")
+
+[node name="roar" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0ha60")

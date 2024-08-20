@@ -14,9 +14,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not harvested:
 		particle_emitter.restart()
 		if body.Character:
-			print(body.Character)
 			var player = body.get_node(body.Character)
 			player.scales += 1
-			print(player.scales)
 			harvested = true
 			PlayerData.save_player_state(player)
