@@ -222,7 +222,7 @@ func get_hit(body) -> bool:
 			lizamation.flip_h = true
 			lizamation.play("death_reg")
 		var ragdoll_dir: Vector2
-		if body.get("linear_velocity"):
+		if body and "linear_velocity" in body:
 			ragdoll_dir = body.linear_velocity
 		else:
 			ragdoll_dir = Vector2(-1, -1)
