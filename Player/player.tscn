@@ -292,6 +292,16 @@ animations = [{
 "name": &"death_reg",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"fly_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"fly_R",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g2um1")
@@ -427,7 +437,7 @@ shape = SubResource("RectangleShape2D_i57uf")
 [node name="lizamation" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -31)
 sprite_frames = SubResource("SpriteFrames_ujfxd")
-animation = &"death_reg"
+animation = &"fly_L"
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 50

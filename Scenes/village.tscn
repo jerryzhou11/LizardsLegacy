@@ -1,16 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://b67uju8esxiwk"]
+[gd_scene load_steps=19 format=3 uid="uid://b67uju8esxiwk"]
 
 [ext_resource type="Texture2D" uid="uid://cwjmv1vtqw24v" path="res://Art/Landscape/village_100.png" id="1_34rjq"]
 [ext_resource type="Script" path="res://Scripts/village.gd" id="1_xu65w"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_0vdgv"]
-[ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_6qs2i"]
+[ext_resource type="PackedScene" path="res://dash.tscn" id="3_6qs2i"]
 [ext_resource type="Texture2D" uid="uid://b5a1ek3cr51oh" path="res://Art/accessories/shop_art/empty_shop.png" id="4_bppjy"]
-[ext_resource type="Texture2D" uid="uid://dbjxv0qisjnsx" path="res://Art/Landscape/black.png" id="4_l6kkh"]
+[ext_resource type="Texture2D" uid="uid://dc5wsrk2xiptu" path="res://Art/Landscape/dark_grass..png" id="5_41ood"]
 [ext_resource type="Texture2D" uid="uid://b8ue0j80pfkcq" path="res://Art/accessories/shop_art/item_1.png" id="5_kquq0"]
 [ext_resource type="Texture2D" uid="uid://cly1pdjebgssl" path="res://Art/accessories/shop_art/item_2.png" id="8_ea8b1"]
 [ext_resource type="Texture2D" uid="uid://bq3os6rha0aej" path="res://Art/accessories/shop_art/item_3.png" id="9_t04tj"]
 [ext_resource type="Texture2D" uid="uid://bl2surwvlfwla" path="res://Art/accessories/shop_art/item_4.png" id="10_u81ex"]
 [ext_resource type="Texture2D" uid="uid://rftmb27qarr5" path="res://Art/accessories/shop_art/item_5.png" id="11_qg62p"]
+[ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="12_uwba6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xcje"]
 size = Vector2(57, 107)
@@ -67,7 +68,6 @@ position = Vector2(472, 364.5)
 shape = SubResource("RectangleShape2D_6oqmr")
 
 [node name="Player" parent="." instance=ExtResource("2_0vdgv")]
-unique_name_in_owner = true
 position = Vector2(33, 426)
 
 [node name="Dash" parent="Player" instance=ExtResource("3_6qs2i")]
@@ -86,11 +86,12 @@ texture = ExtResource("4_bppjy")
 
 [node name="background" type="TextureRect" parent="."]
 z_index = -90
-offset_left = -1443.0
+offset_left = -1436.0
 offset_top = -1096.0
-offset_right = 1724.0
+offset_right = 1731.0
 offset_bottom = 1473.0
-texture = ExtResource("4_l6kkh")
+texture = ExtResource("5_41ood")
+stretch_mode = 1
 
 [node name="village_texture" type="TextureRect" parent="."]
 z_index = -15
@@ -195,6 +196,8 @@ offset_bottom = 135.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "5"
+
+[node name="PauseMenu" parent="." instance=ExtResource("12_uwba6")]
 
 [connection signal="ready" from="." to="Player" method="_on_village_ready"]
 [connection signal="body_entered" from="shop" to="." method="_on_shop_body_entered"]
