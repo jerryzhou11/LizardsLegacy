@@ -206,9 +206,6 @@ script = ExtResource("5_iajij")
 position = Vector2(-527, -579)
 texture = ExtResource("5_2jo3e")
 
-[node name="Tail" parent="." instance=ExtResource("6_ooocl")]
-position = Vector2(2471, -46)
-
 [node name="Windblade_manager" parent="." instance=ExtResource("15_cv86v")]
 position = Vector2(838, -1016)
 spawn_y_min = -200.0
@@ -246,6 +243,9 @@ collision_layer = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindZone"]
 position = Vector2(478, 265)
 shape = SubResource("RectangleShape2D_b0utk")
+
+[node name="Tail" parent="WindZone" instance=ExtResource("6_ooocl")]
+position = Vector2(968, 2425)
 
 [node name="foot2" parent="." node_paths=PackedStringArray("player_node", "camera") instance=ExtResource("21_em4lo")]
 position = Vector2(1602, 153)

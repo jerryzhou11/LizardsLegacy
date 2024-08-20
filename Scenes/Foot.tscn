@@ -13,7 +13,6 @@ size = Vector2(207.831, 81.8182)
 
 [node name="Enemystomp" type="CharacterBody2D" node_paths=PackedStringArray("foot_node") groups=["Hazards"]]
 position = Vector2(2, -4)
-scale = Vector2(3.32, 2.64)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_2cppc")
@@ -27,7 +26,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-11.1446, 22.7083)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_edb74")
 disabled = true
 debug_color = Color(0.957868, 0, 0.530245, 0.42)
