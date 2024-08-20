@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=34 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://c3kxjellfwpw0" path="res://Art/Landscape/PLEASEEEEe-export.png" id="1_skybf"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/backfoot.tscn" id="21_em4lo"]
 [ext_resource type="PackedScene" path="res://Scenes/wing.tscn" id="21_pyxa2"]
 [ext_resource type="PackedScene" uid="uid://yyi824vdc60x" path="res://Scenes/big_fern.tscn" id="22_hoqrl"]
-[ext_resource type="PackedScene" uid="uid://cgyxaokcu5n5s" path="res://Scenes/wing.tscn" id="21_pyxa2"]
+[ext_resource type="PackedScene" path="res://Scenes/scale_cluster.tscn" id="25_owcwy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo8xg"]
 texture = ExtResource("1_skybf")
@@ -53,7 +53,7 @@ radius = 40.0
 size = Vector2(1270, 368)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_muv6l"]
-size = Vector2(20, 816)
+size = Vector2(20, 2679)
 
 [node name="GameScene" type="Node2D"]
 position = Vector2(20, 490)
@@ -223,8 +223,20 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-position = Vector2(0, -63)
+position = Vector2(0, -994.5)
 shape = SubResource("RectangleShape2D_muv6l")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(4000, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(0, -994.5)
+shape = SubResource("RectangleShape2D_muv6l")
+
+[node name="ScaleCluster" parent="." instance=ExtResource("25_owcwy")]
+position = Vector2(1081, -77)
 
 [connection signal="ready" from="." to="Player" method="_on_game_scene_ready"]
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]

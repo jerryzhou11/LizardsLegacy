@@ -257,49 +257,46 @@ func ragdoll(direction: Vector2, force: float) -> void:
 	
 func update_animation():
 	if not animation_locked:
-		if items.wings and (direction != 0 or not is_on_floor()):
-				if (facing == 1):
+		if items.wings:
+			if not is_on_floor():
+				if facing == 1:
 					lizamation.play("fly_R")
 				else:
 					lizamation.play("fly_L")
-		if items.wings:
-			if direction != 0:	
+			elif direction != 0:
 				if dash.is_dashing():
-					if (facing == 1):
-						#lizamation.play("wing_dash_R", 8)
+					if facing == 1:
 						lizamation.play("dash_R", 8)
 					else:
-						#lizamation.play("wing_dash_L", 8)	
-						lizamation.play("dash_L", 8)			
+						lizamation.play("dash_L", 8)
 				else:
-					if (facing == 1):
-						print("wingwalk")
+					if facing == 1:
 						lizamation.play("wing_walk_R", 2)
 					else:
-						print("wingwalk2")
 						lizamation.play("wing_walk_L", 2)
 			else:
-				if (facing == 1):
+				if facing == 1:
 					lizamation.play("wing_idle_R")
 				else:
 					lizamation.play("wing_idle_L")
-		elif direction != 0:	
-			if dash.is_dashing():
-				if (facing == 1):
-					lizamation.play("dash_R", 8)
-				else:
-					lizamation.play("dash_L", 8)			
-			else:
-				if (facing == 1):
-					lizamation.play("walk_R", 2)
-				else:
-					lizamation.play("walk_L", 2)
 		else:
-			if (facing == 1):
-				lizamation.play("idle_R")
+			# Non-winged animations
+			if direction != 0:
+				if dash.is_dashing():
+					if facing == 1:
+						lizamation.play("dash_R", 8)
+					else:
+						lizamation.play("dash_L", 8)
+				else:
+					if facing == 1:
+						lizamation.play("walk_R", 2)
+					else:
+						lizamation.play("walk_L", 2)
 			else:
-				lizamation.play("idle_L")
-
+				if facing == 1:
+					lizamation.play("idle_R")
+				else:
+					lizamation.play("idle_L")
 func _on_bgm_toggle():
 	var volume = bossBGM.volume_db
 	if volume > -79:
