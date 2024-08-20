@@ -240,11 +240,14 @@ func update_animation():
 				lizamation.play("idle_L")
 
 func _on_bgm_toggle():
-	if bossBGM.volume_db > -79:
-		bossBGM.volume_db = -80
+	var volume = bossBGM.volume_db
+	if volume > -79:
+		volume = -80
 	else:
-		bossBGM.volume_db = -8
-	# print("audio print notif")
+		volume = -8
+	bossBGM.volume_db = volume
+	villageBGM.volume_db = volume
+ 	# print("audio print notif")
 
 func buy_item_1():
 	print("bought item 1")

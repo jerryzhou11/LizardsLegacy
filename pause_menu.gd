@@ -1,10 +1,12 @@
 extends Control
 func resume():
 	get_tree().paused = false;
+	visible = false
 	$AnimationPlayer.play_backwards("blur")
 
 func pause():
 	get_tree().paused = true;
+	visible = true
 	$AnimationPlayer.play("blur")	
 
 func _input(event: InputEvent) -> void:
@@ -24,6 +26,7 @@ func _on_reload_pressed() -> void:
 	$AnimationPlayer.stop()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+	visible = false
 
 func _on_music_button_toggled(toggled_on: bool) -> void:
 	GlobalAudioSignals.toggle_bgm()
