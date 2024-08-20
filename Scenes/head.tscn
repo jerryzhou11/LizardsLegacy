@@ -1,20 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://bna3sgkes7dv7"]
+[gd_scene load_steps=6 format=3 uid="uid://bna3sgkes7dv7"]
 
 [ext_resource type="Texture2D" uid="uid://bk24n2i2y2q1d" path="res://Art/Dragon/dragon_head.png" id="1_hgx64"]
+[ext_resource type="Script" path="res://Scripts/head.gd" id="1_ubgut"]
 [ext_resource type="AudioStream" uid="uid://chuvlfv6mfpr3" path="res://sounds/flamethrower.mp3" id="2_3sa7a"]
+[ext_resource type="PackedScene" uid="uid://dfd7fhpdq4jl4" path="res://Scenes/flames.tscn" id="2_l5nv0"]
 
-[node name="Head" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3lx2"]
+radius = 447.252
+
+[node name="Head" type="CharacterBody2D" node_paths=PackedStringArray("player")]
+position = Vector2(0, -3)
+scale = Vector2(2, 2)
+script = ExtResource("1_ubgut")
+fire_breath_cooldown = 0.1
+projectile_scene = ExtResource("2_l5nv0")
+projectiles_per_attack = 1
+player = NodePath("temp_player")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(122.5, 14.5)
 
 [node name="AggroZone" type="Area2D" parent="."]
+position = Vector2(1.10001, 1.60001)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroZone"]
+shape = SubResource("CircleShape2D_i3lx2")
+debug_color = Color(2.59906e-06, 0.625054, 0.523611, 0.42)
 
 [node name="head_sprite" type="Sprite2D" parent="."]
-position = Vector2(1, 1)
+position = Vector2(2.10001, 2.60001)
 texture = ExtResource("1_hgx64")
 
 [node name="Hurtbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(1.10001, 1.60001)
 polygon = PackedVector2Array(-117, 130, -135, 114, -135, 78, -86, 11, -41, -40, 8, -146, 13, -20, 18, -20, 66, -59, 103, -130, 107, -56, 80, -5, 99, 14, 99, 38, 92, 36, 90, 42, 36, 99, -12, 104, -62, 131)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="breath_sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1.10001, 1.60001)
 stream = ExtResource("2_3sa7a")
+
+[node name="FireBreathTimer" type="Timer" parent="."]
+
+[node name="source_pos" type="Node2D" parent="."]
+position = Vector2(-111.9, 125.6)
+scale = Vector2(0.5, 0.5)
+
+[node name="temp_player" type="Node2D" parent="."]
+visible = false
+position = Vector2(-126.5, 80.5)
+
+[node name="ColorRect" type="ColorRect" parent="temp_player"]
+offset_left = -20.5
+offset_top = -21.0
+offset_right = 19.5
+offset_bottom = 19.0

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfd7fhpdq4jl4"]
+
+[ext_resource type="Texture2D" uid="uid://dfxp1jyj1hry1" path="res://icon.svg" id="1_3kmx1"]
+[ext_resource type="Script" path="res://Scripts/flames.gd" id="1_crngh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mi0mg"]
+
+[node name="flames" type="Area2D" groups=["Hazards"]]
+script = ExtResource("1_crngh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.521591, 0.192694, 1)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(-9.53674e-07, -9.53674e-07)
+scale = Vector2(0.160156, 0.160156)
+texture = ExtResource("1_3kmx1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mi0mg")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
