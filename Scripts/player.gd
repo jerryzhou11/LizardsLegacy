@@ -89,11 +89,11 @@ func can_fly() -> bool:
 	return true
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("print_inv"):	
-		print("hi")
-	if Input.is_action_just_pressed("debug_toggle_flight"):
-		items.wings = not items.wings
-		print("wings: ", items.wings)
+	#if Input.is_action_just_pressed("print_inv"):	
+	#	print("hi")
+	#if Input.is_action_just_pressed("debug_toggle_flight"):
+	#	items.wings = not items.wings
+	#	print("wings: ", items.wings)
 		
 	# Save player state to PlayerData
 	PlayerData.save_player_state(self)
@@ -192,22 +192,17 @@ func _on_hurtbox_area_entered(area:Node) -> void:
 		get_hit(area)
 	elif(area.get_name() == "WindZone"):
 		if(area.get_meta("is_active")):
-			print("entered wind")
 			in_wind_zone = true
 
 func _on_hurtbox_area_exited(area:Area2D) -> void:
 	if(area.get_name() == "WindZone"):
-		print("exited wind")
 		in_wind_zone = false
 
 func _on_hurtbox_body_entered(body) -> void:
-	print(body.get_name())
 	if body is RigidBody2D: #rock
-		print("hit by rock lmao")
 		get_hit(body)
 	if body.get_name() == "Tail":
 		get_hit(body)
-		print("Hit by tail")
 
 # Returns true if the hit killed the player, false otherwise
 func get_hit(body) -> bool:
@@ -282,7 +277,6 @@ func ragdoll(direction: Vector2, force: float) -> void:
 		direction = Vector2(-1, -1)
 	velocity = direction.normalized() * force
 	velocity.y = -abs(velocity.y)
-	#print(velocity)
 	
 func update_animation():
 	if not animation_locked:
@@ -337,31 +331,26 @@ func _on_bgm_toggle():
  	# print("audio print notif")
 
 func buy_item_1():
-	print("bought item 1")
 	scales -= 0
 	items["armor"] = true
 	PlayerData.save_player_state(self)
 
 func buy_item_2():
-	print("bought item 2")
 	scales -= 1
 	items["spear_upgrade"] = true
 	PlayerData.save_player_state(self)
 	
 func buy_item_3():
-	print("bought item 3")
 	scales -= 0
 	items["grapple"] = true
 	PlayerData.save_player_state(self)
 	
 func buy_item_4():
-	print("bought item 4")
 	scales -= 5
 	items["item4"] = true
 	PlayerData.save_player_state(self)
 	
 func buy_item_5():
-	print("bought item 5")
 	scales -= 5
 	items["wings"] = true
 	PlayerData.save_player_state(self)

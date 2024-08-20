@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 # right side area
 func _on_next_stage_body_entered(body: Node2D) -> void:
 	if body.get_name() == "Player":
-		print("next stage entered")
+		#print("next stage entered")
 		get_tree().change_scene_to_file("res://Scenes/transition_area.tscn")
 
 #enter shop
@@ -76,37 +76,32 @@ func _on_item_1_button_down() -> void:
 		ShopSignals.purchase_1()
 		is_item_in_store[0] = false
 		$item_1.hide()
-	else: 
-		print("too poor idiot")
+
 func _on_item_2_button_down() -> void:
 	if money >= price2:
 		money-=price2
 		ShopSignals.purchase_2()
 		is_item_in_store[1] = false
 		$item_2.hide()
-	else: 
-		print("too poor idiot")
+
 func _on_item_3_button_down() -> void:
 	if money >= price3:
 		money-=price3
 		ShopSignals.purchase_3()
 		is_item_in_store[2] = false
 		$item_3.hide()
-	else: 
-		print("too poor idiot")
+
 func _on_item_4_button_down() -> void:
 	if money >= price4:
 		money-=price4
 		ShopSignals.purchase_4()
 		is_item_in_store[3] = false
 		$item_4.hide()
-	else: 
-		print("too poor idiot")
+
 func _on_item_5_button_down() -> void:
 	if money >= price5:
 		money-=price5
 		ShopSignals.purchase_5()
 		is_item_in_store[4] = false
 		$item_5.hide()
-	else: 
-		print("too poor idiot")
+

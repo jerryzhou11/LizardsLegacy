@@ -11,9 +11,16 @@ extends CharacterBody2D
 @onready var breath_sound = $breath_sound
 @onready var hurt_sound = $hurt_sound
 @onready var roar = $roar
+@onready var death_sound = $death_sound
+
+
+@export var aggro_zone: Area2D
+var detected_player = false
 
 @export var player: Node2D
 var rng = RandomNumberGenerator.new()
+
+@export var heart: Node2D
 
 
 var can_fire_breath = true
@@ -25,11 +32,13 @@ func _ready():
 	roar.play()
 	fire_breath_timer.wait_time = fire_breath_cooldown
 	fire_breath_timer.timeout.connect(_on_fire_breath_cooldown)
+	
 
 func _process(delta):
-	if can_fire_breath and player:
-		print("firing")
+	if can_fire_breath and detected_player:
 		fire_breath_attack()
+	if(player.weak_spots_hit == [true, true, true, true]):
+		heart.activate()
 
 func fire_breath_attack():
 	can_fire_breath = false
@@ -69,3 +78,19 @@ func _on_fire_breath_cooldown():
 func hurt():
 	camera.shake(50)
 	hurt_sound.play()
+
+func die():
+	camera.shake(80)
+	death_sound.play()
+
+
+
+func _on_fire_aggro_zone_area_entered(area:Area2D) -> void:
+	if(area.get_name()=="Hurtbox"):
+		detected_player = true
+
+
+
+func _on_fire_aggro_zone_area_exited(area:Area2D) -> void:
+	if(area.get_name()=="Hurtbox"):
+		detected_player = false

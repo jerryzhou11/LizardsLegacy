@@ -5,8 +5,12 @@ extends Node2D
 @onready var hit_sound_3 = $HitSound3
 @onready var sprite = $Sprite2D
 var health = 3
-@export var weak_spot_number: int
 @export var dragon: Node2D
+
+var active = false
+
+func _ready():
+	visible = false
 
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
@@ -24,8 +28,8 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		else:
 			hit_sound_3.play()
 			#dragon.die() big death sound
-			if $"../Player":
-				$"../Player/Hurtbox/CollisionShape2D".disabled = true
-				#$"../Player/Hurtbox/CollisionShape2D".set_collision_layer(2) = false
-			await get_tree().create_timer(4).timeout
-			get_tree().change_scene_to_file("res://Scenes/win_screen.tscn")
+			#play win cutscene
+
+func activate():
+	visible = true
+	active = true
