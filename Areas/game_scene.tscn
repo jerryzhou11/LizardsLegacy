@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=28 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
 [ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="3_8krq0"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://220kwiybrukb" path="res://Art/Dragon/claw legs/Claw Back 1.png" id="20_c165k"]
 [ext_resource type="Texture2D" uid="uid://dfotdxq1yc7oj" path="res://Art/Dragon/claw legs/Claw Back 2.png" id="21_8d40b"]
 [ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/backfoot.tscn" id="21_em4lo"]
+[ext_resource type="PackedScene" uid="uid://cgyxaokcu5n5s" path="res://Scenes/wing.tscn" id="21_pyxa2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bu5ef"]
 texture = ExtResource("5_mmbue")
@@ -181,6 +182,9 @@ z_index = -1
 position = Vector2(933, -482)
 scale = Vector2(2, 2)
 texture = ExtResource("21_8d40b")
+
+[node name="Wing" parent="." instance=ExtResource("21_pyxa2")]
+position = Vector2(-941, -1124)
 
 [connection signal="ready" from="." to="Player" method="_on_game_scene_ready"]
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
