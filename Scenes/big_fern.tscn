@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://yyi824vdc60x"]
+
+[ext_resource type="Texture2D" uid="uid://jrk7mjnawwqb" path="res://Art/Landscape/BURNT FERN.png" id="1_5vgqa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mlic"]
+size = Vector2(135, 7.5)
+
+[node name="Big Fern" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.410551, 0.200966, 0.0792449, 1)
+position = Vector2(150, 254)
+rotation = 1.5708
+texture = ExtResource("1_5vgqa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(25, -16)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(123.5, 21.75)
+shape = SubResource("RectangleShape2D_7mlic")
+debug_color = Color(0.279963, 0, 0.0262023, 0.42)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(78, 18, -21, 56, -24, 51, 58, 16)

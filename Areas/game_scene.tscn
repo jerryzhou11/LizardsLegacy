@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=34 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://c3kxjellfwpw0" path="res://Art/Landscape/PLEASEEEEe-export.png" id="1_skybf"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
@@ -12,16 +12,19 @@
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
 [ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
-[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
-[ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
-[ext_resource type="PackedScene" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
+[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="10_jbqtg"]
+[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="14_pjwx3"]
+[ext_resource type="PackedScene" uid="uid://blj5yxt33refh" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
 [ext_resource type="PackedScene" uid="uid://bna3sgkes7dv7" path="res://Scenes/head.tscn" id="17_mlygp"]
 [ext_resource type="PackedScene" uid="uid://pbt7rieo1v60" path="res://Scenes/chest.tscn" id="18_luumw"]
 [ext_resource type="Texture2D" uid="uid://220kwiybrukb" path="res://Art/Dragon/claw legs/Claw Back 1.png" id="20_c165k"]
+[ext_resource type="PackedScene" uid="uid://cgydu8no0cips" path="res://Scenes/debris.tscn" id="20_cg03m"]
 [ext_resource type="Script" path="res://Scripts/front_wing.gd" id="21_6w1bh"]
 [ext_resource type="Texture2D" uid="uid://dfotdxq1yc7oj" path="res://Art/Dragon/claw legs/Claw Back 2.png" id="21_8d40b"]
 [ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/backfoot.tscn" id="21_em4lo"]
-[ext_resource type="PackedScene" uid="uid://cgyxaokcu5n5s" path="res://Scenes/wing.tscn" id="21_pyxa2"]
+[ext_resource type="PackedScene" path="res://Scenes/wing.tscn" id="21_pyxa2"]
+[ext_resource type="PackedScene" uid="uid://yyi824vdc60x" path="res://Scenes/big_fern.tscn" id="22_hoqrl"]
+[ext_resource type="PackedScene" path="res://Scenes/scale_cluster.tscn" id="25_owcwy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo8xg"]
 texture = ExtResource("1_skybf")
@@ -49,6 +52,9 @@ radius = 40.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0utk"]
 size = Vector2(1270, 368)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muv6l"]
+size = Vector2(20, 2679)
+
 [node name="GameScene" type="Node2D"]
 position = Vector2(20, 490)
 metadata/_edit_horizontal_guides_ = [-181.0]
@@ -69,8 +75,9 @@ collision_mask = 0
 position = Vector2(824.375, 397.75)
 shape = SubResource("RectangleShape2D_80hbx")
 
-[node name="Player" parent="." instance=ExtResource("2_ob7sr")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_ob7sr")]
 position = Vector2(158, 151)
+camera = NodePath("../Camera2D")
 metadata/_edit_group_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
@@ -101,7 +108,7 @@ debris_count = 10
 position = Vector2(159, 151)
 offset = Vector2(0, -100)
 process_callback = 0
-limit_left = -1000
+limit_left = -650
 limit_right = 4000
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -193,10 +200,43 @@ position = Vector2(933, -482)
 scale = Vector2(2, 2)
 texture = ExtResource("21_8d40b")
 
+[node name="Debris" parent="." instance=ExtResource("20_cg03m")]
+z_index = -100
+position = Vector2(248, 96)
+scale = Vector2(3.52, 3.52)
+collision_layer = 0
+collision_mask = 0
+freeze = true
+
 [node name="Wing" parent="." instance=ExtResource("21_pyxa2")]
 position = Vector2(-446, -1328)
 scale = Vector2(2, 2)
 script = ExtResource("21_6w1bh")
+
+[node name="Big Fern" parent="." instance=ExtResource("22_hoqrl")]
+position = Vector2(-657, -460)
+scale = Vector2(4, 4)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(-667, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0, -994.5)
+shape = SubResource("RectangleShape2D_muv6l")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(4000, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(0, -994.5)
+shape = SubResource("RectangleShape2D_muv6l")
+
+[node name="ScaleCluster" parent="." instance=ExtResource("25_owcwy")]
+position = Vector2(1081, -77)
 
 [connection signal="ready" from="." to="Player" method="_on_game_scene_ready"]
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]

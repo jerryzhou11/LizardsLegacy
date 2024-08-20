@@ -37,7 +37,11 @@ var burnt = false
 #wind
 @export var wind_force = 20000
 @export var wind_slow = 50
+
 @export var scales = 0 # how much money you have
+
+#camera
+@export var camera: Camera2D
 
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
@@ -177,6 +181,7 @@ func _physics_process(delta: float) -> void:
 func _on_hurtbox_area_entered(area:Node) -> void:
 	if(area.is_in_group("Hazards")):
 		if(area.is_in_group("Fire")):
+			camera.shake(15)
 			burnt = true
 		get_hit(area)
 	elif(area.get_name() == "WindZone"):
@@ -254,49 +259,46 @@ func ragdoll(direction: Vector2, force: float) -> void:
 	
 func update_animation():
 	if not animation_locked:
-		if items.wings and (direction != 0 or not is_on_floor()):
-				if (facing == 1):
+		if items.wings:
+			if not is_on_floor():
+				if facing == 1:
 					lizamation.play("fly_R")
 				else:
 					lizamation.play("fly_L")
-		if items.wings:
-			if direction != 0:	
+			elif direction != 0:
 				if dash.is_dashing():
-					if (facing == 1):
-						#lizamation.play("wing_dash_R", 8)
+					if facing == 1:
 						lizamation.play("dash_R", 8)
 					else:
-						#lizamation.play("wing_dash_L", 8)	
-						lizamation.play("dash_L", 8)			
+						lizamation.play("dash_L", 8)
 				else:
-					if (facing == 1):
-						print("wingwalk")
+					if facing == 1:
 						lizamation.play("wing_walk_R", 2)
 					else:
-						print("wingwalk2")
 						lizamation.play("wing_walk_L", 2)
 			else:
-				if (facing == 1):
+				if facing == 1:
 					lizamation.play("wing_idle_R")
 				else:
 					lizamation.play("wing_idle_L")
-		elif direction != 0:	
-			if dash.is_dashing():
-				if (facing == 1):
-					lizamation.play("dash_R", 8)
-				else:
-					lizamation.play("dash_L", 8)			
-			else:
-				if (facing == 1):
-					lizamation.play("walk_R", 2)
-				else:
-					lizamation.play("walk_L", 2)
 		else:
-			if (facing == 1):
-				lizamation.play("idle_R")
+			# Non-winged animations
+			if direction != 0:
+				if dash.is_dashing():
+					if facing == 1:
+						lizamation.play("dash_R", 8)
+					else:
+						lizamation.play("dash_L", 8)
+				else:
+					if facing == 1:
+						lizamation.play("walk_R", 2)
+					else:
+						lizamation.play("walk_L", 2)
 			else:
-				lizamation.play("idle_L")
-
+				if facing == 1:
+					lizamation.play("idle_R")
+				else:
+					lizamation.play("idle_L")
 func _on_bgm_toggle():
 	var volume = bossBGM.volume_db
 	if volume > -79:
