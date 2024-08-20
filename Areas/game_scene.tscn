@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
 [ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
-[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="10_jbqtg"]
-[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="14_pjwx3"]
-[ext_resource type="PackedScene" uid="uid://blj5yxt33refh" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
+[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
+[ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
+[ext_resource type="PackedScene" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
 [ext_resource type="PackedScene" uid="uid://bna3sgkes7dv7" path="res://Scenes/head.tscn" id="17_mlygp"]
 [ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/backfoot.tscn" id="21_em4lo"]
 
@@ -113,7 +113,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Tail" parent="." instance=ExtResource("6_ooocl")]
-position = Vector2(2471, 1133)
+position = Vector2(2438, 1049)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
