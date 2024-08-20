@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b5a1ek3cr51oh" path="res://Art/accessories/shop_art/empty_shop.png" id="4_bppjy"]
 [ext_resource type="Texture2D" uid="uid://dbjxv0qisjnsx" path="res://Art/Landscape/black.png" id="5_825aa"]
 [ext_resource type="Texture2D" uid="uid://da6y2fig848cb" path="res://Art/cutscene/POPUP.png" id="5_ddbwu"]
-[ext_resource type="Texture2D" uid="uid://b8ue0j80pfkcq" path="res://Art/accessories/shop_art/item_1.png" id="5_kquq0"]
 [ext_resource type="Texture2D" uid="uid://cly1pdjebgssl" path="res://Art/accessories/shop_art/item_2.png" id="8_ea8b1"]
+[ext_resource type="Texture2D" uid="uid://decbbdwpg4xdv" path="res://Art/shield/shield ICONS-Sheet.png" id="8_lo3ho"]
 [ext_resource type="Texture2D" uid="uid://bq3os6rha0aej" path="res://Art/accessories/shop_art/item_3.png" id="9_t04tj"]
 [ext_resource type="Texture2D" uid="uid://bl2surwvlfwla" path="res://Art/accessories/shop_art/item_4.png" id="10_u81ex"]
 [ext_resource type="Texture2D" uid="uid://rftmb27qarr5" path="res://Art/accessories/shop_art/item_5.png" id="11_qg62p"]
@@ -117,11 +117,12 @@ zoom = Vector2(0.7, 0.7)
 
 [node name="item_1" type="Button" parent="."]
 z_as_relative = false
-offset_left = 51.0
-offset_top = 219.0
-offset_right = 81.0
-offset_bottom = 249.0
-icon = ExtResource("5_kquq0")
+offset_left = 52.0
+offset_top = 220.0
+offset_right = 92.0
+offset_bottom = 260.0
+scale = Vector2(0.7, 0.7)
+icon = ExtResource("8_lo3ho")
 flat = true
 
 [node name="item_2" type="Button" parent="."]
@@ -130,6 +131,7 @@ offset_left = 77.0
 offset_top = 215.0
 offset_right = 109.0
 offset_bottom = 249.0
+disabled = true
 icon = ExtResource("8_ea8b1")
 flat = true
 
