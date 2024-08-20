@@ -10,12 +10,14 @@ const AIR_RESISTANCE = 0
 const VELOCITY_INHERITANCE = 0.5 #percent of player velocity that adds to throw
 
 @export var Character: NodePath
-@export var stuck_collision: bool = true
+@export var stuck_collision: bool = false
+@export var held_offset := Vector2(0, 0)
 @onready var Collider := $CollisionShape2D
 
 @onready var throwSound = $throw
 @onready var recallSound = $recall
 @onready var armorClinkSound = $armorClink
+@onready var sprite = $sprite
 
 var already_clinked := false
 var stuck_target: Node2D
@@ -33,7 +35,7 @@ func get_player_hand() -> Vector2:
 	if not carrier:
 		print("Can't find player object!") 
 		return position
-	return carrier.global_position + Vector2(carrier.facing * 10,  -30)
+	return carrier.global_position + Vector2(carrier.facing * held_offset.x,  held_offset.y)
 	
 
 	
@@ -52,6 +54,10 @@ func _physics_process(delta: float) -> void:
 		
 	set_collision_layer_value(3, stuck_collision and state == SpearState.STUCK)
 		
+	if state == SpearState.CARRIED:
+		z_index = -5
+	else:
+		z_index = 0
 	
 	match state:
 		SpearState.THROWN:

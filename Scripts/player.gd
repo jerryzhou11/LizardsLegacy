@@ -17,7 +17,7 @@ const FLAP_YSPEED = 400.0
 const FLAP_COOLDOWN = .8
 const FLAP_STAMINA = 0.2 # seconds
 const DASH_UP_STAMINA = 0.4 # seconds
-const DEAD_DRAG = 0.05
+const DEAD_DRAG = 800
 var animation_locked : bool = false
 var direction := 0
 var facing = 1
@@ -98,8 +98,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 	if dead:
-		#velocity.x = velocity.x * (1.0 - DEAD_DRAG) ** delta
-		#move_and_slide()
+		velocity.x = move_toward(velocity.x, 0, delta * DEAD_DRAG)
+		move_and_slide()
 		return	
 		
 	flap_timer = move_toward(flap_timer, 0, delta)
@@ -213,10 +213,18 @@ func get_hit(body) -> bool:
 			lizamation.play("death_reg")
 		dead = true
 		bossBGM.stop()
-		#ragdoll(body.linear_velocity, 500) #commented out because was causing crashes
+		var ragdoll_dir: Vector2
+		if body.get("linear_velocity"):
+			ragdoll_dir = body.linear_velocity
+		else:
+			ragdoll_dir = Vector2(-1, -1)
+			
+		ragdoll(ragdoll_dir, 800) #commented out because was causing crashes
 	return true	
 
 func ragdoll(direction: Vector2, force: float) -> void:
+	if direction.length() < 0.01:
+		direction = Vector2(-1, -1)
 	velocity = direction.normalized() * force
 	velocity.y = -abs(velocity.y)
 	#print(velocity)

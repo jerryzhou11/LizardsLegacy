@@ -1,23 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://day0aesv0peqp"]
+[gd_scene load_steps=10 format=3 uid="uid://day0aesv0peqp"]
 
-[ext_resource type="Texture2D" uid="uid://dvqd4wxqm1chk" path="res://Art/spear_vert_centered.png" id="1_0qtwm"]
+[ext_resource type="Texture2D" uid="uid://qd4uygmk0bme" path="res://Art/accessories/CROPPED spear sprite.png" id="1_afdsk"]
+[ext_resource type="Texture2D" uid="uid://c4ja222cfld11" path="res://Art/accessories/spear_R.png" id="1_bdxe4"]
 [ext_resource type="AudioStream" uid="uid://dekda2vuco3aa" path="res://sounds/Spear_Throw_FX.ogg" id="2_q1fum"]
 [ext_resource type="AudioStream" uid="uid://cx8ebis37l2q3" path="res://sounds/Spear_Recall_FX.ogg" id="3_xos83"]
 [ext_resource type="AudioStream" uid="uid://chqaauf4tt6i1" path="res://sounds/Armor_Klink_FX.ogg" id="4_pigmg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q27fy"]
-size = Vector2(35, 7)
+size = Vector2(64.5, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxa4l"]
+atlas = ExtResource("1_afdsk")
+region = Rect2(24, 37, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffsvq"]
+atlas = ExtResource("1_bdxe4")
+region = Rect2(43, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xp6ex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxa4l")
+}],
+"loop": true,
+"name": &"cropped",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffsvq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Spear" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 0.5)
+position = Vector2(10.75, 0)
 shape = SubResource("RectangleShape2D_q27fy")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-rotation = 1.5708
-texture = ExtResource("1_0qtwm")
+position = Vector2(11, -1)
+rotation = 0.785398
+sprite_frames = SubResource("SpriteFrames_xp6ex")
+frame_progress = 0.692047
 
 [node name="throw" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_q1fum")
