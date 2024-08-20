@@ -9,7 +9,7 @@ var items = {
 }
 
 var flight_stamina = 0.0
-var scales = 10
+var scales = 0
 var dead = false
 var armor_used = false
 var burnt = false
