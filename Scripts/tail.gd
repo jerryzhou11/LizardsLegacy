@@ -26,7 +26,7 @@ func _on_Tail_Cooldown_timeout():
 	can_attack = true
 
 func play_animation():
-	animation_player.play("tail_swiping")
+	animation_player.play("tail_swiping", .5)
 
 
 func _on_animation_player_animation_finished(anim_name:StringName) -> void:

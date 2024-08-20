@@ -50,7 +50,7 @@ size = Vector2(3334.25, 670)
 radius = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0utk"]
-size = Vector2(1270, 368)
+size = Vector2(1798, 368)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_muv6l"]
 size = Vector2(20, 2679)
@@ -162,10 +162,10 @@ transform = Transform2D(1, 0, 0, 1, 0, 186)
 [node name="WindZone" type="Area2D" parent="."]
 position = Vector2(1015, -943)
 collision_layer = 32
-metadata/is_active = false
+metadata/is_active = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindZone"]
-position = Vector2(478, 265)
+position = Vector2(539, 265)
 shape = SubResource("RectangleShape2D_b0utk")
 
 [node name="Windblade_manager" parent="WindZone" node_paths=PackedStringArray("wind_noise") instance=ExtResource("15_cv86v")]
@@ -209,6 +209,7 @@ collision_mask = 0
 freeze = true
 
 [node name="Wing" parent="." instance=ExtResource("21_pyxa2")]
+z_index = -2
 position = Vector2(-446, -1328)
 scale = Vector2(2, 2)
 script = ExtResource("21_6w1bh")
