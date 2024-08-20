@@ -37,7 +37,11 @@ var burnt = false
 #wind
 @export var wind_force = 20000
 @export var wind_slow = 50
+
 @export var scales = 0 # how much money you have
+
+#camera
+@export var camera: Camera2D
 
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
@@ -177,6 +181,7 @@ func _physics_process(delta: float) -> void:
 func _on_hurtbox_area_entered(area:Node) -> void:
 	if(area.is_in_group("Hazards")):
 		if(area.is_in_group("Fire")):
+			camera.shake(15)
 			burnt = true
 		get_hit(area)
 	elif(area.get_name() == "WindZone"):
