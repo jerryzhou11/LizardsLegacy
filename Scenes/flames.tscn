@@ -20,7 +20,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mi0mg"]
 
-[node name="flames" type="Area2D" groups=["Hazards"]]
+[node name="flames" type="Area2D" groups=["Fire", "Hazards"]]
 scale = Vector2(3.16, 3.16)
 collision_layer = 16
 collision_mask = 0
