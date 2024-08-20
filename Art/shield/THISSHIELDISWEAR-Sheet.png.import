@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coxffhcwxpq2g"
-path="res://.godot/imported/resume.png-a63a5306ea0ec542336121994c1f91bd.ctex"
+uid="uid://dc8eaagp8irue"
+path="res://.godot/imported/THISSHIELDISWEAR-Sheet.png-3ed8f347ae252c75e1acc2237d7fbb59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/pause_buttons/resume.png"
-dest_files=["res://.godot/imported/resume.png-a63a5306ea0ec542336121994c1f91bd.ctex"]
+source_file="res://Art/shield/THISSHIELDISWEAR-Sheet.png"
+dest_files=["res://.godot/imported/THISSHIELDISWEAR-Sheet.png-3ed8f347ae252c75e1acc2237d7fbb59.ctex"]
 
 [params]
 

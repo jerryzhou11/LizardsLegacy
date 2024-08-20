@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cejiyugeiq5w0"
-path="res://.godot/imported/reload.png-0082db88020c6721e22b74a009a6479c.ctex"
+uid="uid://dib2f6dpo6asa"
+path="res://.godot/imported/SHIELDDDDD-Sheet.png-b764dd1f4a29da867bb3f93fc0979149.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/pause_buttons/reload.png"
-dest_files=["res://.godot/imported/reload.png-0082db88020c6721e22b74a009a6479c.ctex"]
+source_file="res://Art/shield/SHIELDDDDD-Sheet.png"
+dest_files=["res://.godot/imported/SHIELDDDDD-Sheet.png-b764dd1f4a29da867bb3f93fc0979149.ctex"]
 
 [params]
 

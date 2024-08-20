@@ -338,7 +338,7 @@ func _on_bgm_toggle():
 
 func buy_item_1():
 	print("bought item 1")
-	scales -= 0
+	scales -= 5
 	items["armor"] = true
 	PlayerData.save_player_state(self)
 
@@ -356,7 +356,7 @@ func buy_item_3():
 	
 func buy_item_4():
 	print("bought item 4")
-	scales -= 5
+	scales -= 0
 	items["item4"] = true
 	PlayerData.save_player_state(self)
 	

@@ -3,10 +3,10 @@ extends Node2D
 var is_item_in_store : Array = [true,true,true,true,true]
 
 #dont touch this it made me want to kill myself
-@export var price1 = 0
+@export var price1 = 5
 @export var price2 = 1
 @export var price3 = 0
-@export var price4 = 5
+@export var price4 = 0
 @export var price5 = 5
 
 @onready var prices_node = get_node("prices")
