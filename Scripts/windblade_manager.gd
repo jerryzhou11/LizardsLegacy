@@ -6,6 +6,7 @@ extends Node2D
 @export var spawn_y_max: float = 500.0
 
 @onready var timer = $spawn_timer
+@export var wind_noise: AudioStreamPlayer2D
 
 var active = true
 
@@ -23,10 +24,11 @@ func _on_spawn_timer_timeout() -> void:
 	spawn_projectile()
 
 func _on_wind_zone_body_entered(body:Node2D) -> void:
-	print("wind blades start")
-	if active:
-		timer.start()
+	if(body.get_name()=="Player"):
+		print("wind blades start")
+		if active:
+			timer.start()
 
 func _on_wind_zone_body_exited(body:Node2D) -> void:
-	if active:
+	if(body.get_name()=="Player"):
 		timer.stop()
