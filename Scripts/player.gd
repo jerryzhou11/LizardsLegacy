@@ -30,6 +30,7 @@ var dash_ground_reset = true
 var in_wind_zone = false
 var iframes = false
 var burnt = false
+var weak_spots_hit = [false, false, false, false]
 
 @export var debugMode = true
 # @export var play_bgm = true
@@ -257,10 +258,25 @@ func get_hit(body) -> bool:
 				lizamation.flip_h = true
 				lizamation.play("death_reg")
 			ragdoll(ragdoll_dir, 800) #commented out because was causing crashes
+	
+	# Wait for animations and sounds to finish
 	await get_tree().create_timer(4.0).timeout
-	PlayerData.save_player_state(self)  # Save state before changing scene
-	get_tree().change_scene_to_file("res://Scenes/death_screen.tscn")		
-	return true	
+	
+	# Save player state and change scene
+	PlayerData.save_player_state(self)
+	
+	# Use call_deferred to change the scene safely
+	call_deferred("_change_to_death_scene")
+	
+	return true
+
+func _change_to_death_scene():
+	if get_tree() != null:
+		var error = get_tree().change_scene_to_file("res://Scenes/death_screen.tscn")
+		if error != OK:
+			print("Error changing scene: ", error)
+	else:
+		print("Scene tree is null, unable to change scene")
 
 func ragdoll(direction: Vector2, force: float) -> void:
 	if direction.length() < 0.01:

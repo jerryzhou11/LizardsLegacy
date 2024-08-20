@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjdkgfawkorq"]
+[gd_scene load_steps=10 format=3 uid="uid://bjdkgfawkorq"]
 
-[ext_resource type="Script" path="res://Scripts/weak_spot.gd" id="1_abkcd"]
+[ext_resource type="Script" path="res://Scripts/heart.gd" id="1_om3t8"]
 [ext_resource type="Texture2D" uid="uid://c1luwehiqsjlq" path="res://Art/CENTERDRAGONHEART.png" id="2_bbgm5"]
-[ext_resource type="AudioStream" uid="uid://bg1nhyol1pi3i" path="res://sounds/Weak_Spot_FX.ogg" id="3_88pup"]
+[ext_resource type="Texture2D" uid="uid://cnwgufj8loqf1" path="res://Art/Dragon/DRAGON WEAKSPOT1.png" id="3_8iuas"]
 [ext_resource type="Texture2D" uid="uid://cdh42q7kd4dao" path="res://Art/DRAGONGREYWEAKSPOT.png" id="3_f7q44"]
+[ext_resource type="AudioStream" uid="uid://cghxseymtsreg" path="res://sounds/Dragon_Heart_1_FX.ogg" id="5_04xtf"]
+[ext_resource type="AudioStream" uid="uid://c4g48k5x1ydpw" path="res://sounds/Dragon_Heart_2_FX.ogg" id="6_m7loa"]
+[ext_resource type="AudioStream" uid="uid://dl58uw8q8d1t6" path="res://sounds/Dragon_Heart_Kill_FX.ogg" id="7_to6sp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1btvt"]
 animations = [{
@@ -17,10 +20,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_bbgm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8iuas")
+}],
+"loop": true,
+"name": &"critical",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bbgm5")
+}, {
+"duration": 1.0,
 "texture": ExtResource("3_f7q44")
 }],
 "loop": true,
-"name": &"inactive",
+"name": &"hit",
 "speed": 5.0
 }]
 
@@ -28,12 +45,13 @@ animations = [{
 radius = 59.0
 
 [node name="Heart" type="Node2D"]
-script = ExtResource("1_abkcd")
+script = ExtResource("1_om3t8")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_1btvt")
-animation = &"active"
+animation = &"critical"
+frame_progress = 0.693812
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -43,7 +61,13 @@ collision_mask = 8
 position = Vector2(0, -20)
 shape = SubResource("CircleShape2D_3wdyb")
 
-[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_88pup")
+[node name="HitSound1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_04xtf")
+
+[node name="HitSound2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_m7loa")
+
+[node name="HitSound3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_to6sp")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

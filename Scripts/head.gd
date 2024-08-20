@@ -67,4 +67,5 @@ func _on_fire_breath_cooldown():
 	can_fire_breath = true
 
 func hurt():
+	camera.shake(50)
 	hurt_sound.play()

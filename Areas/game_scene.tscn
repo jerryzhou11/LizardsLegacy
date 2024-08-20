@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=37 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="Texture2D" uid="uid://c3kxjellfwpw0" path="res://Art/Landscape/PLEASEEEEe-export.png" id="1_skybf"]
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cgyxaokcu5n5s" path="res://Scenes/wing.tscn" id="21_pyxa2"]
 [ext_resource type="PackedScene" path="res://Scenes/big_fern.tscn" id="22_hoqrl"]
 [ext_resource type="PackedScene" path="res://Scenes/scale_cluster.tscn" id="25_owcwy"]
+[ext_resource type="PackedScene" path="res://Scenes/heart.tscn" id="27_fs2w3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo8xg"]
 texture = ExtResource("1_skybf")
@@ -249,9 +250,15 @@ shape = SubResource("RectangleShape2D_muv6l")
 [node name="ScaleCluster" parent="." instance=ExtResource("25_owcwy")]
 position = Vector2(1081, -77)
 
+[node name="Heart" parent="." node_paths=PackedStringArray("player", "dragon") instance=ExtResource("27_fs2w3")]
+position = Vector2(458, -505)
+player = NodePath("../Player")
+dragon = NodePath("../Head")
+
 [connection signal="ready" from="." to="Player" method="_on_game_scene_ready"]
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
 [connection signal="spear_caught" from="Player/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]
+[connection signal="tree_exiting" from="CanvasLayer/PauseMenu" to="CanvasLayer/PauseMenu" method="_on_tree_exiting"]
 [connection signal="body_entered" from="WindZone" to="WindZone/Windblade_manager" method="_on_wind_zone_body_entered"]
 [connection signal="body_exited" from="WindZone" to="WindZone/Windblade_manager" method="_on_wind_zone_body_exited"]
 

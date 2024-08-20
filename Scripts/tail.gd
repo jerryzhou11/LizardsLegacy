@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@onready var collision_polygon = $CollisionPolygon2D
-@onready var hitbox = $Area2D
 @onready var animation_player = $AnimationPlayer
 @onready var tail_timer = $Tail_Cooldown
 
