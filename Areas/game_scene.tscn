@@ -113,12 +113,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Tail" parent="." instance=ExtResource("6_ooocl")]
-position = Vector2(2471, -46)
-
-[node name="Windblade_manager" parent="." instance=ExtResource("15_cv86v")]
-position = Vector2(838, -1016)
-spawn_y_min = -200.0
-spawn_y_max = 200.0
+position = Vector2(2471, 1133)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -153,8 +148,10 @@ collision_layer = 32
 position = Vector2(478, 265)
 shape = SubResource("RectangleShape2D_b0utk")
 
-[node name="Tail" parent="WindZone" instance=ExtResource("6_ooocl")]
-position = Vector2(968, 2425)
+[node name="Windblade_manager" parent="WindZone" instance=ExtResource("15_cv86v")]
+position = Vector2(-156, 267)
+spawn_y_min = -200.0
+spawn_y_max = 200.0
 
 [node name="foot2" parent="." node_paths=PackedStringArray("player_node", "camera") instance=ExtResource("21_em4lo")]
 position = Vector2(1598, 152)
@@ -167,7 +164,5 @@ debris_count = 10
 [connection signal="ready" from="." to="Player" method="_on_game_scene_ready"]
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
 [connection signal="spear_caught" from="Player/CatchZone" to="Spear" method="_on_catch_zone_spear_caught"]
-[connection signal="body_entered" from="WindZone" to="WindZone/Windblade_manager" method="_on_wind_zone_body_entered"]
-[connection signal="body_exited" from="WindZone" to="WindZone/Windblade_manager" method="_on_wind_zone_body_exited"]
 
 [editable path="CanvasLayer/Hud"]

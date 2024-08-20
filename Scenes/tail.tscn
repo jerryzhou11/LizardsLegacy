@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://caohg6fopypta"]
+[gd_scene load_steps=10 format=3 uid="uid://c83w6vml8o7x"]
 
 [ext_resource type="Script" path="res://Scripts/tail.gd" id="1_6kwam"]
 [ext_resource type="Texture2D" uid="uid://dbbbdd7kfj8tr" path="res://Art/Dragon/tail parts/tail piece 1.png" id="2_uesa5"]

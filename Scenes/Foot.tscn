@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://brip3rxac20gc"]
 
 [ext_resource type="Script" path="res://Scripts/foot.gd" id="1_2cppc"]
-[ext_resource type="PackedScene" uid="uid://cshqw05ljcknd" path="res://Scenes/debris.tscn" id="2_omm2l"]
+[ext_resource type="PackedScene" uid="uid://cgydu8no0cips" path="res://Scenes/debris.tscn" id="2_omm2l"]
 [ext_resource type="Texture2D" uid="uid://delqi5brvcv0f" path="res://Art/Dragon/claw legs/Claw Front 1.png" id="4_5wuwr"]
 [ext_resource type="AudioStream" uid="uid://be8ah6bqiysc2" path="res://sounds/Dragon_Stomp_FX.ogg" id="4_wvyp5"]
 
@@ -13,6 +13,7 @@ size = Vector2(277.409, 81.8182)
 
 [node name="Enemystomp" type="CharacterBody2D" node_paths=PackedStringArray("foot_node")]
 position = Vector2(2, -4)
+scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_2cppc")
