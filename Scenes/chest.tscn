@@ -2,7 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://dlsl10qedkols" path="res://Art/Dragon/dragon_chest.png" id="1_koafe"]
 
-[node name="Chest" type="Node2D"]
+[node name="chest" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 20
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_koafe")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-328, -236, -277, -251, -258, -332, -181, -227, -191, -74, 5, -69, 97, -105, 192, -68, 169, 46, 91, 69, 74, 119, 47, 87, -15, 91, -51, 132, -91, 97, -150, 99, -214, 211, -323, 109, -345, 7, -273, -146)
