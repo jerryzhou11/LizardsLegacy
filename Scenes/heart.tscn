@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjdkgfawkorq"]
+
+[ext_resource type="Script" path="res://Scripts/weak_spot.gd" id="1_abkcd"]
+[ext_resource type="Texture2D" uid="uid://c1luwehiqsjlq" path="res://Art/CENTERDRAGONHEART.png" id="2_bbgm5"]
+[ext_resource type="AudioStream" uid="uid://bg1nhyol1pi3i" path="res://sounds/Weak_Spot_FX.ogg" id="3_88pup"]
+[ext_resource type="Texture2D" uid="uid://cdh42q7kd4dao" path="res://Art/DRAGONGREYWEAKSPOT.png" id="3_f7q44"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1btvt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bbgm5")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_f7q44")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wdyb"]
+radius = 59.0
+
+[node name="Heart" type="Node2D"]
+script = ExtResource("1_abkcd")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_1btvt")
+animation = &"active"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -20)
+shape = SubResource("CircleShape2D_3wdyb")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_88pup")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

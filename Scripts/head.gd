@@ -9,6 +9,9 @@ extends CharacterBody2D
 @onready var source_pos = $source_pos
 @onready var sprite = $head_sprite
 @onready var breath_sound = $breath_sound
+@onready var hurt_sound = $hurt_sound
+@onready var roar = $roar
+
 @export var player: Node2D
 var rng = RandomNumberGenerator.new()
 
@@ -19,6 +22,7 @@ var can_fire_breath = true
 @export var camera: Camera2D
 
 func _ready():
+	roar.play()
 	fire_breath_timer.wait_time = fire_breath_cooldown
 	fire_breath_timer.timeout.connect(_on_fire_breath_cooldown)
 
@@ -53,7 +57,7 @@ func fire_breath_attack():
 		var target_pos = source_pos.global_position + direction * 1000  # Arbitrary large distance
 
 		# Add the projectile to the scene and initialize it
-		get_tree().root.add_child(projectile)
+		get_parent().add_child(projectile)
 		projectile.global_position = source_pos.global_position
 		projectile.initialize(source_pos.global_position, target_pos)
 
@@ -61,3 +65,6 @@ func fire_breath_attack():
 
 func _on_fire_breath_cooldown():
 	can_fire_breath = true
+
+func hurt():
+	hurt_sound.play()

@@ -14,8 +14,5 @@ func initialize(start_pos: Vector2, target_pos: Vector2):
 	direction = (target_pos - start_pos).normalized()
 	rotation = direction.angle()
 
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
-
 func _on_lifetime_timeout() -> void:
 	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgu8yes54uv7y"]
+[gd_scene load_steps=6 format=3 uid="uid://il1bswa0rm2o"]
 
 [ext_resource type="Script" path="res://Scripts/scale_cluster.gd" id="1_6t6cj"]
 [ext_resource type="Texture2D" uid="uid://b36lkj3td1wu8" path="res://Art/Dragon/scale_cluster.png" id="2_b5odb"]
@@ -23,7 +23,7 @@ gravity = Vector3(0, 98, 0)
 script = ExtResource("1_6t6cj")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
