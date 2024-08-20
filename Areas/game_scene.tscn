@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bg8d3ghrv814g"]
+[gd_scene load_steps=28 format=4 uid="uid://bg8d3ghrv814g"]
 
 [ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_ob7sr"]
 [ext_resource type="PackedScene" uid="uid://brip3rxac20gc" path="res://Scenes/Foot.tscn" id="3_8krq0"]
@@ -11,14 +11,16 @@
 [ext_resource type="PackedScene" uid="uid://day0aesv0peqp" path="res://spear.tscn" id="8_qjfnf"]
 [ext_resource type="PackedScene" uid="uid://bhqbel6d4j7o5" path="res://pause_menu.tscn" id="8_qv5et"]
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="9_vuqnp"]
-[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="10_jbqtg"]
-[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="14_pjwx3"]
-[ext_resource type="PackedScene" uid="uid://blj5yxt33refh" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
+[ext_resource type="PackedScene" uid="uid://cv8bn5t6no38c" path="res://Scenes/hud.tscn" id="10_jbqtg"]
+[ext_resource type="PackedScene" uid="uid://bhqukmftr0w8t" path="res://Scenes/background.tscn" id="14_pjwx3"]
+[ext_resource type="PackedScene" path="res://Scenes/windblade_manager.tscn" id="15_cv86v"]
 [ext_resource type="PackedScene" uid="uid://bna3sgkes7dv7" path="res://Scenes/head.tscn" id="17_mlygp"]
 [ext_resource type="PackedScene" uid="uid://pbt7rieo1v60" path="res://Scenes/chest.tscn" id="18_luumw"]
 [ext_resource type="Texture2D" uid="uid://220kwiybrukb" path="res://Art/Dragon/claw legs/Claw Back 1.png" id="20_c165k"]
+[ext_resource type="Script" path="res://Scripts/front_wing.gd" id="21_6w1bh"]
 [ext_resource type="Texture2D" uid="uid://dfotdxq1yc7oj" path="res://Art/Dragon/claw legs/Claw Back 2.png" id="21_8d40b"]
 [ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/backfoot.tscn" id="21_em4lo"]
+[ext_resource type="PackedScene" uid="uid://cgyxaokcu5n5s" path="res://Scenes/wing.tscn" id="21_pyxa2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bu5ef"]
 texture = ExtResource("5_mmbue")
@@ -139,8 +141,6 @@ collision_layer = 8
 collision_mask = 14
 script = ExtResource("9_vuqnp")
 Character = NodePath("../Player")
-stuck_collision = true
-held_offset = Vector2(16, -26)
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("14_pjwx3")]
 offset = Vector2(0, 186)
@@ -186,6 +186,11 @@ z_index = -1
 position = Vector2(933, -482)
 scale = Vector2(2, 2)
 texture = ExtResource("21_8d40b")
+
+[node name="Wing" parent="." instance=ExtResource("21_pyxa2")]
+position = Vector2(-446, -1328)
+scale = Vector2(2, 2)
+script = ExtResource("21_6w1bh")
 
 [connection signal="ready" from="." to="Player" method="_on_game_scene_ready"]
 [connection signal="body_entered" from="Player/CatchZone" to="Player/CatchZone" method="_spear_catch"]
