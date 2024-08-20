@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dajlq4dlojgk6"]
+[gd_scene load_steps=4 format=3 uid="uid://by6k5bjc0ug88"]
 
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_4xfd7"]
 [ext_resource type="Texture2D" uid="uid://bqwsu2tm0ph4m" path="res://Art/Itch/TITLE CARD.png" id="1_e5d62"]

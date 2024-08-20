@@ -69,11 +69,11 @@ func _ready():
 	PlayerData.load_player_state(self)
 	
 var items = {
-	"armor": true,
+	"armor": false,
 	"spear_upgrade": false,
 	"grapple": false,
 	"item4": false,
-	"wings": true
+	"wings": false
 }
 
 

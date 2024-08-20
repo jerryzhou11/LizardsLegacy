@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b67uju8esxiwk"]
+[gd_scene load_steps=20 format=3 uid="uid://b67uju8esxiwk"]
 
 [ext_resource type="Texture2D" uid="uid://cwjmv1vtqw24v" path="res://Art/Landscape/village_100.png" id="1_34rjq"]
 [ext_resource type="Script" path="res://Scripts/village.gd" id="1_xu65w"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_6qs2i"]
 [ext_resource type="Texture2D" uid="uid://b5a1ek3cr51oh" path="res://Art/accessories/shop_art/empty_shop.png" id="4_bppjy"]
 [ext_resource type="Texture2D" uid="uid://dbjxv0qisjnsx" path="res://Art/Landscape/black.png" id="5_825aa"]
+[ext_resource type="Texture2D" uid="uid://da6y2fig848cb" path="res://Art/cutscene/POPUP.png" id="5_ddbwu"]
 [ext_resource type="Texture2D" uid="uid://b8ue0j80pfkcq" path="res://Art/accessories/shop_art/item_1.png" id="5_kquq0"]
 [ext_resource type="Texture2D" uid="uid://cly1pdjebgssl" path="res://Art/accessories/shop_art/item_2.png" id="8_ea8b1"]
 [ext_resource type="Texture2D" uid="uid://bq3os6rha0aej" path="res://Art/accessories/shop_art/item_3.png" id="9_t04tj"]
@@ -85,6 +86,14 @@ layout_mode = 0
 offset_right = 216.0
 offset_bottom = 216.0
 texture = ExtResource("4_bppjy")
+
+[node name="TextureRect2" type="TextureRect" parent="shop_ui"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -102.0
+offset_right = 214.0
+offset_bottom = 114.0
+texture = ExtResource("5_ddbwu")
 
 [node name="background" type="TextureRect" parent="."]
 z_index = -90

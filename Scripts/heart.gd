@@ -27,8 +27,11 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 			dragon.hurt()
 		else:
 			hit_sound_3.play()
-			#dragon.die() big death sound
-			#play win cutscene
+			if $"../Player":
+				$"../Player/Hurtbox/CollisionShape2D".disabled = true
+				#$"../Player/Hurtbox/CollisionShape2D".set_collision_layer(2) = false
+			await get_tree().create_timer(4).timeout
+			get_tree().change_scene_to_file("res://Scenes/win_screen.tscn")
 
 func activate():
 	visible = true

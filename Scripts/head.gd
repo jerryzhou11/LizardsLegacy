@@ -21,7 +21,8 @@ var detected_player = false
 var rng = RandomNumberGenerator.new()
 
 @export var heart: Node2D
-
+@export var foot: Node2D
+@export var windzone: Node2D
 
 var can_fire_breath = true
 
@@ -37,6 +38,10 @@ func _ready():
 func _process(delta):
 	if can_fire_breath and detected_player:
 		fire_breath_attack()
+	if heart.active and detected_player:
+		foot.debris_force = 1500
+		foot.start_stomp_attack()
+
 	if(player.weak_spots_hit == [true, true, true, true]):
 		heart.activate()
 
