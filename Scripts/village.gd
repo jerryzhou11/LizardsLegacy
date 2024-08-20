@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	var player_node = $Player
 	money = player_node.scales 
-	
+	update_scales()
 func _process(delta: float) -> void:
 	pass
 
@@ -73,6 +73,7 @@ func hide_buttons(): # hides the buttons
 func _on_item_1_button_down() -> void:
 	if money >= price1:
 		money-=price1
+		update_scales()
 		ShopSignals.purchase_1()
 		is_item_in_store[0] = false
 		$item_1.hide()
@@ -80,6 +81,7 @@ func _on_item_1_button_down() -> void:
 func _on_item_2_button_down() -> void:
 	if money >= price2:
 		money-=price2
+		update_scales()
 		ShopSignals.purchase_2()
 		is_item_in_store[1] = false
 		$item_2.hide()
@@ -87,6 +89,7 @@ func _on_item_2_button_down() -> void:
 func _on_item_3_button_down() -> void:
 	if money >= price3:
 		money-=price3
+		update_scales()
 		ShopSignals.purchase_3()
 		is_item_in_store[2] = false
 		$item_3.hide()
@@ -94,6 +97,7 @@ func _on_item_3_button_down() -> void:
 func _on_item_4_button_down() -> void:
 	if money >= price4:
 		money-=price4
+		update_scales()
 		ShopSignals.purchase_4()
 		is_item_in_store[3] = false
 		$item_4.hide()
@@ -101,7 +105,10 @@ func _on_item_4_button_down() -> void:
 func _on_item_5_button_down() -> void:
 	if money >= price5:
 		money-=price5
+		update_scales()
 		ShopSignals.purchase_5()
 		is_item_in_store[4] = false
 		$item_5.hide()
-
+		
+func update_scales() -> void:
+	$prices/scale_count.set_text(str(money))

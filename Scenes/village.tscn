@@ -206,6 +206,12 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "5"
 
+[node name="scale_count" type="Label" parent="prices"]
+offset_left = 122.0
+offset_top = 138.0
+offset_right = 144.0
+offset_bottom = 161.0
+
 [node name="PauseMenu" parent="." instance=ExtResource("12_uwba6")]
 
 [connection signal="ready" from="." to="Player" method="_on_village_ready"]
