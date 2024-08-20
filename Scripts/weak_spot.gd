@@ -15,14 +15,14 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		if not vanquished: 
 			hit_sound.play()
 			vanquished = true
-			var player = body.get_node(body.Character)
-			#set player scale index to true
+			player.weak_spots_hit[weak_spot_number] = true
+			PlayerData.save_player_state(player)
 			sprite.play("inactive")
 			dragon.hurt()
 			
 func update_state():
-	#if(player.weak_spots_hit[weak_spot_number]):
-		#vanquished = true
+	if(player.weak_spots_hit[weak_spot_number]):
+		vanquished = true
 		sprite.play("inactive")
-	#else:
+	else:
 		sprite.play("active")

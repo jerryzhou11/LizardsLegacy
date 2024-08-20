@@ -13,6 +13,7 @@ var scales = 10
 var dead = false
 var armor_used = false
 var burnt = false
+var weak_spots_hit = [false, false, false, false]
 
 func reset():
 	items = {
@@ -32,6 +33,8 @@ func save_player_state(player):
 	items = player.items.duplicate()
 	flight_stamina = player.flight_stamina
 	scales = player.scales
+	weak_spots_hit = player.weak_spots_hit
+	
 
 func load_player_state(player):
 	player.items = items.duplicate()
@@ -40,3 +43,4 @@ func load_player_state(player):
 	player.dead = false
 	player.armor_used = false
 	player.burnt = false
+	player.weak_spots_hit = weak_spots_hit

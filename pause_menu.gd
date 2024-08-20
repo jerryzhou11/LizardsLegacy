@@ -30,3 +30,8 @@ func _on_reload_pressed() -> void:
 
 func _on_music_button_toggled(toggled_on: bool) -> void:
 	GlobalAudioSignals.toggle_bgm()
+
+
+
+func _on_tree_exiting() -> void:
+	resume()
