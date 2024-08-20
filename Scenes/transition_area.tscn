@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://b5xvjfqxpmvn6"]
+
+[ext_resource type="Script" path="res://Scripts/village.gd" id="1_0q8cg"]
+[ext_resource type="PackedScene" uid="uid://b38wcoytpowl0" path="res://Player/player.tscn" id="2_wh4gc"]
+[ext_resource type="PackedScene" uid="uid://bq817p4br4tvh" path="res://dash.tscn" id="3_50pmv"]
+[ext_resource type="Texture2D" uid="uid://dbjxv0qisjnsx" path="res://Art/Landscape/black.png" id="5_ewpvm"]
+[ext_resource type="Texture2D" uid="uid://qrio8bv856ah" path="res://Art/Landscape/transitionarea.png" id="5_kw0ly"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w88gh"]
+size = Vector2(588.5, 80.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xebmo"]
+size = Vector2(138, 506)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ed7"]
+size = Vector2(569, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt480"]
+size = Vector2(71, 659)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6oqmr"]
+size = Vector2(78, 141)
+
+[node name="village" type="Node2D"]
+script = ExtResource("1_0q8cg")
+
+[node name="collisions" type="StaticBody2D" parent="."]
+collision_layer = 20
+
+[node name="floor" type="CollisionShape2D" parent="collisions"]
+position = Vector2(260, 479)
+shape = SubResource("RectangleShape2D_w88gh")
+
+[node name="wall" type="CollisionShape2D" parent="collisions"]
+position = Vector2(-63, 249)
+shape = SubResource("RectangleShape2D_xebmo")
+
+[node name="ceiling" type="CollisionShape2D" parent="collisions"]
+position = Vector2(251.5, -61)
+shape = SubResource("RectangleShape2D_n0ed7")
+
+[node name="wall2" type="CollisionShape2D" parent="collisions"]
+position = Vector2(542.5, 189.5)
+shape = SubResource("RectangleShape2D_pt480")
+
+[node name="next_stage" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="depart" type="CollisionShape2D" parent="next_stage"]
+position = Vector2(472, 364.5)
+shape = SubResource("RectangleShape2D_6oqmr")
+
+[node name="Player" parent="." instance=ExtResource("2_wh4gc")]
+unique_name_in_owner = true
+position = Vector2(33, 426)
+
+[node name="Dash" parent="Player" instance=ExtResource("3_50pmv")]
+
+[node name="background" type="TextureRect" parent="."]
+z_index = -90
+offset_left = -1443.0
+offset_top = -1096.0
+offset_right = 1724.0
+offset_bottom = 1473.0
+scale = Vector2(1.00426, 1.00426)
+texture = ExtResource("5_ewpvm")
+
+[node name="village_texture" type="TextureRect" parent="."]
+z_index = -15
+offset_top = -1.0
+offset_right = 512.0
+offset_bottom = 511.0
+scale = Vector2(1.0208, 1.00365)
+texture = ExtResource("5_kw0ly")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(256, 256)
+zoom = Vector2(0.7, 0.7)
+
+[connection signal="ready" from="." to="Player" method="_on_village_ready"]
+[connection signal="body_entered" from="next_stage" to="." method="_on_next_stage_body_entered"]
