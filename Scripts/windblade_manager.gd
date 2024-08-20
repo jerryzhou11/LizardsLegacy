@@ -10,6 +10,12 @@ extends Node2D
 
 var active = true
 
+func _process(delta: float) -> void:
+	if(active):
+		wind_noise.volume_db = 10
+	else:
+		wind_noise.volume_db = -80
+
 func _ready() -> void:
 	timer.wait_time = spawn_interval
 

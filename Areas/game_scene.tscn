@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://Areas/scale_count.gd" id="17_7b5hx"]
 [ext_resource type="PackedScene" uid="uid://bna3sgkes7dv7" path="res://Scenes/head.tscn" id="17_mlygp"]
 [ext_resource type="PackedScene" uid="uid://pbt7rieo1v60" path="res://Scenes/chest.tscn" id="18_luumw"]
+[ext_resource type="AudioStream" uid="uid://c4v6jdotklgb1" path="res://sounds/Wind_FX.ogg" id="20_5qsep"]
 [ext_resource type="Texture2D" uid="uid://220kwiybrukb" path="res://Art/Dragon/claw legs/Claw Back 1.png" id="20_c165k"]
 [ext_resource type="PackedScene" uid="uid://cgydu8no0cips" path="res://Scenes/debris.tscn" id="20_cg03m"]
 [ext_resource type="Script" path="res://Scripts/front_wing.gd" id="21_6w1bh"]
@@ -31,6 +32,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/scale_cluster.tscn" id="25_owcwy"]
 [ext_resource type="PackedScene" path="res://Scenes/weak_spot.tscn" id="26_skppy"]
 [ext_resource type="PackedScene" uid="uid://bjdkgfawkorq" path="res://Scenes/heart.tscn" id="27_fs2w3"]
+[ext_resource type="Texture2D" uid="uid://btwaslcx1raa8" path="res://Art/Landscape/SIGN SCALED-Sheet.png" id="27_oe1l4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo8xg"]
 texture = ExtResource("1_skybf")
@@ -224,7 +226,9 @@ spawn_y_max = 200.0
 wind_noise = NodePath("../wind_noise")
 
 [node name="wind_noise" type="AudioStreamPlayer2D" parent="WindZone"]
-position = Vector2(-153, 269)
+position = Vector2(-153, 4)
+stream = ExtResource("20_5qsep")
+autoplay = true
 
 [node name="foot2" parent="." node_paths=PackedStringArray("player_node", "camera") instance=ExtResource("21_em4lo")]
 position = Vector2(1424, 147)
@@ -261,9 +265,21 @@ collision_layer = 0
 collision_mask = 0
 freeze = true
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(871, 82)
+texture = ExtResource("27_oe1l4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(2233, 90.0001)
+rotation = 0.828082
+texture = ExtResource("27_oe1l4")
+flip_h = true
+
 [node name="Wing" parent="." instance=ExtResource("21_pyxa2")]
 z_index = -2
-position = Vector2(-446, -1328)
+position = Vector2(-429, -1309)
 scale = Vector2(2, 2)
 script = ExtResource("21_6w1bh")
 

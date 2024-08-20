@@ -1,7 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwsepxe1gpykh"]
+[gd_scene load_steps=16 format=3 uid="uid://cwsepxe1gpykh"]
 
+[ext_resource type="Script" path="res://Scripts/wing.gd" id="1_lopl6"]
 [ext_resource type="Texture2D" uid="uid://ct87kaslixn5h" path="res://Art/Dragon/Wing/front_wing_attachment.png" id="1_mnbrx"]
 [ext_resource type="Texture2D" uid="uid://rnvbxiy1wtr7" path="res://Art/Dragon/Wing/majorpaddingwingsaxis.png" id="2_mckmh"]
+[ext_resource type="AudioStream" uid="uid://b6by4rjd478x4" path="res://sounds/Dragon_Wing_1_FX.ogg" id="4_geff5"]
+[ext_resource type="AudioStream" uid="uid://dol27hdvijtxt" path="res://sounds/Dragon_Wing_2_FX.ogg" id="5_5ahvi"]
+[ext_resource type="AudioStream" uid="uid://c6awxfyq4i2pa" path="res://sounds/Dragon_Wing_3_FX.ogg" id="6_1ruu7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_76atv"]
 atlas = ExtResource("2_mckmh")
@@ -99,7 +103,14 @@ _data = {
 "flap": SubResource("Animation_xo7db")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yv1qs"]
+streams_count = 3
+stream_0/stream = ExtResource("4_geff5")
+stream_1/stream = ExtResource("5_5ahvi")
+stream_2/stream = ExtResource("6_1ruu7")
+
 [node name="Wing" type="Node2D"]
+script = ExtResource("1_lopl6")
 
 [node name="FrontWingAttachment" type="Sprite2D" parent="."]
 position = Vector2(646, 411)
@@ -115,3 +126,13 @@ animation = &"wing_flap"
 libraries = {
 "": SubResource("AnimationLibrary_lyqjt")
 }
+
+[node name="flap" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(689, 159)
+stream = SubResource("AudioStreamRandomizer_yv1qs")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
