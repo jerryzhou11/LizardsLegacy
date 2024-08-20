@@ -17,11 +17,10 @@ const FLAP_YSPEED = 400.0
 const FLAP_COOLDOWN = .8
 const FLAP_STAMINA = 0.2 # seconds
 const DASH_UP_STAMINA = 0.4 # seconds
-const DEAD_DRAG = 0.05
+const DEAD_DRAG = 800
 var animation_locked : bool = false
 var direction := 0
 var facing = 1
-var inv = []
 var flight_stamina = 0.0
 var dead = false
 var flap_available = true
@@ -46,6 +45,7 @@ var in_wind_zone = false
 @onready var hitplayer = $get_hit_player
 @onready var deathplayer = $death_player
 @onready var flap_sfx_player = $wing_flap_player
+@onready var clink_player = $clink_player
 
 func _ready():
 	GlobalAudioSignals.connect("bgm_toggle", Callable(self, "_on_bgm_toggle"))
@@ -60,7 +60,7 @@ func _ready():
 	bossBGM.play()
 	
 var items = {
-	"armor": false,
+	"armor": true,
 	"spear_upgrade": false,
 	"grapple": false,
 	"item4": false,
@@ -98,8 +98,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 	if dead:
-		#velocity.x = velocity.x * (1.0 - DEAD_DRAG) ** delta
-		#move_and_slide()
+		velocity.x = move_toward(velocity.x, 0, delta * DEAD_DRAG)
+		move_and_slide()
 		return	
 		
 	flap_timer = move_toward(flap_timer, 0, delta)
@@ -179,8 +179,9 @@ func _on_hurtbox_area_entered(area:Node) -> void:
 		get_hit(area)
 		#obviously, placeholder death condition.
 	elif(area.get_name() == "WindZone"):
-		print("entered wind")
-		in_wind_zone = true
+		if(area.get_meta("is_active")):
+			print("entered wind")
+			in_wind_zone = true
 
 func _on_hurtbox_area_exited(area:Area2D) -> void:
 	if(area.get_name() == "WindZone"):
@@ -199,24 +200,39 @@ func _on_hurtbox_body_entered(body) -> void:
 # Returns true if the hit killed the player, false otherwise
 func get_hit(body) -> bool:
 	if not dead:
-		#hitplayer.play()
+		hitplayer.play()
+		if(facing==1):
+			lizamation.play("get_hit")
+		else:
+			lizamation.flip_h = true
+			lizamation.play("get_hit")
 		HitstopManager.hit_stop_short()
-	if inv.has("armor") and not armor_used:
+	if items["armor"] and not armor_used:
+		clink_player.play()
 		armor_used = true
 		return false
 	if not debugMode and not dead:
+		dead = true
+		bossBGM.stop()
+		await get_tree().create_timer(0.5).timeout 
 		deathplayer.play()
 		if(facing==1):
 			lizamation.play("death_reg")
 		else:
 			lizamation.flip_h = true
 			lizamation.play("death_reg")
-		dead = true
-		bossBGM.stop()
-		#ragdoll(body.linear_velocity, 500) #commented out because was causing crashes
+		var ragdoll_dir: Vector2
+		if body and "linear_velocity" in body:
+			ragdoll_dir = body.linear_velocity
+		else:
+			ragdoll_dir = Vector2(-1, -1)
+			
+		ragdoll(ragdoll_dir, 800) #commented out because was causing crashes
 	return true	
 
 func ragdoll(direction: Vector2, force: float) -> void:
+	if direction.length() < 0.01:
+		direction = Vector2(-1, -1)
 	velocity = direction.normalized() * force
 	velocity.y = -abs(velocity.y)
 	#print(velocity)

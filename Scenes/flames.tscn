@@ -22,6 +22,8 @@ animations = [{
 
 [node name="flames" type="Area2D" groups=["Hazards"]]
 scale = Vector2(3.16, 3.16)
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_crngh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
