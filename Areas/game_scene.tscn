@@ -25,9 +25,9 @@
 [ext_resource type="Texture2D" uid="uid://dfotdxq1yc7oj" path="res://Art/Dragon/claw legs/Claw Back 2.png" id="21_8d40b"]
 [ext_resource type="PackedScene" uid="uid://ckuh2a55u5jq5" path="res://Scenes/backfoot.tscn" id="21_em4lo"]
 [ext_resource type="PackedScene" uid="uid://cgyxaokcu5n5s" path="res://Scenes/wing.tscn" id="21_pyxa2"]
-[ext_resource type="PackedScene" path="res://Scenes/big_fern.tscn" id="22_hoqrl"]
+[ext_resource type="PackedScene" uid="uid://cgrx7kbe2axwm" path="res://Scenes/big_fern.tscn" id="22_hoqrl"]
 [ext_resource type="PackedScene" path="res://Scenes/scale_cluster.tscn" id="25_owcwy"]
-[ext_resource type="PackedScene" path="res://Scenes/heart.tscn" id="27_fs2w3"]
+[ext_resource type="PackedScene" uid="uid://bjdkgfawkorq" path="res://Scenes/heart.tscn" id="27_fs2w3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo8xg"]
 texture = ExtResource("1_skybf")
@@ -140,7 +140,6 @@ position = Vector2(1842, 1427)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_qv5et")]
-visible = true
 offset_left = 21.0
 offset_top = 9.0
 offset_right = 21.0
@@ -250,9 +249,8 @@ shape = SubResource("RectangleShape2D_muv6l")
 [node name="ScaleCluster" parent="." instance=ExtResource("25_owcwy")]
 position = Vector2(1081, -77)
 
-[node name="Heart" parent="." node_paths=PackedStringArray("player", "dragon") instance=ExtResource("27_fs2w3")]
+[node name="Heart" parent="." node_paths=PackedStringArray("dragon") instance=ExtResource("27_fs2w3")]
 position = Vector2(458, -505)
-player = NodePath("../Player")
 dragon = NodePath("../Head")
 
 [connection signal="ready" from="." to="Player" method="_on_game_scene_ready"]

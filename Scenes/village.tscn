@@ -112,7 +112,6 @@ offset_left = 51.0
 offset_top = 219.0
 offset_right = 81.0
 offset_bottom = 249.0
-disabled = true
 icon = ExtResource("5_kquq0")
 flat = true
 
@@ -141,6 +140,7 @@ offset_left = 129.0
 offset_top = 216.0
 offset_right = 161.0
 offset_bottom = 252.0
+disabled = true
 icon = ExtResource("10_u81ex")
 flat = true
 
@@ -183,7 +183,8 @@ offset_right = 142.0
 offset_bottom = 135.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
-text = "5"
+text = "0
+"
 
 [node name="item4label" type="Label" parent="prices"]
 offset_left = 128.0
@@ -192,7 +193,8 @@ offset_right = 168.0
 offset_bottom = 135.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
-text = "5
+text = "0
+
 "
 
 [node name="item5label" type="Label" parent="prices"]

@@ -51,15 +51,16 @@ func _on_shop_body_exited(body: Node2D) -> void:
 		prices_node.hide()
 		
 func show_buttons(): # shows the buttons i think
-	if is_item_in_store[0] == true:
+	var player = $Player
+	if is_item_in_store[0] == true and not player.items["armor"]:
 		$item_1.show()
-	if is_item_in_store[1] == true:
+	if is_item_in_store[1] == true and not player.items["spear_upgrade"]:
 		$item_2.show()
-	if is_item_in_store[2] == true:
+	if is_item_in_store[2] == true and not player.items["grapple"]:
 		$item_3.show()
-	if is_item_in_store[3] == true:
+	if is_item_in_store[3] == true and not player.items["item4"]:
 		$item_4.show()
-	if is_item_in_store[4] == true:
+	if is_item_in_store[4] == true and not player.items["wings"]:
 		$item_5.show()
 
 func hide_buttons(): # hides the buttons

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://yyi824vdc60x"]
+[gd_scene load_steps=3 format=3 uid="uid://cgrx7kbe2axwm"]
 
 [ext_resource type="Texture2D" uid="uid://jrk7mjnawwqb" path="res://Art/Landscape/BURNT FERN.png" id="1_5vgqa"]
 
@@ -19,9 +19,12 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(123.5, 21.75)
+position = Vector2(123, 21)
+rotation = 6.26942
 shape = SubResource("RectangleShape2D_7mlic")
+one_way_collision = true
 debug_color = Color(0.279963, 0, 0.0262023, 0.42)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(78, 18, -21, 56, -24, 51, 58, 16)
+one_way_collision = true

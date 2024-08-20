@@ -40,7 +40,6 @@ var weak_spots_hit = [false, false, false, false]
 @export var wind_slow = 50
 
 @export var scales = 0 # how much money you have
-
 #camera
 @export var camera: Camera2D
 
@@ -186,7 +185,7 @@ func _physics_process(delta: float) -> void:
 	update_animation()
 
 func _on_hurtbox_area_entered(area:Node) -> void:
-	if(area.is_in_group("Hazards")):
+	if(area.is_in_group("Hazards") and $Hurtbox/CollisionShape2D.disabled == false):
 		if(area.is_in_group("Fire")):
 			camera.shake(15)
 			burnt = true
