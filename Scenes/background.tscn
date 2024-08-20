@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhqukmftr0w8t"]
+[gd_scene load_steps=4 format=3 uid="uid://bhqukmftr0w8t"]
 
 [ext_resource type="Texture2D" uid="uid://bsimyf516guqt" path="res://Art/Landscape/Jungle_100.png" id="1_jgffm"]
 [ext_resource type="Texture2D" uid="uid://si655s8qnmt1" path="res://Art/Landscape/canopy jungle_100.png" id="2_td4mq"]
+[ext_resource type="Texture2D" uid="uid://u1e7h5hrr0j0" path="res://Art/Landscape/TOP CANOPY_100.png" id="3_2dsap"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
@@ -17,3 +18,8 @@ centered = false
 texture = ExtResource("2_td4mq")
 centered = false
 offset = Vector2(0, -480)
+
+[node name="toptop" type="Sprite2D" parent="ParallaxLayer"]
+texture = ExtResource("3_2dsap")
+centered = false
+offset = Vector2(0, -960)

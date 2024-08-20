@@ -268,8 +268,10 @@ func update_animation():
 						lizamation.play("dash_L", 8)			
 				else:
 					if (facing == 1):
+						print("wingwalk")
 						lizamation.play("wing_walk_R", 2)
 					else:
+						print("wingwalk2")
 						lizamation.play("wing_walk_L", 2)
 			else:
 				if (facing == 1):
