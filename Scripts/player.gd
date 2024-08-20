@@ -36,6 +36,7 @@ var in_wind_zone = false
 #wind
 @export var wind_force = 20000
 @export var wind_slow = 50
+@export var scales = 0 # how much money you have
 
 @onready var dash = $Dash
 @onready var lizamation = $lizamation
@@ -64,6 +65,7 @@ var items = {
 	"item4": false,
 	"wings": true
 }
+
 
 	
 func get_staminabar_percent() -> float:
@@ -169,7 +171,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animation()
 
-
 func _on_hurtbox_area_entered(area:Node) -> void:
 	if(area.is_in_group("Hazards")):
 		print("You died!")
@@ -179,7 +180,6 @@ func _on_hurtbox_area_entered(area:Node) -> void:
 	elif(area.get_name() == "WindZone"):
 		print("entered wind")
 		in_wind_zone = true
-
 
 func _on_hurtbox_area_exited(area:Area2D) -> void:
 	if(area.get_name() == "WindZone"):
@@ -198,7 +198,7 @@ func _on_hurtbox_body_entered(body) -> void:
 # Returns true if the hit killed the player, false otherwise
 func get_hit(body) -> bool:
 	if not dead:
-		hitplayer.play()
+		#hitplayer.play()
 		HitstopManager.hit_stop_short()
 	if inv.has("armor") and not armor_used:
 		armor_used = true

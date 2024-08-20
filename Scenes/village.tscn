@@ -67,6 +67,7 @@ position = Vector2(472, 364.5)
 shape = SubResource("RectangleShape2D_6oqmr")
 
 [node name="Player" parent="." instance=ExtResource("2_0vdgv")]
+unique_name_in_owner = true
 position = Vector2(33, 426)
 
 [node name="Dash" parent="Player" instance=ExtResource("3_6qs2i")]
@@ -146,6 +147,54 @@ offset_right = 178.0
 offset_bottom = 120.0
 icon = ExtResource("11_qg62p")
 flat = true
+
+[node name="prices" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="item1label" type="Label" parent="prices"]
+offset_left = 50.0
+offset_top = 112.0
+offset_right = 90.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "5"
+
+[node name="item2label" type="Label" parent="prices"]
+offset_left = 76.0
+offset_top = 112.0
+offset_right = 116.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "4"
+
+[node name="item3label" type="Label" parent="prices"]
+offset_left = 102.0
+offset_top = 112.0
+offset_right = 142.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "5"
+
+[node name="item4label" type="Label" parent="prices"]
+offset_left = 128.0
+offset_top = 112.0
+offset_right = 168.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "6"
+
+[node name="item5label" type="Label" parent="prices"]
+offset_left = 155.0
+offset_top = 112.0
+offset_right = 195.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "5"
 
 [connection signal="ready" from="." to="Player" method="_on_village_ready"]
 [connection signal="body_entered" from="shop" to="." method="_on_shop_body_entered"]

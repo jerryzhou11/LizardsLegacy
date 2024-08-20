@@ -13,7 +13,7 @@ size = Vector2(277.409, 81.8182)
 
 [node name="Enemystomp" type="CharacterBody2D" node_paths=PackedStringArray("foot_node")]
 position = Vector2(2, -4)
-scale = Vector2(2, 2)
+scale = Vector2(3.32, 2.64)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_2cppc")
