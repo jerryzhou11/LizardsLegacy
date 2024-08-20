@@ -241,6 +241,8 @@ func get_hit(body) -> bool:
 				lizamation.flip_h = true
 				lizamation.play("death_reg")
 			ragdoll(ragdoll_dir, 800) #commented out because was causing crashes
+	await get_tree().create_timer(5.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/death_screen.tscn")		
 	return true	
 
 func ragdoll(direction: Vector2, force: float) -> void:
