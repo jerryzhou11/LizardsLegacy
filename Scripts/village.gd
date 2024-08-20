@@ -3,11 +3,11 @@ extends Node2D
 var is_item_in_store : Array = [true,true,true,true,true]
 
 #dont touch this it made me want to kill myself
-@export var price1 = 5
-@export var price2 = 3
-@export var price3 = 5
-@export var price4 = 4
-@export var price5 = 6
+@export var price1 = 0
+@export var price2 = 1
+@export var price3 = 0
+@export var price4 = 5
+@export var price5 = 5
 
 @onready var prices_node = get_node("prices")
 var money = 0
@@ -70,35 +70,40 @@ func hide_buttons(): # hides the buttons
 	$item_5.hide()
 
 func _on_item_1_button_down() -> void:
-	if money > price1:
+	if money >= price1:
+		money-=price1
 		ShopSignals.purchase_1()
 		is_item_in_store[0] = false
 		$item_1.hide()
 	else: 
 		print("too poor idiot")
 func _on_item_2_button_down() -> void:
-	if money > price2:
+	if money >= price2:
+		money-=price2
 		ShopSignals.purchase_2()
 		is_item_in_store[1] = false
 		$item_2.hide()
 	else: 
 		print("too poor idiot")
 func _on_item_3_button_down() -> void:
-	if money > price3:
+	if money >= price3:
+		money-=price3
 		ShopSignals.purchase_3()
 		is_item_in_store[2] = false
 		$item_3.hide()
 	else: 
 		print("too poor idiot")
 func _on_item_4_button_down() -> void:
-	if money > price4:
+	if money >= price4:
+		money-=price4
 		ShopSignals.purchase_4()
 		is_item_in_store[3] = false
 		$item_4.hide()
 	else: 
 		print("too poor idiot")
 func _on_item_5_button_down() -> void:
-	if money > price5:
+	if money >= price5:
+		money-=price5
 		ShopSignals.purchase_5()
 		is_item_in_store[4] = false
 		$item_5.hide()

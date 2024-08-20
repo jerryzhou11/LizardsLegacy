@@ -1,18 +1,25 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqkyv2ohcrkps"]
 
 [ext_resource type="Script" path="res://Scripts/death_screen.gd" id="1_erkal"]
-[ext_resource type="Texture2D" uid="uid://dbjxv0qisjnsx" path="res://Art/Landscape/black.png" id="1_ux6sg"]
-[ext_resource type="Texture2D" uid="uid://dfxp1jyj1hry1" path="res://icon.svg" id="2_k0c3f"]
+[ext_resource type="Texture2D" uid="uid://cirp0fvns3b7l" path="res://Art/Landscape/death screen.png" id="2_g3pqt"]
+[ext_resource type="Texture2D" uid="uid://bbdrwud6vtstl" path="res://Art/accessories/death screen button.png" id="3_mx0lm"]
 
 [node name="Death_Screen" type="Node2D"]
 script = ExtResource("1_erkal")
 
 [node name="bg" type="TextureRect" parent="."]
-offset_left = -420.0
-offset_top = -234.0
-offset_right = 430.0
-offset_bottom = 291.0
-texture = ExtResource("1_ux6sg")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_g3pqt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -24,10 +31,10 @@ offset_bottom = 40.0
 
 [node name="TextureButton" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = -64.0
-offset_top = -115.0
-offset_right = 64.0
-offset_bottom = 13.0
-texture_normal = ExtResource("2_k0c3f")
+offset_left = -70.0
+offset_top = 94.0
+offset_right = 72.0
+offset_bottom = 146.0
+texture_normal = ExtResource("3_mx0lm")
 
 [connection signal="button_down" from="Control/TextureButton" to="." method="_on_texture_button_button_down"]

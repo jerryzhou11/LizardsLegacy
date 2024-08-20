@@ -65,6 +65,9 @@ func _ready():
 	bossBGM.volume_db = -8
 	bossBGM.play()
 	
+	# Load player state from PlayerData
+	PlayerData.load_player_state(self)
+	
 var items = {
 	"armor": true,
 	"spear_upgrade": false,
@@ -91,6 +94,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("debug_toggle_flight"):
 		items.wings = not items.wings
 		print("wings: ", items.wings)
+		
+	# Save player state to PlayerData
+	PlayerData.save_player_state(self)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -246,7 +252,8 @@ func get_hit(body) -> bool:
 				lizamation.flip_h = true
 				lizamation.play("death_reg")
 			ragdoll(ragdoll_dir, 800) #commented out because was causing crashes
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(4.0).timeout
+	PlayerData.save_player_state(self)  # Save state before changing scene
 	get_tree().change_scene_to_file("res://Scenes/death_screen.tscn")		
 	return true	
 
@@ -311,23 +318,33 @@ func _on_bgm_toggle():
 
 func buy_item_1():
 	print("bought item 1")
+	scales -= 0
 	items["armor"] = true
+	PlayerData.save_player_state(self)
 
 func buy_item_2():
 	print("bought item 2")
+	scales -= 1
 	items["spear_upgrade"] = true
+	PlayerData.save_player_state(self)
 	
 func buy_item_3():
 	print("bought item 3")
+	scales -= 0
 	items["grapple"] = true
+	PlayerData.save_player_state(self)
 	
 func buy_item_4():
 	print("bought item 4")
+	scales -= 5
 	items["item4"] = true
+	PlayerData.save_player_state(self)
 	
 func buy_item_5():
 	print("bought item 5")
+	scales -= 5
 	items["wings"] = true
+	PlayerData.save_player_state(self)
 
 func _on_village_ready() -> void:
 	bossBGM.stop()
