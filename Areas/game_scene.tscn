@@ -105,6 +105,13 @@ drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 script = ExtResource("5_iajij")
 
+[node name="Head" parent="." node_paths=PackedStringArray("player") instance=ExtResource("17_mlygp")]
+position = Vector2(-458, -215)
+fire_breath_cooldown = 5.0
+projectiles_per_attack = 10
+spread_angle = 50.0
+player = NodePath("../Player")
+
 [node name="DragonLegScales-sheet" type="Sprite2D" parent="."]
 position = Vector2(-527, -579)
 texture = ExtResource("5_2jo3e")

@@ -1,39 +1,115 @@
-[gd_scene load_steps=6 format=3 uid="uid://bna3sgkes7dv7"]
+[gd_scene load_steps=16 format=3 uid="uid://bna3sgkes7dv7"]
 
-[ext_resource type="Texture2D" uid="uid://bk24n2i2y2q1d" path="res://Art/Dragon/dragon_head.png" id="1_hgx64"]
 [ext_resource type="Script" path="res://Scripts/head.gd" id="1_ubgut"]
 [ext_resource type="AudioStream" uid="uid://chuvlfv6mfpr3" path="res://sounds/flamethrower.mp3" id="2_3sa7a"]
 [ext_resource type="PackedScene" uid="uid://dfd7fhpdq4jl4" path="res://Scenes/flames.tscn" id="2_l5nv0"]
+[ext_resource type="Texture2D" uid="uid://dwfgx1menfmcj" path="res://Art/Dragon/lovelydragonhead-Sheet.png" id="3_aoh32"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i3lx2"]
-radius = 447.252
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p7lg"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(0, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5pho"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(384, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvd5x"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(768, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrv5p"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(1152, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dw8e"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(1536, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6tcq"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(1920, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4rli"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(2304, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kejbr"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(2688, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1rl7"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(3072, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6em83"]
+atlas = ExtResource("3_aoh32")
+region = Rect2(3456, 0, 384, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_po81t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6p7lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5pho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvd5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrv5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dw8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6tcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4rli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kejbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1rl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6em83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6p7lg")
+}],
+"loop": false,
+"name": &"firing",
+"speed": 5.0
+}]
 
 [node name="Head" type="CharacterBody2D" node_paths=PackedStringArray("player")]
-position = Vector2(0, -3)
+position = Vector2(0, -1)
 scale = Vector2(2, 2)
 script = ExtResource("1_ubgut")
-fire_breath_cooldown = 0.1
 projectile_scene = ExtResource("2_l5nv0")
-projectiles_per_attack = 1
-player = NodePath("temp_player")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2(122.5, 14.5)
+player = NodePath("")
 
 [node name="AggroZone" type="Area2D" parent="."]
 position = Vector2(1.10001, 1.60001)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroZone"]
-shape = SubResource("CircleShape2D_i3lx2")
-debug_color = Color(2.59906e-06, 0.625054, 0.523611, 0.42)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AggroZone"]
+polygon = PackedVector2Array(5.39999, -3.60001, -351.6, -225.6, -508.6, -143.6, -674.1, 11.4, -503.1, 199.9, -330.1, 276.9)
 
-[node name="head_sprite" type="Sprite2D" parent="."]
-position = Vector2(2.10001, 2.60001)
-texture = ExtResource("1_hgx64")
+[node name="head_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.10001, 29.5)
+rotation = 0.58452
+sprite_frames = SubResource("SpriteFrames_po81t")
+animation = &"firing"
+frame = 9
+frame_progress = 1.0
 
 [node name="Hurtbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(1.10001, 1.60001)
+rotation = 0.58452
 polygon = PackedVector2Array(-117, 130, -135, 114, -135, 78, -86, 11, -41, -40, 8, -146, 13, -20, 18, -20, 66, -59, 103, -130, 107, -56, 80, -5, 99, 14, 99, 38, 92, 36, 90, 42, 36, 99, -12, 104, -62, 131)
 
 [node name="breath_sound" type="AudioStreamPlayer2D" parent="."]
@@ -43,15 +119,6 @@ stream = ExtResource("2_3sa7a")
 [node name="FireBreathTimer" type="Timer" parent="."]
 
 [node name="source_pos" type="Node2D" parent="."]
-position = Vector2(-111.9, 125.6)
+position = Vector2(-164, 48.5)
+rotation = -2.62742
 scale = Vector2(0.5, 0.5)
-
-[node name="temp_player" type="Node2D" parent="."]
-visible = false
-position = Vector2(-126.5, 80.5)
-
-[node name="ColorRect" type="ColorRect" parent="temp_player"]
-offset_left = -20.5
-offset_top = -21.0
-offset_right = 19.5
-offset_bottom = 19.0

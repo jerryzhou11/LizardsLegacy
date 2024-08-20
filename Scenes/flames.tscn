@@ -6,6 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mi0mg"]
 
 [node name="flames" type="Area2D" groups=["Hazards"]]
+scale = Vector2(1.56, 1.56)
 script = ExtResource("1_crngh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
